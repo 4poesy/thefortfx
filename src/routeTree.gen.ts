@@ -9,38 +9,438 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as OpportunitiesRouteImport } from './routes/opportunities'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as JournalRouteImport } from './routes/journal'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
+import { Route as EconomicCalendarRouteImport } from './routes/economic-calendar'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AiAssistantRouteImport } from './routes/ai-assistant'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SignalsIndexRouteImport } from './routes/signals.index'
+import { Route as LearnIndexRouteImport } from './routes/learn.index'
+import { Route as ForecastsIndexRouteImport } from './routes/forecasts.index'
+import { Route as CalculatorsIndexRouteImport } from './routes/calculators.index'
+import { Route as BrokersIndexRouteImport } from './routes/brokers.index'
+import { Route as SignalsPairRouteImport } from './routes/signals.$pair'
+import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
+import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
+import { Route as CalculatorsTakeProfitRouteImport } from './routes/calculators.take-profit'
+import { Route as CalculatorsStopLossRouteImport } from './routes/calculators.stop-loss'
+import { Route as CalculatorsRiskRewardRouteImport } from './routes/calculators.risk-reward'
+import { Route as CalculatorsPositionSizeRouteImport } from './routes/calculators.position-size'
+import { Route as CalculatorsPipCalculatorRouteImport } from './routes/calculators.pip-calculator'
+import { Route as CalculatorsDrawdownRouteImport } from './routes/calculators.drawdown'
+import { Route as BrokersBrokerRouteImport } from './routes/brokers.$broker'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpportunitiesRoute = OpportunitiesRouteImport.update({
+  id: '/opportunities',
+  path: '/opportunities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JournalRoute = JournalRouteImport.update({
+  id: '/journal',
+  path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EconomicCalendarRoute = EconomicCalendarRouteImport.update({
+  id: '/economic-calendar',
+  path: '/economic-calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiAssistantRoute = AiAssistantRouteImport.update({
+  id: '/ai-assistant',
+  path: '/ai-assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignalsIndexRoute = SignalsIndexRouteImport.update({
+  id: '/signals/',
+  path: '/signals/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnIndexRoute = LearnIndexRouteImport.update({
+  id: '/learn/',
+  path: '/learn/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForecastsIndexRoute = ForecastsIndexRouteImport.update({
+  id: '/forecasts/',
+  path: '/forecasts/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculatorsIndexRoute = CalculatorsIndexRouteImport.update({
+  id: '/calculators/',
+  path: '/calculators/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrokersIndexRoute = BrokersIndexRouteImport.update({
+  id: '/brokers/',
+  path: '/brokers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignalsPairRoute = SignalsPairRouteImport.update({
+  id: '/signals/$pair',
+  path: '/signals/$pair',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnSlugRoute = LearnSlugRouteImport.update({
+  id: '/learn/$slug',
+  path: '/learn/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForecastsPairRoute = ForecastsPairRouteImport.update({
+  id: '/forecasts/$pair',
+  path: '/forecasts/$pair',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculatorsTakeProfitRoute = CalculatorsTakeProfitRouteImport.update({
+  id: '/calculators/take-profit',
+  path: '/calculators/take-profit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculatorsStopLossRoute = CalculatorsStopLossRouteImport.update({
+  id: '/calculators/stop-loss',
+  path: '/calculators/stop-loss',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculatorsRiskRewardRoute = CalculatorsRiskRewardRouteImport.update({
+  id: '/calculators/risk-reward',
+  path: '/calculators/risk-reward',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculatorsPositionSizeRoute = CalculatorsPositionSizeRouteImport.update({
+  id: '/calculators/position-size',
+  path: '/calculators/position-size',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculatorsPipCalculatorRoute =
+  CalculatorsPipCalculatorRouteImport.update({
+    id: '/calculators/pip-calculator',
+    path: '/calculators/pip-calculator',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CalculatorsDrawdownRoute = CalculatorsDrawdownRouteImport.update({
+  id: '/calculators/drawdown',
+  path: '/calculators/drawdown',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrokersBrokerRoute = BrokersBrokerRouteImport.update({
+  id: '/brokers/$broker',
+  path: '/brokers/$broker',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-assistant': typeof AiAssistantRoute
+  '/dashboard': typeof DashboardRoute
+  '/economic-calendar': typeof EconomicCalendarRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/journal': typeof JournalRoute
+  '/login': typeof LoginRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/pricing': typeof PricingRoute
+  '/register': typeof RegisterRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/brokers/$broker': typeof BrokersBrokerRoute
+  '/calculators/drawdown': typeof CalculatorsDrawdownRoute
+  '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
+  '/calculators/position-size': typeof CalculatorsPositionSizeRoute
+  '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
+  '/calculators/stop-loss': typeof CalculatorsStopLossRoute
+  '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
+  '/forecasts/$pair': typeof ForecastsPairRoute
+  '/learn/$slug': typeof LearnSlugRoute
+  '/signals/$pair': typeof SignalsPairRoute
+  '/brokers/': typeof BrokersIndexRoute
+  '/calculators/': typeof CalculatorsIndexRoute
+  '/forecasts/': typeof ForecastsIndexRoute
+  '/learn/': typeof LearnIndexRoute
+  '/signals/': typeof SignalsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-assistant': typeof AiAssistantRoute
+  '/dashboard': typeof DashboardRoute
+  '/economic-calendar': typeof EconomicCalendarRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/journal': typeof JournalRoute
+  '/login': typeof LoginRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/pricing': typeof PricingRoute
+  '/register': typeof RegisterRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/brokers/$broker': typeof BrokersBrokerRoute
+  '/calculators/drawdown': typeof CalculatorsDrawdownRoute
+  '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
+  '/calculators/position-size': typeof CalculatorsPositionSizeRoute
+  '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
+  '/calculators/stop-loss': typeof CalculatorsStopLossRoute
+  '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
+  '/forecasts/$pair': typeof ForecastsPairRoute
+  '/learn/$slug': typeof LearnSlugRoute
+  '/signals/$pair': typeof SignalsPairRoute
+  '/brokers': typeof BrokersIndexRoute
+  '/calculators': typeof CalculatorsIndexRoute
+  '/forecasts': typeof ForecastsIndexRoute
+  '/learn': typeof LearnIndexRoute
+  '/signals': typeof SignalsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-assistant': typeof AiAssistantRoute
+  '/dashboard': typeof DashboardRoute
+  '/economic-calendar': typeof EconomicCalendarRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/journal': typeof JournalRoute
+  '/login': typeof LoginRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/pricing': typeof PricingRoute
+  '/register': typeof RegisterRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/brokers/$broker': typeof BrokersBrokerRoute
+  '/calculators/drawdown': typeof CalculatorsDrawdownRoute
+  '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
+  '/calculators/position-size': typeof CalculatorsPositionSizeRoute
+  '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
+  '/calculators/stop-loss': typeof CalculatorsStopLossRoute
+  '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
+  '/forecasts/$pair': typeof ForecastsPairRoute
+  '/learn/$slug': typeof LearnSlugRoute
+  '/signals/$pair': typeof SignalsPairRoute
+  '/brokers/': typeof BrokersIndexRoute
+  '/calculators/': typeof CalculatorsIndexRoute
+  '/forecasts/': typeof ForecastsIndexRoute
+  '/learn/': typeof LearnIndexRoute
+  '/signals/': typeof SignalsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ai-assistant'
+    | '/dashboard'
+    | '/economic-calendar'
+    | '/forgot-password'
+    | '/journal'
+    | '/login'
+    | '/opportunities'
+    | '/pricing'
+    | '/register'
+    | '/sitemap.xml'
+    | '/brokers/$broker'
+    | '/calculators/drawdown'
+    | '/calculators/pip-calculator'
+    | '/calculators/position-size'
+    | '/calculators/risk-reward'
+    | '/calculators/stop-loss'
+    | '/calculators/take-profit'
+    | '/forecasts/$pair'
+    | '/learn/$slug'
+    | '/signals/$pair'
+    | '/brokers/'
+    | '/calculators/'
+    | '/forecasts/'
+    | '/learn/'
+    | '/signals/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ai-assistant'
+    | '/dashboard'
+    | '/economic-calendar'
+    | '/forgot-password'
+    | '/journal'
+    | '/login'
+    | '/opportunities'
+    | '/pricing'
+    | '/register'
+    | '/sitemap.xml'
+    | '/brokers/$broker'
+    | '/calculators/drawdown'
+    | '/calculators/pip-calculator'
+    | '/calculators/position-size'
+    | '/calculators/risk-reward'
+    | '/calculators/stop-loss'
+    | '/calculators/take-profit'
+    | '/forecasts/$pair'
+    | '/learn/$slug'
+    | '/signals/$pair'
+    | '/brokers'
+    | '/calculators'
+    | '/forecasts'
+    | '/learn'
+    | '/signals'
+  id:
+    | '__root__'
+    | '/'
+    | '/ai-assistant'
+    | '/dashboard'
+    | '/economic-calendar'
+    | '/forgot-password'
+    | '/journal'
+    | '/login'
+    | '/opportunities'
+    | '/pricing'
+    | '/register'
+    | '/sitemap.xml'
+    | '/brokers/$broker'
+    | '/calculators/drawdown'
+    | '/calculators/pip-calculator'
+    | '/calculators/position-size'
+    | '/calculators/risk-reward'
+    | '/calculators/stop-loss'
+    | '/calculators/take-profit'
+    | '/forecasts/$pair'
+    | '/learn/$slug'
+    | '/signals/$pair'
+    | '/brokers/'
+    | '/calculators/'
+    | '/forecasts/'
+    | '/learn/'
+    | '/signals/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiAssistantRoute: typeof AiAssistantRoute
+  DashboardRoute: typeof DashboardRoute
+  EconomicCalendarRoute: typeof EconomicCalendarRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  JournalRoute: typeof JournalRoute
+  LoginRoute: typeof LoginRoute
+  OpportunitiesRoute: typeof OpportunitiesRoute
+  PricingRoute: typeof PricingRoute
+  RegisterRoute: typeof RegisterRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  BrokersBrokerRoute: typeof BrokersBrokerRoute
+  CalculatorsDrawdownRoute: typeof CalculatorsDrawdownRoute
+  CalculatorsPipCalculatorRoute: typeof CalculatorsPipCalculatorRoute
+  CalculatorsPositionSizeRoute: typeof CalculatorsPositionSizeRoute
+  CalculatorsRiskRewardRoute: typeof CalculatorsRiskRewardRoute
+  CalculatorsStopLossRoute: typeof CalculatorsStopLossRoute
+  CalculatorsTakeProfitRoute: typeof CalculatorsTakeProfitRoute
+  ForecastsPairRoute: typeof ForecastsPairRoute
+  LearnSlugRoute: typeof LearnSlugRoute
+  SignalsPairRoute: typeof SignalsPairRoute
+  BrokersIndexRoute: typeof BrokersIndexRoute
+  CalculatorsIndexRoute: typeof CalculatorsIndexRoute
+  ForecastsIndexRoute: typeof ForecastsIndexRoute
+  LearnIndexRoute: typeof LearnIndexRoute
+  SignalsIndexRoute: typeof SignalsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/opportunities': {
+      id: '/opportunities'
+      path: '/opportunities'
+      fullPath: '/opportunities'
+      preLoaderRoute: typeof OpportunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/economic-calendar': {
+      id: '/economic-calendar'
+      path: '/economic-calendar'
+      fullPath: '/economic-calendar'
+      preLoaderRoute: typeof EconomicCalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-assistant': {
+      id: '/ai-assistant'
+      path: '/ai-assistant'
+      fullPath: '/ai-assistant'
+      preLoaderRoute: typeof AiAssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +448,142 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/signals/': {
+      id: '/signals/'
+      path: '/signals'
+      fullPath: '/signals/'
+      preLoaderRoute: typeof SignalsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/': {
+      id: '/learn/'
+      path: '/learn'
+      fullPath: '/learn/'
+      preLoaderRoute: typeof LearnIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forecasts/': {
+      id: '/forecasts/'
+      path: '/forecasts'
+      fullPath: '/forecasts/'
+      preLoaderRoute: typeof ForecastsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculators/': {
+      id: '/calculators/'
+      path: '/calculators'
+      fullPath: '/calculators/'
+      preLoaderRoute: typeof CalculatorsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brokers/': {
+      id: '/brokers/'
+      path: '/brokers'
+      fullPath: '/brokers/'
+      preLoaderRoute: typeof BrokersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signals/$pair': {
+      id: '/signals/$pair'
+      path: '/signals/$pair'
+      fullPath: '/signals/$pair'
+      preLoaderRoute: typeof SignalsPairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/$slug': {
+      id: '/learn/$slug'
+      path: '/learn/$slug'
+      fullPath: '/learn/$slug'
+      preLoaderRoute: typeof LearnSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forecasts/$pair': {
+      id: '/forecasts/$pair'
+      path: '/forecasts/$pair'
+      fullPath: '/forecasts/$pair'
+      preLoaderRoute: typeof ForecastsPairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculators/take-profit': {
+      id: '/calculators/take-profit'
+      path: '/calculators/take-profit'
+      fullPath: '/calculators/take-profit'
+      preLoaderRoute: typeof CalculatorsTakeProfitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculators/stop-loss': {
+      id: '/calculators/stop-loss'
+      path: '/calculators/stop-loss'
+      fullPath: '/calculators/stop-loss'
+      preLoaderRoute: typeof CalculatorsStopLossRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculators/risk-reward': {
+      id: '/calculators/risk-reward'
+      path: '/calculators/risk-reward'
+      fullPath: '/calculators/risk-reward'
+      preLoaderRoute: typeof CalculatorsRiskRewardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculators/position-size': {
+      id: '/calculators/position-size'
+      path: '/calculators/position-size'
+      fullPath: '/calculators/position-size'
+      preLoaderRoute: typeof CalculatorsPositionSizeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculators/pip-calculator': {
+      id: '/calculators/pip-calculator'
+      path: '/calculators/pip-calculator'
+      fullPath: '/calculators/pip-calculator'
+      preLoaderRoute: typeof CalculatorsPipCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculators/drawdown': {
+      id: '/calculators/drawdown'
+      path: '/calculators/drawdown'
+      fullPath: '/calculators/drawdown'
+      preLoaderRoute: typeof CalculatorsDrawdownRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brokers/$broker': {
+      id: '/brokers/$broker'
+      path: '/brokers/$broker'
+      fullPath: '/brokers/$broker'
+      preLoaderRoute: typeof BrokersBrokerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiAssistantRoute: AiAssistantRoute,
+  DashboardRoute: DashboardRoute,
+  EconomicCalendarRoute: EconomicCalendarRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
+  JournalRoute: JournalRoute,
+  LoginRoute: LoginRoute,
+  OpportunitiesRoute: OpportunitiesRoute,
+  PricingRoute: PricingRoute,
+  RegisterRoute: RegisterRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  BrokersBrokerRoute: BrokersBrokerRoute,
+  CalculatorsDrawdownRoute: CalculatorsDrawdownRoute,
+  CalculatorsPipCalculatorRoute: CalculatorsPipCalculatorRoute,
+  CalculatorsPositionSizeRoute: CalculatorsPositionSizeRoute,
+  CalculatorsRiskRewardRoute: CalculatorsRiskRewardRoute,
+  CalculatorsStopLossRoute: CalculatorsStopLossRoute,
+  CalculatorsTakeProfitRoute: CalculatorsTakeProfitRoute,
+  ForecastsPairRoute: ForecastsPairRoute,
+  LearnSlugRoute: LearnSlugRoute,
+  SignalsPairRoute: SignalsPairRoute,
+  BrokersIndexRoute: BrokersIndexRoute,
+  CalculatorsIndexRoute: CalculatorsIndexRoute,
+  ForecastsIndexRoute: ForecastsIndexRoute,
+  LearnIndexRoute: LearnIndexRoute,
+  SignalsIndexRoute: SignalsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
