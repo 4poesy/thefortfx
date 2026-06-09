@@ -19,6 +19,7 @@ import { Route as ForecastsIndexRouteImport } from './routes/forecasts.index'
 import { Route as CalculatorsIndexRouteImport } from './routes/calculators.index'
 import { Route as SignalsPairRouteImport } from './routes/signals.$pair'
 import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
+import { Route as CalculatorsPositionSizeRouteImport } from './routes/calculators.position-size'
 import { Route as CalculatorsPipCalculatorRouteImport } from './routes/calculators.pip-calculator'
 
 const OpportunitiesRoute = OpportunitiesRouteImport.update({
@@ -71,6 +72,11 @@ const ForecastsPairRoute = ForecastsPairRouteImport.update({
   path: '/forecasts/$pair',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalculatorsPositionSizeRoute = CalculatorsPositionSizeRouteImport.update({
+  id: '/calculators/position-size',
+  path: '/calculators/position-size',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CalculatorsPipCalculatorRoute =
   CalculatorsPipCalculatorRouteImport.update({
     id: '/calculators/pip-calculator',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
+  '/calculators/position-size': typeof CalculatorsPositionSizeRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/calculators/': typeof CalculatorsIndexRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByTo {
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
+  '/calculators/position-size': typeof CalculatorsPositionSizeRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/calculators': typeof CalculatorsIndexRoute
@@ -112,6 +120,7 @@ export interface FileRoutesById {
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
+  '/calculators/position-size': typeof CalculatorsPositionSizeRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/calculators/': typeof CalculatorsIndexRoute
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/opportunities'
     | '/calculators/pip-calculator'
+    | '/calculators/position-size'
     | '/forecasts/$pair'
     | '/signals/$pair'
     | '/calculators/'
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/opportunities'
     | '/calculators/pip-calculator'
+    | '/calculators/position-size'
     | '/forecasts/$pair'
     | '/signals/$pair'
     | '/calculators'
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/opportunities'
     | '/calculators/pip-calculator'
+    | '/calculators/position-size'
     | '/forecasts/$pair'
     | '/signals/$pair'
     | '/calculators/'
@@ -167,6 +179,7 @@ export interface RootRouteChildren {
   JournalRoute: typeof JournalRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
   CalculatorsPipCalculatorRoute: typeof CalculatorsPipCalculatorRoute
+  CalculatorsPositionSizeRoute: typeof CalculatorsPositionSizeRoute
   ForecastsPairRoute: typeof ForecastsPairRoute
   SignalsPairRoute: typeof SignalsPairRoute
   CalculatorsIndexRoute: typeof CalculatorsIndexRoute
@@ -246,6 +259,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForecastsPairRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calculators/position-size': {
+      id: '/calculators/position-size'
+      path: '/calculators/position-size'
+      fullPath: '/calculators/position-size'
+      preLoaderRoute: typeof CalculatorsPositionSizeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/calculators/pip-calculator': {
       id: '/calculators/pip-calculator'
       path: '/calculators/pip-calculator'
@@ -263,6 +283,7 @@ const rootRouteChildren: RootRouteChildren = {
   JournalRoute: JournalRoute,
   OpportunitiesRoute: OpportunitiesRoute,
   CalculatorsPipCalculatorRoute: CalculatorsPipCalculatorRoute,
+  CalculatorsPositionSizeRoute: CalculatorsPositionSizeRoute,
   ForecastsPairRoute: ForecastsPairRoute,
   SignalsPairRoute: SignalsPairRoute,
   CalculatorsIndexRoute: CalculatorsIndexRoute,
