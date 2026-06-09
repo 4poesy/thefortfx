@@ -19,6 +19,7 @@ import { Route as ForecastsIndexRouteImport } from './routes/forecasts.index'
 import { Route as CalculatorsIndexRouteImport } from './routes/calculators.index'
 import { Route as SignalsPairRouteImport } from './routes/signals.$pair'
 import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
+import { Route as CalculatorsPipCalculatorRouteImport } from './routes/calculators.pip-calculator'
 
 const OpportunitiesRoute = OpportunitiesRouteImport.update({
   id: '/opportunities',
@@ -70,6 +71,12 @@ const ForecastsPairRoute = ForecastsPairRouteImport.update({
   path: '/forecasts/$pair',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalculatorsPipCalculatorRoute =
+  CalculatorsPipCalculatorRouteImport.update({
+    id: '/calculators/pip-calculator',
+    path: '/calculators/pip-calculator',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -77,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/calculators/': typeof CalculatorsIndexRoute
@@ -89,6 +97,7 @@ export interface FileRoutesByTo {
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/calculators': typeof CalculatorsIndexRoute
@@ -102,6 +111,7 @@ export interface FileRoutesById {
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/calculators/': typeof CalculatorsIndexRoute
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/economic-calendar'
     | '/journal'
     | '/opportunities'
+    | '/calculators/pip-calculator'
     | '/forecasts/$pair'
     | '/signals/$pair'
     | '/calculators/'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/economic-calendar'
     | '/journal'
     | '/opportunities'
+    | '/calculators/pip-calculator'
     | '/forecasts/$pair'
     | '/signals/$pair'
     | '/calculators'
@@ -140,6 +152,7 @@ export interface FileRouteTypes {
     | '/economic-calendar'
     | '/journal'
     | '/opportunities'
+    | '/calculators/pip-calculator'
     | '/forecasts/$pair'
     | '/signals/$pair'
     | '/calculators/'
@@ -153,6 +166,7 @@ export interface RootRouteChildren {
   EconomicCalendarRoute: typeof EconomicCalendarRoute
   JournalRoute: typeof JournalRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
+  CalculatorsPipCalculatorRoute: typeof CalculatorsPipCalculatorRoute
   ForecastsPairRoute: typeof ForecastsPairRoute
   SignalsPairRoute: typeof SignalsPairRoute
   CalculatorsIndexRoute: typeof CalculatorsIndexRoute
@@ -232,6 +246,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForecastsPairRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calculators/pip-calculator': {
+      id: '/calculators/pip-calculator'
+      path: '/calculators/pip-calculator'
+      fullPath: '/calculators/pip-calculator'
+      preLoaderRoute: typeof CalculatorsPipCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -241,6 +262,7 @@ const rootRouteChildren: RootRouteChildren = {
   EconomicCalendarRoute: EconomicCalendarRoute,
   JournalRoute: JournalRoute,
   OpportunitiesRoute: OpportunitiesRoute,
+  CalculatorsPipCalculatorRoute: CalculatorsPipCalculatorRoute,
   ForecastsPairRoute: ForecastsPairRoute,
   SignalsPairRoute: SignalsPairRoute,
   CalculatorsIndexRoute: CalculatorsIndexRoute,
@@ -250,3 +272,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
