@@ -15,6 +15,7 @@ import { Route as EconomicCalendarRouteImport } from './routes/economic-calendar
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SignalsIndexRouteImport } from './routes/signals.index'
+import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as ForecastsIndexRouteImport } from './routes/forecasts.index'
 import { Route as CalculatorsIndexRouteImport } from './routes/calculators.index'
 import { Route as BrokersIndexRouteImport } from './routes/brokers.index'
@@ -56,6 +57,11 @@ const IndexRoute = IndexRouteImport.update({
 const SignalsIndexRoute = SignalsIndexRouteImport.update({
   id: '/signals/',
   path: '/signals/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnIndexRoute = LearnIndexRouteImport.update({
+  id: '/learn/',
+  path: '/learn/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForecastsIndexRoute = ForecastsIndexRouteImport.update({
@@ -138,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/brokers/': typeof BrokersIndexRoute
   '/calculators/': typeof CalculatorsIndexRoute
   '/forecasts/': typeof ForecastsIndexRoute
+  '/learn/': typeof LearnIndexRoute
   '/signals/': typeof SignalsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -158,6 +165,7 @@ export interface FileRoutesByTo {
   '/brokers': typeof BrokersIndexRoute
   '/calculators': typeof CalculatorsIndexRoute
   '/forecasts': typeof ForecastsIndexRoute
+  '/learn': typeof LearnIndexRoute
   '/signals': typeof SignalsIndexRoute
 }
 export interface FileRoutesById {
@@ -179,6 +187,7 @@ export interface FileRoutesById {
   '/brokers/': typeof BrokersIndexRoute
   '/calculators/': typeof CalculatorsIndexRoute
   '/forecasts/': typeof ForecastsIndexRoute
+  '/learn/': typeof LearnIndexRoute
   '/signals/': typeof SignalsIndexRoute
 }
 export interface FileRouteTypes {
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/brokers/'
     | '/calculators/'
     | '/forecasts/'
+    | '/learn/'
     | '/signals/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/brokers'
     | '/calculators'
     | '/forecasts'
+    | '/learn'
     | '/signals'
   id:
     | '__root__'
@@ -241,6 +252,7 @@ export interface FileRouteTypes {
     | '/brokers/'
     | '/calculators/'
     | '/forecasts/'
+    | '/learn/'
     | '/signals/'
   fileRoutesById: FileRoutesById
 }
@@ -262,6 +274,7 @@ export interface RootRouteChildren {
   BrokersIndexRoute: typeof BrokersIndexRoute
   CalculatorsIndexRoute: typeof CalculatorsIndexRoute
   ForecastsIndexRoute: typeof ForecastsIndexRoute
+  LearnIndexRoute: typeof LearnIndexRoute
   SignalsIndexRoute: typeof SignalsIndexRoute
 }
 
@@ -307,6 +320,13 @@ declare module '@tanstack/react-router' {
       path: '/signals'
       fullPath: '/signals/'
       preLoaderRoute: typeof SignalsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn/': {
+      id: '/learn/'
+      path: '/learn'
+      fullPath: '/learn/'
+      preLoaderRoute: typeof LearnIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forecasts/': {
@@ -414,8 +434,19 @@ const rootRouteChildren: RootRouteChildren = {
   BrokersIndexRoute: BrokersIndexRoute,
   CalculatorsIndexRoute: CalculatorsIndexRoute,
   ForecastsIndexRoute: ForecastsIndexRoute,
+  LearnIndexRoute: LearnIndexRoute,
   SignalsIndexRoute: SignalsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
