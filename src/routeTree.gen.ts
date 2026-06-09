@@ -22,6 +22,7 @@ import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
 import { Route as CalculatorsRiskRewardRouteImport } from './routes/calculators.risk-reward'
 import { Route as CalculatorsPositionSizeRouteImport } from './routes/calculators.position-size'
 import { Route as CalculatorsPipCalculatorRouteImport } from './routes/calculators.pip-calculator'
+import { Route as CalculatorsDrawdownRouteImport } from './routes/calculators.drawdown'
 
 const OpportunitiesRoute = OpportunitiesRouteImport.update({
   id: '/opportunities',
@@ -89,6 +90,11 @@ const CalculatorsPipCalculatorRoute =
     path: '/calculators/pip-calculator',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CalculatorsDrawdownRoute = CalculatorsDrawdownRouteImport.update({
+  id: '/calculators/drawdown',
+  path: '/calculators/drawdown',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -96,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
   '/calculators/position-size': typeof CalculatorsPositionSizeRoute
   '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
@@ -111,6 +118,7 @@ export interface FileRoutesByTo {
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
   '/calculators/position-size': typeof CalculatorsPositionSizeRoute
   '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
@@ -127,6 +135,7 @@ export interface FileRoutesById {
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
   '/calculators/position-size': typeof CalculatorsPositionSizeRoute
   '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
@@ -144,6 +153,7 @@ export interface FileRouteTypes {
     | '/economic-calendar'
     | '/journal'
     | '/opportunities'
+    | '/calculators/drawdown'
     | '/calculators/pip-calculator'
     | '/calculators/position-size'
     | '/calculators/risk-reward'
@@ -159,6 +169,7 @@ export interface FileRouteTypes {
     | '/economic-calendar'
     | '/journal'
     | '/opportunities'
+    | '/calculators/drawdown'
     | '/calculators/pip-calculator'
     | '/calculators/position-size'
     | '/calculators/risk-reward'
@@ -174,6 +185,7 @@ export interface FileRouteTypes {
     | '/economic-calendar'
     | '/journal'
     | '/opportunities'
+    | '/calculators/drawdown'
     | '/calculators/pip-calculator'
     | '/calculators/position-size'
     | '/calculators/risk-reward'
@@ -190,6 +202,7 @@ export interface RootRouteChildren {
   EconomicCalendarRoute: typeof EconomicCalendarRoute
   JournalRoute: typeof JournalRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
+  CalculatorsDrawdownRoute: typeof CalculatorsDrawdownRoute
   CalculatorsPipCalculatorRoute: typeof CalculatorsPipCalculatorRoute
   CalculatorsPositionSizeRoute: typeof CalculatorsPositionSizeRoute
   CalculatorsRiskRewardRoute: typeof CalculatorsRiskRewardRoute
@@ -293,6 +306,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalculatorsPipCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calculators/drawdown': {
+      id: '/calculators/drawdown'
+      path: '/calculators/drawdown'
+      fullPath: '/calculators/drawdown'
+      preLoaderRoute: typeof CalculatorsDrawdownRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -302,6 +322,7 @@ const rootRouteChildren: RootRouteChildren = {
   EconomicCalendarRoute: EconomicCalendarRoute,
   JournalRoute: JournalRoute,
   OpportunitiesRoute: OpportunitiesRoute,
+  CalculatorsDrawdownRoute: CalculatorsDrawdownRoute,
   CalculatorsPipCalculatorRoute: CalculatorsPipCalculatorRoute,
   CalculatorsPositionSizeRoute: CalculatorsPositionSizeRoute,
   CalculatorsRiskRewardRoute: CalculatorsRiskRewardRoute,
