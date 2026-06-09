@@ -17,6 +17,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SignalsIndexRouteImport } from './routes/signals.index'
 import { Route as ForecastsIndexRouteImport } from './routes/forecasts.index'
 import { Route as CalculatorsIndexRouteImport } from './routes/calculators.index'
+import { Route as BrokersIndexRouteImport } from './routes/brokers.index'
 import { Route as SignalsPairRouteImport } from './routes/signals.$pair'
 import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
 import { Route as CalculatorsTakeProfitRouteImport } from './routes/calculators.take-profit'
@@ -64,6 +65,11 @@ const ForecastsIndexRoute = ForecastsIndexRouteImport.update({
 const CalculatorsIndexRoute = CalculatorsIndexRouteImport.update({
   id: '/calculators/',
   path: '/calculators/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrokersIndexRoute = BrokersIndexRouteImport.update({
+  id: '/brokers/',
+  path: '/brokers/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SignalsPairRoute = SignalsPairRouteImport.update({
@@ -122,6 +128,7 @@ export interface FileRoutesByFullPath {
   '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
+  '/brokers/': typeof BrokersIndexRoute
   '/calculators/': typeof CalculatorsIndexRoute
   '/forecasts/': typeof ForecastsIndexRoute
   '/signals/': typeof SignalsIndexRoute
@@ -140,6 +147,7 @@ export interface FileRoutesByTo {
   '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
+  '/brokers': typeof BrokersIndexRoute
   '/calculators': typeof CalculatorsIndexRoute
   '/forecasts': typeof ForecastsIndexRoute
   '/signals': typeof SignalsIndexRoute
@@ -159,6 +167,7 @@ export interface FileRoutesById {
   '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
+  '/brokers/': typeof BrokersIndexRoute
   '/calculators/': typeof CalculatorsIndexRoute
   '/forecasts/': typeof ForecastsIndexRoute
   '/signals/': typeof SignalsIndexRoute
@@ -179,6 +188,7 @@ export interface FileRouteTypes {
     | '/calculators/take-profit'
     | '/forecasts/$pair'
     | '/signals/$pair'
+    | '/brokers/'
     | '/calculators/'
     | '/forecasts/'
     | '/signals/'
@@ -197,6 +207,7 @@ export interface FileRouteTypes {
     | '/calculators/take-profit'
     | '/forecasts/$pair'
     | '/signals/$pair'
+    | '/brokers'
     | '/calculators'
     | '/forecasts'
     | '/signals'
@@ -215,6 +226,7 @@ export interface FileRouteTypes {
     | '/calculators/take-profit'
     | '/forecasts/$pair'
     | '/signals/$pair'
+    | '/brokers/'
     | '/calculators/'
     | '/forecasts/'
     | '/signals/'
@@ -234,6 +246,7 @@ export interface RootRouteChildren {
   CalculatorsTakeProfitRoute: typeof CalculatorsTakeProfitRoute
   ForecastsPairRoute: typeof ForecastsPairRoute
   SignalsPairRoute: typeof SignalsPairRoute
+  BrokersIndexRoute: typeof BrokersIndexRoute
   CalculatorsIndexRoute: typeof CalculatorsIndexRoute
   ForecastsIndexRoute: typeof ForecastsIndexRoute
   SignalsIndexRoute: typeof SignalsIndexRoute
@@ -295,6 +308,13 @@ declare module '@tanstack/react-router' {
       path: '/calculators'
       fullPath: '/calculators/'
       preLoaderRoute: typeof CalculatorsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/brokers/': {
+      id: '/brokers/'
+      path: '/brokers'
+      fullPath: '/brokers/'
+      preLoaderRoute: typeof BrokersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/signals/$pair': {
@@ -370,6 +390,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalculatorsTakeProfitRoute: CalculatorsTakeProfitRoute,
   ForecastsPairRoute: ForecastsPairRoute,
   SignalsPairRoute: SignalsPairRoute,
+  BrokersIndexRoute: BrokersIndexRoute,
   CalculatorsIndexRoute: CalculatorsIndexRoute,
   ForecastsIndexRoute: ForecastsIndexRoute,
   SignalsIndexRoute: SignalsIndexRoute,
