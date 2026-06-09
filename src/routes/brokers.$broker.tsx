@@ -49,11 +49,11 @@ function BrokerDetail() {
             <div className="grid gap-6 sm:grid-cols-2">
               <Card className="border-border bg-surface p-6">
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-bullish">Pros</h3>
-                <ul className="mt-3 space-y-2 text-sm">{b.pros.map((p) => <li key={p} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-bullish" />{p}</li>)}</ul>
+                <ul className="mt-3 space-y-2 text-sm">{b.pros.map((p: string) => <li key={p} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-bullish" />{p}</li>)}</ul>
               </Card>
               <Card className="border-border bg-surface p-6">
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-bearish">Cons</h3>
-                <ul className="mt-3 space-y-2 text-sm">{b.cons.map((p) => <li key={p} className="flex gap-2"><XCircle className="mt-0.5 h-4 w-4 shrink-0 text-bearish" />{p}</li>)}</ul>
+                <ul className="mt-3 space-y-2 text-sm">{b.cons.map((p: string) => <li key={p} className="flex gap-2"><XCircle className="mt-0.5 h-4 w-4 shrink-0 text-bearish" />{p}</li>)}</ul>
               </Card>
             </div>
 
@@ -62,11 +62,11 @@ function BrokerDetail() {
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <div>
                   <p className="mb-2 flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground"><Shield className="h-3 w-3" />Regulated by</p>
-                  <div className="flex flex-wrap gap-2">{b.regulation.map((r) => <Badge key={r} variant="outline">{r}</Badge>)}</div>
+                  <div className="flex flex-wrap gap-2">{b.regulation.map((r: string) => <Badge key={r} variant="outline">{r}</Badge>)}</div>
                 </div>
                 <div>
                   <p className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">Trading platforms</p>
-                  <div className="flex flex-wrap gap-2">{b.platforms.map((p) => <Badge key={p}>{p}</Badge>)}</div>
+                  <div className="flex flex-wrap gap-2">{b.platforms.map((p: string) => <Badge key={p}>{p}</Badge>)}</div>
                 </div>
               </div>
             </Card>
