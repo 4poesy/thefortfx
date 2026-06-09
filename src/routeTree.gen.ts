@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as LoginRouteImport } from './routes/login'
@@ -33,6 +34,11 @@ import { Route as CalculatorsPipCalculatorRouteImport } from './routes/calculato
 import { Route as CalculatorsDrawdownRouteImport } from './routes/calculators.drawdown'
 import { Route as BrokersBrokerRouteImport } from './routes/brokers.$broker'
 
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
@@ -159,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
   '/pricing': typeof PricingRoute
+  '/register': typeof RegisterRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
@@ -184,6 +191,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
   '/pricing': typeof PricingRoute
+  '/register': typeof RegisterRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
@@ -210,6 +218,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
   '/pricing': typeof PricingRoute
+  '/register': typeof RegisterRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
@@ -237,6 +246,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/opportunities'
     | '/pricing'
+    | '/register'
     | '/brokers/$broker'
     | '/calculators/drawdown'
     | '/calculators/pip-calculator'
@@ -262,6 +272,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/opportunities'
     | '/pricing'
+    | '/register'
     | '/brokers/$broker'
     | '/calculators/drawdown'
     | '/calculators/pip-calculator'
@@ -287,6 +298,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/opportunities'
     | '/pricing'
+    | '/register'
     | '/brokers/$broker'
     | '/calculators/drawdown'
     | '/calculators/pip-calculator'
@@ -313,6 +325,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
   PricingRoute: typeof PricingRoute
+  RegisterRoute: typeof RegisterRoute
   BrokersBrokerRoute: typeof BrokersBrokerRoute
   CalculatorsDrawdownRoute: typeof CalculatorsDrawdownRoute
   CalculatorsPipCalculatorRoute: typeof CalculatorsPipCalculatorRoute
@@ -332,6 +345,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -505,6 +525,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   OpportunitiesRoute: OpportunitiesRoute,
   PricingRoute: PricingRoute,
+  RegisterRoute: RegisterRoute,
   BrokersBrokerRoute: BrokersBrokerRoute,
   CalculatorsDrawdownRoute: CalculatorsDrawdownRoute,
   CalculatorsPipCalculatorRoute: CalculatorsPipCalculatorRoute,
