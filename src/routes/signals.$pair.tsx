@@ -74,7 +74,7 @@ function SignalDetail() {
             <Card className="border-border bg-surface p-6">
               <h2 className="text-lg font-semibold">Supporting Factors</h2>
               <ul className="mt-4 space-y-3 text-sm">
-                {f.fundamentals.map((t) => (
+                {f.fundamentals.map((t: string) => (
                   <li key={t} className="flex gap-3"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" /><span>{t}</span></li>
                 ))}
                 <li className="flex gap-3"><AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-warning" /><span>News risk monitoring active for upcoming high-impact events.</span></li>
