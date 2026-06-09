@@ -19,6 +19,7 @@ import { Route as ForecastsIndexRouteImport } from './routes/forecasts.index'
 import { Route as CalculatorsIndexRouteImport } from './routes/calculators.index'
 import { Route as SignalsPairRouteImport } from './routes/signals.$pair'
 import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
+import { Route as CalculatorsTakeProfitRouteImport } from './routes/calculators.take-profit'
 import { Route as CalculatorsStopLossRouteImport } from './routes/calculators.stop-loss'
 import { Route as CalculatorsRiskRewardRouteImport } from './routes/calculators.risk-reward'
 import { Route as CalculatorsPositionSizeRouteImport } from './routes/calculators.position-size'
@@ -75,6 +76,11 @@ const ForecastsPairRoute = ForecastsPairRouteImport.update({
   path: '/forecasts/$pair',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalculatorsTakeProfitRoute = CalculatorsTakeProfitRouteImport.update({
+  id: '/calculators/take-profit',
+  path: '/calculators/take-profit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CalculatorsStopLossRoute = CalculatorsStopLossRouteImport.update({
   id: '/calculators/stop-loss',
   path: '/calculators/stop-loss',
@@ -113,6 +119,7 @@ export interface FileRoutesByFullPath {
   '/calculators/position-size': typeof CalculatorsPositionSizeRoute
   '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
   '/calculators/stop-loss': typeof CalculatorsStopLossRoute
+  '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/calculators/': typeof CalculatorsIndexRoute
@@ -130,6 +137,7 @@ export interface FileRoutesByTo {
   '/calculators/position-size': typeof CalculatorsPositionSizeRoute
   '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
   '/calculators/stop-loss': typeof CalculatorsStopLossRoute
+  '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/calculators': typeof CalculatorsIndexRoute
@@ -148,6 +156,7 @@ export interface FileRoutesById {
   '/calculators/position-size': typeof CalculatorsPositionSizeRoute
   '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
   '/calculators/stop-loss': typeof CalculatorsStopLossRoute
+  '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/calculators/': typeof CalculatorsIndexRoute
@@ -167,6 +176,7 @@ export interface FileRouteTypes {
     | '/calculators/position-size'
     | '/calculators/risk-reward'
     | '/calculators/stop-loss'
+    | '/calculators/take-profit'
     | '/forecasts/$pair'
     | '/signals/$pair'
     | '/calculators/'
@@ -184,6 +194,7 @@ export interface FileRouteTypes {
     | '/calculators/position-size'
     | '/calculators/risk-reward'
     | '/calculators/stop-loss'
+    | '/calculators/take-profit'
     | '/forecasts/$pair'
     | '/signals/$pair'
     | '/calculators'
@@ -201,6 +212,7 @@ export interface FileRouteTypes {
     | '/calculators/position-size'
     | '/calculators/risk-reward'
     | '/calculators/stop-loss'
+    | '/calculators/take-profit'
     | '/forecasts/$pair'
     | '/signals/$pair'
     | '/calculators/'
@@ -219,6 +231,7 @@ export interface RootRouteChildren {
   CalculatorsPositionSizeRoute: typeof CalculatorsPositionSizeRoute
   CalculatorsRiskRewardRoute: typeof CalculatorsRiskRewardRoute
   CalculatorsStopLossRoute: typeof CalculatorsStopLossRoute
+  CalculatorsTakeProfitRoute: typeof CalculatorsTakeProfitRoute
   ForecastsPairRoute: typeof ForecastsPairRoute
   SignalsPairRoute: typeof SignalsPairRoute
   CalculatorsIndexRoute: typeof CalculatorsIndexRoute
@@ -298,6 +311,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForecastsPairRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calculators/take-profit': {
+      id: '/calculators/take-profit'
+      path: '/calculators/take-profit'
+      fullPath: '/calculators/take-profit'
+      preLoaderRoute: typeof CalculatorsTakeProfitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/calculators/stop-loss': {
       id: '/calculators/stop-loss'
       path: '/calculators/stop-loss'
@@ -347,6 +367,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalculatorsPositionSizeRoute: CalculatorsPositionSizeRoute,
   CalculatorsRiskRewardRoute: CalculatorsRiskRewardRoute,
   CalculatorsStopLossRoute: CalculatorsStopLossRoute,
+  CalculatorsTakeProfitRoute: CalculatorsTakeProfitRoute,
   ForecastsPairRoute: ForecastsPairRoute,
   SignalsPairRoute: SignalsPairRoute,
   CalculatorsIndexRoute: CalculatorsIndexRoute,
