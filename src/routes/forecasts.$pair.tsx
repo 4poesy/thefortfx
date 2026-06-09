@@ -55,7 +55,7 @@ function ForecastDetail() {
             <Card className="border-border bg-surface p-6">
               <h2 className="text-lg font-semibold">Technical Analysis</h2>
               <div className="mt-4 divide-y divide-border">
-                {f.technicals.map((t) => (
+                {f.technicals.map((t: { name: string; value: number; signal: string }) => (
                   <div key={t.name} className="flex items-center justify-between py-3 text-sm">
                     <span>{t.name}</span>
                     <span className="font-mono text-muted-foreground">{String(t.value)}</span>
