@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
@@ -35,6 +36,11 @@ import { Route as CalculatorsPipCalculatorRouteImport } from './routes/calculato
 import { Route as CalculatorsDrawdownRouteImport } from './routes/calculators.drawdown'
 import { Route as BrokersBrokerRouteImport } from './routes/brokers.$broker'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
@@ -173,6 +179,7 @@ export interface FileRoutesByFullPath {
   '/opportunities': typeof OpportunitiesRoute
   '/pricing': typeof PricingRoute
   '/register': typeof RegisterRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
@@ -200,6 +207,7 @@ export interface FileRoutesByTo {
   '/opportunities': typeof OpportunitiesRoute
   '/pricing': typeof PricingRoute
   '/register': typeof RegisterRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
@@ -228,6 +236,7 @@ export interface FileRoutesById {
   '/opportunities': typeof OpportunitiesRoute
   '/pricing': typeof PricingRoute
   '/register': typeof RegisterRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
@@ -257,6 +266,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/pricing'
     | '/register'
+    | '/sitemap.xml'
     | '/brokers/$broker'
     | '/calculators/drawdown'
     | '/calculators/pip-calculator'
@@ -284,6 +294,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/pricing'
     | '/register'
+    | '/sitemap.xml'
     | '/brokers/$broker'
     | '/calculators/drawdown'
     | '/calculators/pip-calculator'
@@ -311,6 +322,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/pricing'
     | '/register'
+    | '/sitemap.xml'
     | '/brokers/$broker'
     | '/calculators/drawdown'
     | '/calculators/pip-calculator'
@@ -339,6 +351,7 @@ export interface RootRouteChildren {
   OpportunitiesRoute: typeof OpportunitiesRoute
   PricingRoute: typeof PricingRoute
   RegisterRoute: typeof RegisterRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BrokersBrokerRoute: typeof BrokersBrokerRoute
   CalculatorsDrawdownRoute: typeof CalculatorsDrawdownRoute
   CalculatorsPipCalculatorRoute: typeof CalculatorsPipCalculatorRoute
@@ -358,6 +371,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/register': {
       id: '/register'
       path: '/register'
@@ -547,6 +567,7 @@ const rootRouteChildren: RootRouteChildren = {
   OpportunitiesRoute: OpportunitiesRoute,
   PricingRoute: PricingRoute,
   RegisterRoute: RegisterRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   BrokersBrokerRoute: BrokersBrokerRoute,
   CalculatorsDrawdownRoute: CalculatorsDrawdownRoute,
   CalculatorsPipCalculatorRoute: CalculatorsPipCalculatorRoute,
@@ -566,3 +587,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
