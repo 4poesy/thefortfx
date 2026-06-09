@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SignalsIndexRouteImport } from './routes/signals.index'
+import { Route as SignalsPairRouteImport } from './routes/signals.$pair'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const SignalsIndexRoute = SignalsIndexRouteImport.update({
   path: '/signals/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SignalsPairRoute = SignalsPairRouteImport.update({
+  id: '/signals/$pair',
+  path: '/signals/$pair',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/signals/$pair': typeof SignalsPairRoute
   '/signals/': typeof SignalsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/signals/$pair': typeof SignalsPairRoute
   '/signals': typeof SignalsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/signals/$pair': typeof SignalsPairRoute
   '/signals/': typeof SignalsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/signals/'
+  fullPaths: '/' | '/signals/$pair' | '/signals/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/signals'
-  id: '__root__' | '/' | '/signals/'
+  to: '/' | '/signals/$pair' | '/signals'
+  id: '__root__' | '/' | '/signals/$pair' | '/signals/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SignalsPairRoute: typeof SignalsPairRoute
   SignalsIndexRoute: typeof SignalsIndexRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignalsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/signals/$pair': {
+      id: '/signals/$pair'
+      path: '/signals/$pair'
+      fullPath: '/signals/$pair'
+      preLoaderRoute: typeof SignalsPairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SignalsPairRoute: SignalsPairRoute,
   SignalsIndexRoute: SignalsIndexRoute,
 }
 export const routeTree = rootRouteImport
