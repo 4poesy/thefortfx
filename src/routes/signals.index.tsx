@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { signals } from "@/lib/mock-data";
 import { DirectionBadge, RiskBadge } from "@/components/badges";
 
-export const Route = createFileRoute("/signals")({
+export const Route = createFileRoute("/signals/")({
   head: () => ({
     meta: [
       { title: "Live Forex Signals — ForexPilot AI" },
