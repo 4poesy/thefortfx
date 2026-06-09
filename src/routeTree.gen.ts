@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as JournalRouteImport } from './routes/journal'
+import { Route as EconomicCalendarRouteImport } from './routes/economic-calendar'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SignalsIndexRouteImport } from './routes/signals.index'
@@ -26,6 +27,11 @@ const OpportunitiesRoute = OpportunitiesRouteImport.update({
 const JournalRoute = JournalRouteImport.update({
   id: '/journal',
   path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EconomicCalendarRoute = EconomicCalendarRouteImport.update({
+  id: '/economic-calendar',
+  path: '/economic-calendar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardRoute = DashboardRouteImport.update({
@@ -62,6 +68,7 @@ const ForecastsPairRoute = ForecastsPairRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
+  '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/economic-calendar'
     | '/journal'
     | '/opportunities'
     | '/forecasts/$pair'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/dashboard'
+    | '/economic-calendar'
     | '/journal'
     | '/opportunities'
     | '/forecasts/$pair'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/economic-calendar'
     | '/journal'
     | '/opportunities'
     | '/forecasts/$pair'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
+  EconomicCalendarRoute: typeof EconomicCalendarRoute
   JournalRoute: typeof JournalRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
   ForecastsPairRoute: typeof ForecastsPairRoute
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/journal'
       fullPath: '/journal'
       preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/economic-calendar': {
+      id: '/economic-calendar'
+      path: '/economic-calendar'
+      fullPath: '/economic-calendar'
+      preLoaderRoute: typeof EconomicCalendarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard': {
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
+  EconomicCalendarRoute: EconomicCalendarRoute,
   JournalRoute: JournalRoute,
   OpportunitiesRoute: OpportunitiesRoute,
   ForecastsPairRoute: ForecastsPairRoute,
