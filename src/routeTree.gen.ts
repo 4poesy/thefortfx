@@ -19,6 +19,7 @@ import { Route as ForecastsIndexRouteImport } from './routes/forecasts.index'
 import { Route as CalculatorsIndexRouteImport } from './routes/calculators.index'
 import { Route as SignalsPairRouteImport } from './routes/signals.$pair'
 import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
+import { Route as CalculatorsRiskRewardRouteImport } from './routes/calculators.risk-reward'
 import { Route as CalculatorsPositionSizeRouteImport } from './routes/calculators.position-size'
 import { Route as CalculatorsPipCalculatorRouteImport } from './routes/calculators.pip-calculator'
 
@@ -72,6 +73,11 @@ const ForecastsPairRoute = ForecastsPairRouteImport.update({
   path: '/forecasts/$pair',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalculatorsRiskRewardRoute = CalculatorsRiskRewardRouteImport.update({
+  id: '/calculators/risk-reward',
+  path: '/calculators/risk-reward',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CalculatorsPositionSizeRoute = CalculatorsPositionSizeRouteImport.update({
   id: '/calculators/position-size',
   path: '/calculators/position-size',
@@ -92,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/opportunities': typeof OpportunitiesRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
   '/calculators/position-size': typeof CalculatorsPositionSizeRoute
+  '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/calculators/': typeof CalculatorsIndexRoute
@@ -106,6 +113,7 @@ export interface FileRoutesByTo {
   '/opportunities': typeof OpportunitiesRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
   '/calculators/position-size': typeof CalculatorsPositionSizeRoute
+  '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/calculators': typeof CalculatorsIndexRoute
@@ -121,6 +129,7 @@ export interface FileRoutesById {
   '/opportunities': typeof OpportunitiesRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
   '/calculators/position-size': typeof CalculatorsPositionSizeRoute
+  '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/calculators/': typeof CalculatorsIndexRoute
@@ -137,6 +146,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/calculators/pip-calculator'
     | '/calculators/position-size'
+    | '/calculators/risk-reward'
     | '/forecasts/$pair'
     | '/signals/$pair'
     | '/calculators/'
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/calculators/pip-calculator'
     | '/calculators/position-size'
+    | '/calculators/risk-reward'
     | '/forecasts/$pair'
     | '/signals/$pair'
     | '/calculators'
@@ -165,6 +176,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/calculators/pip-calculator'
     | '/calculators/position-size'
+    | '/calculators/risk-reward'
     | '/forecasts/$pair'
     | '/signals/$pair'
     | '/calculators/'
@@ -180,6 +192,7 @@ export interface RootRouteChildren {
   OpportunitiesRoute: typeof OpportunitiesRoute
   CalculatorsPipCalculatorRoute: typeof CalculatorsPipCalculatorRoute
   CalculatorsPositionSizeRoute: typeof CalculatorsPositionSizeRoute
+  CalculatorsRiskRewardRoute: typeof CalculatorsRiskRewardRoute
   ForecastsPairRoute: typeof ForecastsPairRoute
   SignalsPairRoute: typeof SignalsPairRoute
   CalculatorsIndexRoute: typeof CalculatorsIndexRoute
@@ -259,6 +272,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForecastsPairRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calculators/risk-reward': {
+      id: '/calculators/risk-reward'
+      path: '/calculators/risk-reward'
+      fullPath: '/calculators/risk-reward'
+      preLoaderRoute: typeof CalculatorsRiskRewardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/calculators/position-size': {
       id: '/calculators/position-size'
       path: '/calculators/position-size'
@@ -284,6 +304,7 @@ const rootRouteChildren: RootRouteChildren = {
   OpportunitiesRoute: OpportunitiesRoute,
   CalculatorsPipCalculatorRoute: CalculatorsPipCalculatorRoute,
   CalculatorsPositionSizeRoute: CalculatorsPositionSizeRoute,
+  CalculatorsRiskRewardRoute: CalculatorsRiskRewardRoute,
   ForecastsPairRoute: ForecastsPairRoute,
   SignalsPairRoute: SignalsPairRoute,
   CalculatorsIndexRoute: CalculatorsIndexRoute,
