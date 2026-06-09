@@ -16,6 +16,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SignalsIndexRouteImport } from './routes/signals.index'
 import { Route as ForecastsIndexRouteImport } from './routes/forecasts.index'
+import { Route as CalculatorsIndexRouteImport } from './routes/calculators.index'
 import { Route as SignalsPairRouteImport } from './routes/signals.$pair'
 import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
 
@@ -54,6 +55,11 @@ const ForecastsIndexRoute = ForecastsIndexRouteImport.update({
   path: '/forecasts/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CalculatorsIndexRoute = CalculatorsIndexRouteImport.update({
+  id: '/calculators/',
+  path: '/calculators/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SignalsPairRoute = SignalsPairRouteImport.update({
   id: '/signals/$pair',
   path: '/signals/$pair',
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/opportunities': typeof OpportunitiesRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
+  '/calculators/': typeof CalculatorsIndexRoute
   '/forecasts/': typeof ForecastsIndexRoute
   '/signals/': typeof SignalsIndexRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/opportunities': typeof OpportunitiesRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
+  '/calculators': typeof CalculatorsIndexRoute
   '/forecasts': typeof ForecastsIndexRoute
   '/signals': typeof SignalsIndexRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/opportunities': typeof OpportunitiesRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
+  '/calculators/': typeof CalculatorsIndexRoute
   '/forecasts/': typeof ForecastsIndexRoute
   '/signals/': typeof SignalsIndexRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/forecasts/$pair'
     | '/signals/$pair'
+    | '/calculators/'
     | '/forecasts/'
     | '/signals/'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/forecasts/$pair'
     | '/signals/$pair'
+    | '/calculators'
     | '/forecasts'
     | '/signals'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/forecasts/$pair'
     | '/signals/$pair'
+    | '/calculators/'
     | '/forecasts/'
     | '/signals/'
   fileRoutesById: FileRoutesById
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   OpportunitiesRoute: typeof OpportunitiesRoute
   ForecastsPairRoute: typeof ForecastsPairRoute
   SignalsPairRoute: typeof SignalsPairRoute
+  CalculatorsIndexRoute: typeof CalculatorsIndexRoute
   ForecastsIndexRoute: typeof ForecastsIndexRoute
   SignalsIndexRoute: typeof SignalsIndexRoute
 }
@@ -198,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForecastsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/calculators/': {
+      id: '/calculators/'
+      path: '/calculators'
+      fullPath: '/calculators/'
+      preLoaderRoute: typeof CalculatorsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/signals/$pair': {
       id: '/signals/$pair'
       path: '/signals/$pair'
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   OpportunitiesRoute: OpportunitiesRoute,
   ForecastsPairRoute: ForecastsPairRoute,
   SignalsPairRoute: SignalsPairRoute,
+  CalculatorsIndexRoute: CalculatorsIndexRoute,
   ForecastsIndexRoute: ForecastsIndexRoute,
   SignalsIndexRoute: SignalsIndexRoute,
 }
