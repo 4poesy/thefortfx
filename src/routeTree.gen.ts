@@ -26,6 +26,7 @@ import { Route as CalculatorsRiskRewardRouteImport } from './routes/calculators.
 import { Route as CalculatorsPositionSizeRouteImport } from './routes/calculators.position-size'
 import { Route as CalculatorsPipCalculatorRouteImport } from './routes/calculators.pip-calculator'
 import { Route as CalculatorsDrawdownRouteImport } from './routes/calculators.drawdown'
+import { Route as BrokersBrokerRouteImport } from './routes/brokers.$broker'
 
 const OpportunitiesRoute = OpportunitiesRouteImport.update({
   id: '/opportunities',
@@ -113,6 +114,11 @@ const CalculatorsDrawdownRoute = CalculatorsDrawdownRouteImport.update({
   path: '/calculators/drawdown',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrokersBrokerRoute = BrokersBrokerRouteImport.update({
+  id: '/brokers/$broker',
+  path: '/brokers/$broker',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -120,6 +126,7 @@ export interface FileRoutesByFullPath {
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
   '/calculators/position-size': typeof CalculatorsPositionSizeRoute
@@ -139,6 +146,7 @@ export interface FileRoutesByTo {
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
   '/calculators/position-size': typeof CalculatorsPositionSizeRoute
@@ -159,6 +167,7 @@ export interface FileRoutesById {
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
   '/calculators/position-size': typeof CalculatorsPositionSizeRoute
@@ -180,6 +189,7 @@ export interface FileRouteTypes {
     | '/economic-calendar'
     | '/journal'
     | '/opportunities'
+    | '/brokers/$broker'
     | '/calculators/drawdown'
     | '/calculators/pip-calculator'
     | '/calculators/position-size'
@@ -199,6 +209,7 @@ export interface FileRouteTypes {
     | '/economic-calendar'
     | '/journal'
     | '/opportunities'
+    | '/brokers/$broker'
     | '/calculators/drawdown'
     | '/calculators/pip-calculator'
     | '/calculators/position-size'
@@ -218,6 +229,7 @@ export interface FileRouteTypes {
     | '/economic-calendar'
     | '/journal'
     | '/opportunities'
+    | '/brokers/$broker'
     | '/calculators/drawdown'
     | '/calculators/pip-calculator'
     | '/calculators/position-size'
@@ -238,6 +250,7 @@ export interface RootRouteChildren {
   EconomicCalendarRoute: typeof EconomicCalendarRoute
   JournalRoute: typeof JournalRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
+  BrokersBrokerRoute: typeof BrokersBrokerRoute
   CalculatorsDrawdownRoute: typeof CalculatorsDrawdownRoute
   CalculatorsPipCalculatorRoute: typeof CalculatorsPipCalculatorRoute
   CalculatorsPositionSizeRoute: typeof CalculatorsPositionSizeRoute
@@ -373,6 +386,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalculatorsDrawdownRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/brokers/$broker': {
+      id: '/brokers/$broker'
+      path: '/brokers/$broker'
+      fullPath: '/brokers/$broker'
+      preLoaderRoute: typeof BrokersBrokerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -382,6 +402,7 @@ const rootRouteChildren: RootRouteChildren = {
   EconomicCalendarRoute: EconomicCalendarRoute,
   JournalRoute: JournalRoute,
   OpportunitiesRoute: OpportunitiesRoute,
+  BrokersBrokerRoute: BrokersBrokerRoute,
   CalculatorsDrawdownRoute: CalculatorsDrawdownRoute,
   CalculatorsPipCalculatorRoute: CalculatorsPipCalculatorRoute,
   CalculatorsPositionSizeRoute: CalculatorsPositionSizeRoute,
