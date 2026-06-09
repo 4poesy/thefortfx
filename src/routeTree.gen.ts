@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as EconomicCalendarRouteImport } from './routes/economic-calendar'
@@ -31,6 +32,11 @@ import { Route as CalculatorsPipCalculatorRouteImport } from './routes/calculato
 import { Route as CalculatorsDrawdownRouteImport } from './routes/calculators.drawdown'
 import { Route as BrokersBrokerRouteImport } from './routes/brokers.$broker'
 
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OpportunitiesRoute = OpportunitiesRouteImport.update({
   id: '/opportunities',
   path: '/opportunities',
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/pricing': typeof PricingRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
@@ -168,6 +175,7 @@ export interface FileRoutesByTo {
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/pricing': typeof PricingRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
@@ -192,6 +200,7 @@ export interface FileRoutesById {
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/pricing': typeof PricingRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
   '/calculators/pip-calculator': typeof CalculatorsPipCalculatorRoute
@@ -217,6 +226,7 @@ export interface FileRouteTypes {
     | '/economic-calendar'
     | '/journal'
     | '/opportunities'
+    | '/pricing'
     | '/brokers/$broker'
     | '/calculators/drawdown'
     | '/calculators/pip-calculator'
@@ -240,6 +250,7 @@ export interface FileRouteTypes {
     | '/economic-calendar'
     | '/journal'
     | '/opportunities'
+    | '/pricing'
     | '/brokers/$broker'
     | '/calculators/drawdown'
     | '/calculators/pip-calculator'
@@ -263,6 +274,7 @@ export interface FileRouteTypes {
     | '/economic-calendar'
     | '/journal'
     | '/opportunities'
+    | '/pricing'
     | '/brokers/$broker'
     | '/calculators/drawdown'
     | '/calculators/pip-calculator'
@@ -287,6 +299,7 @@ export interface RootRouteChildren {
   EconomicCalendarRoute: typeof EconomicCalendarRoute
   JournalRoute: typeof JournalRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
+  PricingRoute: typeof PricingRoute
   BrokersBrokerRoute: typeof BrokersBrokerRoute
   CalculatorsDrawdownRoute: typeof CalculatorsDrawdownRoute
   CalculatorsPipCalculatorRoute: typeof CalculatorsPipCalculatorRoute
@@ -306,6 +319,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/opportunities': {
       id: '/opportunities'
       path: '/opportunities'
@@ -463,6 +483,7 @@ const rootRouteChildren: RootRouteChildren = {
   EconomicCalendarRoute: EconomicCalendarRoute,
   JournalRoute: JournalRoute,
   OpportunitiesRoute: OpportunitiesRoute,
+  PricingRoute: PricingRoute,
   BrokersBrokerRoute: BrokersBrokerRoute,
   CalculatorsDrawdownRoute: CalculatorsDrawdownRoute,
   CalculatorsPipCalculatorRoute: CalculatorsPipCalculatorRoute,
