@@ -14,6 +14,7 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as JournalRouteImport } from './routes/journal'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as EconomicCalendarRouteImport } from './routes/economic-calendar'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as AiAssistantRouteImport } from './routes/ai-assistant'
@@ -57,6 +58,11 @@ const LoginRoute = LoginRouteImport.update({
 const JournalRoute = JournalRouteImport.update({
   id: '/journal',
   path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EconomicCalendarRoute = EconomicCalendarRouteImport.update({
@@ -161,6 +167,7 @@ export interface FileRoutesByFullPath {
   '/ai-assistant': typeof AiAssistantRoute
   '/dashboard': typeof DashboardRoute
   '/economic-calendar': typeof EconomicCalendarRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
   '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
@@ -187,6 +194,7 @@ export interface FileRoutesByTo {
   '/ai-assistant': typeof AiAssistantRoute
   '/dashboard': typeof DashboardRoute
   '/economic-calendar': typeof EconomicCalendarRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
   '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
@@ -214,6 +222,7 @@ export interface FileRoutesById {
   '/ai-assistant': typeof AiAssistantRoute
   '/dashboard': typeof DashboardRoute
   '/economic-calendar': typeof EconomicCalendarRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
   '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
@@ -242,6 +251,7 @@ export interface FileRouteTypes {
     | '/ai-assistant'
     | '/dashboard'
     | '/economic-calendar'
+    | '/forgot-password'
     | '/journal'
     | '/login'
     | '/opportunities'
@@ -268,6 +278,7 @@ export interface FileRouteTypes {
     | '/ai-assistant'
     | '/dashboard'
     | '/economic-calendar'
+    | '/forgot-password'
     | '/journal'
     | '/login'
     | '/opportunities'
@@ -294,6 +305,7 @@ export interface FileRouteTypes {
     | '/ai-assistant'
     | '/dashboard'
     | '/economic-calendar'
+    | '/forgot-password'
     | '/journal'
     | '/login'
     | '/opportunities'
@@ -321,6 +333,7 @@ export interface RootRouteChildren {
   AiAssistantRoute: typeof AiAssistantRoute
   DashboardRoute: typeof DashboardRoute
   EconomicCalendarRoute: typeof EconomicCalendarRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
   JournalRoute: typeof JournalRoute
   LoginRoute: typeof LoginRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
@@ -378,6 +391,13 @@ declare module '@tanstack/react-router' {
       path: '/journal'
       fullPath: '/journal'
       preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/economic-calendar': {
@@ -521,6 +541,7 @@ const rootRouteChildren: RootRouteChildren = {
   AiAssistantRoute: AiAssistantRoute,
   DashboardRoute: DashboardRoute,
   EconomicCalendarRoute: EconomicCalendarRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
   JournalRoute: JournalRoute,
   LoginRoute: LoginRoute,
   OpportunitiesRoute: OpportunitiesRoute,
