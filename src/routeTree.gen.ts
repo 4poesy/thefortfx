@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as EconomicCalendarRouteImport } from './routes/economic-calendar'
 import { Route as DashboardRouteImport } from './routes/dashboard'
@@ -40,6 +41,11 @@ const PricingRoute = PricingRouteImport.update({
 const OpportunitiesRoute = OpportunitiesRouteImport.update({
   id: '/opportunities',
   path: '/opportunities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JournalRoute = JournalRouteImport.update({
@@ -150,6 +156,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
+  '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
   '/pricing': typeof PricingRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
@@ -174,6 +181,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
+  '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
   '/pricing': typeof PricingRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
@@ -199,6 +207,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/economic-calendar': typeof EconomicCalendarRoute
   '/journal': typeof JournalRoute
+  '/login': typeof LoginRoute
   '/opportunities': typeof OpportunitiesRoute
   '/pricing': typeof PricingRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
@@ -225,6 +234,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/economic-calendar'
     | '/journal'
+    | '/login'
     | '/opportunities'
     | '/pricing'
     | '/brokers/$broker'
@@ -249,6 +259,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/economic-calendar'
     | '/journal'
+    | '/login'
     | '/opportunities'
     | '/pricing'
     | '/brokers/$broker'
@@ -273,6 +284,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/economic-calendar'
     | '/journal'
+    | '/login'
     | '/opportunities'
     | '/pricing'
     | '/brokers/$broker'
@@ -298,6 +310,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   EconomicCalendarRoute: typeof EconomicCalendarRoute
   JournalRoute: typeof JournalRoute
+  LoginRoute: typeof LoginRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
   PricingRoute: typeof PricingRoute
   BrokersBrokerRoute: typeof BrokersBrokerRoute
@@ -331,6 +344,13 @@ declare module '@tanstack/react-router' {
       path: '/opportunities'
       fullPath: '/opportunities'
       preLoaderRoute: typeof OpportunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/journal': {
@@ -482,6 +502,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   EconomicCalendarRoute: EconomicCalendarRoute,
   JournalRoute: JournalRoute,
+  LoginRoute: LoginRoute,
   OpportunitiesRoute: OpportunitiesRoute,
   PricingRoute: PricingRoute,
   BrokersBrokerRoute: BrokersBrokerRoute,
@@ -503,3 +524,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
