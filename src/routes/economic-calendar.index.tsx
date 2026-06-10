@@ -8,7 +8,7 @@ import { Search } from "lucide-react";
 import { economicEvents } from "@/lib/mock-data";
 import { ImpactBadge } from "@/components/badges";
 
-export const Route = createFileRoute("/economic-calendar")({
+export const Route = createFileRoute("/economic-calendar/")({
   head: () => ({
     meta: [
       { title: "Economic Calendar — Forex Events & News | ForexPilot AI" },
