@@ -39,6 +39,9 @@ import { Route as CalculatorsPositionSizeRouteImport } from './routes/calculator
 import { Route as CalculatorsPipCalculatorRouteImport } from './routes/calculators.pip-calculator'
 import { Route as CalculatorsDrawdownRouteImport } from './routes/calculators.drawdown'
 import { Route as BrokersBrokerRouteImport } from './routes/brokers.$broker'
+import { Route as ApiOgSignalRouteImport } from './routes/api.og.signal'
+import { Route as ApiOgForecastRouteImport } from './routes/api.og.forecast'
+import { Route as ApiOgBrokerRouteImport } from './routes/api.og.broker'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -191,6 +194,21 @@ const BrokersBrokerRoute = BrokersBrokerRouteImport.update({
   path: '/brokers/$broker',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiOgSignalRoute = ApiOgSignalRouteImport.update({
+  id: '/api/og/signal',
+  path: '/api/og/signal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiOgForecastRoute = ApiOgForecastRouteImport.update({
+  id: '/api/og/forecast',
+  path: '/api/og/forecast',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiOgBrokerRoute = ApiOgBrokerRouteImport.update({
+  id: '/api/og/broker',
+  path: '/api/og/broker',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -223,6 +241,9 @@ export interface FileRoutesByFullPath {
   '/learn/': typeof LearnIndexRoute
   '/pairs/': typeof PairsIndexRoute
   '/signals/': typeof SignalsIndexRoute
+  '/api/og/broker': typeof ApiOgBrokerRoute
+  '/api/og/forecast': typeof ApiOgForecastRoute
+  '/api/og/signal': typeof ApiOgSignalRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -255,6 +276,9 @@ export interface FileRoutesByTo {
   '/learn': typeof LearnIndexRoute
   '/pairs': typeof PairsIndexRoute
   '/signals': typeof SignalsIndexRoute
+  '/api/og/broker': typeof ApiOgBrokerRoute
+  '/api/og/forecast': typeof ApiOgForecastRoute
+  '/api/og/signal': typeof ApiOgSignalRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -288,6 +312,9 @@ export interface FileRoutesById {
   '/learn/': typeof LearnIndexRoute
   '/pairs/': typeof PairsIndexRoute
   '/signals/': typeof SignalsIndexRoute
+  '/api/og/broker': typeof ApiOgBrokerRoute
+  '/api/og/forecast': typeof ApiOgForecastRoute
+  '/api/og/signal': typeof ApiOgSignalRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -322,6 +349,9 @@ export interface FileRouteTypes {
     | '/learn/'
     | '/pairs/'
     | '/signals/'
+    | '/api/og/broker'
+    | '/api/og/forecast'
+    | '/api/og/signal'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -354,6 +384,9 @@ export interface FileRouteTypes {
     | '/learn'
     | '/pairs'
     | '/signals'
+    | '/api/og/broker'
+    | '/api/og/forecast'
+    | '/api/og/signal'
   id:
     | '__root__'
     | '/'
@@ -386,6 +419,9 @@ export interface FileRouteTypes {
     | '/learn/'
     | '/pairs/'
     | '/signals/'
+    | '/api/og/broker'
+    | '/api/og/forecast'
+    | '/api/og/signal'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -419,6 +455,9 @@ export interface RootRouteChildren {
   LearnIndexRoute: typeof LearnIndexRoute
   PairsIndexRoute: typeof PairsIndexRoute
   SignalsIndexRoute: typeof SignalsIndexRoute
+  ApiOgBrokerRoute: typeof ApiOgBrokerRoute
+  ApiOgForecastRoute: typeof ApiOgForecastRoute
+  ApiOgSignalRoute: typeof ApiOgSignalRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -633,6 +672,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BrokersBrokerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/og/signal': {
+      id: '/api/og/signal'
+      path: '/api/og/signal'
+      fullPath: '/api/og/signal'
+      preLoaderRoute: typeof ApiOgSignalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/og/forecast': {
+      id: '/api/og/forecast'
+      path: '/api/og/forecast'
+      fullPath: '/api/og/forecast'
+      preLoaderRoute: typeof ApiOgForecastRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/og/broker': {
+      id: '/api/og/broker'
+      path: '/api/og/broker'
+      fullPath: '/api/og/broker'
+      preLoaderRoute: typeof ApiOgBrokerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -667,6 +727,9 @@ const rootRouteChildren: RootRouteChildren = {
   LearnIndexRoute: LearnIndexRoute,
   PairsIndexRoute: PairsIndexRoute,
   SignalsIndexRoute: SignalsIndexRoute,
+  ApiOgBrokerRoute: ApiOgBrokerRoute,
+  ApiOgForecastRoute: ApiOgForecastRoute,
+  ApiOgSignalRoute: ApiOgSignalRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
