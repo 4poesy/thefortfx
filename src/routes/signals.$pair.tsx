@@ -4,9 +4,13 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, TrendingUp, TrendingDown, AlertCircle, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, TrendingUp, TrendingDown, AlertCircle, CheckCircle2, ArrowRight, Calculator, LineChart, Landmark } from "lucide-react";
 import { getSignal, signals, forecastData } from "@/lib/mock-data";
+import { brokers } from "@/lib/mock-data/brokers";
 import { DirectionBadge, RiskBadge } from "@/components/badges";
+import { Breadcrumb } from "@/components/seo/Breadcrumb";
+import { SignalSchema } from "@/components/seo/JsonLd";
+import { seoMeta, toHead } from "@/lib/seo/meta-templates";
 
 export const Route = createFileRoute("/signals/$pair")({
   loader: ({ params }) => {
@@ -14,30 +18,28 @@ export const Route = createFileRoute("/signals/$pair")({
     if (!signal) throw notFound();
     return { signal, forecast: forecastData(params.pair)! };
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData ? [
-      { title: `${loaderData.signal.pair} Signal — ${loaderData.signal.direction} @ ${loaderData.signal.confidence}% confidence | ForexPilot AI` },
-      { name: "description", content: `Live ${loaderData.signal.pair} signal: ${loaderData.signal.direction} with entry ${loaderData.signal.entry}, SL ${loaderData.signal.stopLoss}, TP ${loaderData.signal.takeProfit}.` },
-      { property: "og:title", content: `${loaderData.signal.pair} Signal — ForexPilot AI` },
-      { property: "og:description", content: `${loaderData.signal.direction} signal with ${loaderData.signal.confidence}% confidence.` },
-    ] : [],
-    links: loaderData ? [{ rel: "canonical", href: `/signals/${loaderData.signal.symbol}` }] : [],
-  }),
+  head: ({ loaderData }) =>
+    loaderData ? toHead(seoMeta.signal(loaderData.signal.pair, loaderData.signal.direction, loaderData.signal.confidence, loaderData.signal.symbol)) : {},
   component: SignalDetail,
 });
 
 function SignalDetail() {
   const { signal: s, forecast: f } = Route.useLoaderData();
   const related = signals.filter((x) => x.symbol !== s.symbol).slice(0, 4);
+  const broker = brokers.find((b) => b.isTopRated) ?? brokers[0];
 
   return (
     <Shell>
+      <SignalSchema pair={s.pair} direction={s.direction} confidence={s.confidence} entry={s.entry} sl={s.stopLoss} tp={s.takeProfit} />
       <PageHeader
         eyebrow={`Signal · ${s.updated}`}
         title={`${s.pair} — ${s.direction}`}
         description={`Confidence ${s.confidence}% · ${s.sources} aggregated sources · Risk ${s.risk}`}
       >
-        <Link to="/signals" className="inline-flex items-center gap-1 text-sm text-primary hover:underline"><ArrowLeft className="h-3 w-3" /> Back to signals</Link>
+        <div className="space-y-3">
+          <Breadcrumb items={[{ name: "Signals", href: "/signals" }, { name: s.pair }]} />
+          <Link to="/signals" className="inline-flex items-center gap-1 text-sm text-primary hover:underline"><ArrowLeft className="h-3 w-3" /> Back to signals</Link>
+        </div>
       </PageHeader>
       <section className="py-10">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
@@ -104,10 +106,28 @@ function SignalDetail() {
             </Card>
 
             <Card className="border-border bg-surface p-6">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Explore {s.pair}</h3>
+              <div className="mt-4 space-y-2 text-sm">
+                <Link to="/pairs/$pair" params={{ pair: s.symbol }} className="flex items-center justify-between rounded-md p-2 text-primary transition-colors duration-150 hover:bg-surface-elevated">
+                  <span className="flex items-center gap-2"><LineChart className="h-4 w-4" />{s.pair} pair hub</span><ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+                <Link to="/forecasts/$pair" params={{ pair: s.symbol }} className="flex items-center justify-between rounded-md p-2 text-primary transition-colors duration-150 hover:bg-surface-elevated">
+                  <span className="flex items-center gap-2"><TrendingUp className="h-4 w-4" />{s.pair} forecast</span><ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+                <Link to="/calculators/position-size" search={{ pair: s.symbol }} className="flex items-center justify-between rounded-md p-2 text-primary transition-colors duration-150 hover:bg-surface-elevated">
+                  <span className="flex items-center gap-2"><Calculator className="h-4 w-4" />Size this trade</span><ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+                <Link to="/brokers/$broker" params={{ broker: broker.slug }} className="flex items-center justify-between rounded-md p-2 text-primary transition-colors duration-150 hover:bg-surface-elevated">
+                  <span className="flex items-center gap-2"><Landmark className="h-4 w-4" />Trade with {broker.name}</span><ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+            </Card>
+
+            <Card className="border-border bg-surface p-6">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Related Signals</h3>
               <div className="mt-4 space-y-2">
                 {related.map((r) => (
-                  <Link key={r.symbol} to="/signals/$pair" params={{ pair: r.symbol }} className="flex items-center justify-between rounded-md p-2 hover:bg-surface-elevated">
+                  <Link key={r.symbol} to="/signals/$pair" params={{ pair: r.symbol }} className="flex items-center justify-between rounded-md p-2 transition-colors duration-150 hover:bg-surface-elevated">
                     <span className="text-sm font-medium">{r.pair}</span>
                     <div className="flex items-center gap-2">
                       <span className="text-xs text-muted-foreground">{r.confidence}%</span>
