@@ -3,7 +3,7 @@ import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, CalendarDays, Clock } from "lucide-react";
 import { getEventBySlug } from "@/lib/mock-data/economic-events";
-import { getPairBySlug } from "@/lib/mock-data/pairs";
+import { getPairBySlug, type Pair } from "@/lib/mock-data/pairs";
 import { ImpactBadge } from "@/components/badges";
 import { DirectionBadge } from "@/components/badges";
 import { Breadcrumb } from "@/components/seo/Breadcrumb";
@@ -22,7 +22,9 @@ export const Route = createFileRoute("/economic-calendar/$slug")({
 
 function EventDetail() {
   const { event: e } = Route.useLoaderData();
-  const affected = e.affectedPairs.map((s: string) => getPairBySlug(s)).filter((p): p is NonNullable<typeof p> => Boolean(p));
+  const affected: Pair[] = e.affectedPairs
+    .map((s: string) => getPairBySlug(s))
+    .filter((p: Pair | undefined): p is Pair => Boolean(p));
   return (
     <Shell>
       <PageHeader eyebrow={`${e.currency} · Economic Event`} title={e.title} description={e.description}>
