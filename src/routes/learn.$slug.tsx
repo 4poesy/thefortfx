@@ -62,7 +62,7 @@ const calculatorsByCategory: Record<string, { to: string; label: string }[]> = {
 function ArticlePage() {
   const { article: a } = Route.useLoaderData() as { article: Article };
   const related: Article[] = a.relatedSlugs
-    .map((s: string) => bySlug(s))
+    .map((s: string) => getArticleBySlug(s))
     .filter((x: Article | undefined): x is Article => Boolean(x))
     .slice(0, 3);
   const relatedFinal = related.length >= 2 ? related : articles.filter((x) => x.slug !== a.slug && x.category === a.category).slice(0, 3);
