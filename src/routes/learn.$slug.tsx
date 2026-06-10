@@ -3,7 +3,7 @@ import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen, Calendar, Calculator, ArrowRight } from "lucide-react";
-import { getArticleBySlug, getArticleBySlug as bySlug, articles, type Article } from "@/lib/mock-data/articles";
+import { getArticleBySlug, articles, type Article } from "@/lib/mock-data/articles";
 import { getPairBySlug, type Pair } from "@/lib/mock-data/pairs";
 import { Breadcrumb } from "@/components/seo/Breadcrumb";
 import { FaqSection } from "@/components/faq-section";
