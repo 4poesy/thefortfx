@@ -22,7 +22,7 @@ export const Route = createFileRoute("/economic-calendar/$slug")({
 
 function EventDetail() {
   const { event: e } = Route.useLoaderData();
-  const affected = e.affectedPairs.map((s) => getPairBySlug(s)).filter(Boolean);
+  const affected = e.affectedPairs.map((s: string) => getPairBySlug(s)).filter((p): p is NonNullable<typeof p> => Boolean(p));
   return (
     <Shell>
       <PageHeader eyebrow={`${e.currency} · Economic Event`} title={e.title} description={e.description}>
