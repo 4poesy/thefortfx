@@ -31,6 +31,7 @@ import { Route as PairsPairRouteImport } from './routes/pairs.$pair'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
 import { Route as EconomicCalendarSlugRouteImport } from './routes/economic-calendar.$slug'
+import { Route as CompareSlugsRouteImport } from './routes/compare.$slugs'
 import { Route as CalculatorsTakeProfitRouteImport } from './routes/calculators.take-profit'
 import { Route as CalculatorsStopLossRouteImport } from './routes/calculators.stop-loss'
 import { Route as CalculatorsRiskRewardRouteImport } from './routes/calculators.risk-reward'
@@ -149,6 +150,11 @@ const EconomicCalendarSlugRoute = EconomicCalendarSlugRouteImport.update({
   path: '/economic-calendar/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompareSlugsRoute = CompareSlugsRouteImport.update({
+  id: '/compare/$slugs',
+  path: '/compare/$slugs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CalculatorsTakeProfitRoute = CalculatorsTakeProfitRouteImport.update({
   id: '/calculators/take-profit',
   path: '/calculators/take-profit',
@@ -204,6 +210,7 @@ export interface FileRoutesByFullPath {
   '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
   '/calculators/stop-loss': typeof CalculatorsStopLossRoute
   '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
+  '/compare/$slugs': typeof CompareSlugsRoute
   '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
@@ -235,6 +242,7 @@ export interface FileRoutesByTo {
   '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
   '/calculators/stop-loss': typeof CalculatorsStopLossRoute
   '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
+  '/compare/$slugs': typeof CompareSlugsRoute
   '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
@@ -267,6 +275,7 @@ export interface FileRoutesById {
   '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
   '/calculators/stop-loss': typeof CalculatorsStopLossRoute
   '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
+  '/compare/$slugs': typeof CompareSlugsRoute
   '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
@@ -300,6 +309,7 @@ export interface FileRouteTypes {
     | '/calculators/risk-reward'
     | '/calculators/stop-loss'
     | '/calculators/take-profit'
+    | '/compare/$slugs'
     | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
@@ -331,6 +341,7 @@ export interface FileRouteTypes {
     | '/calculators/risk-reward'
     | '/calculators/stop-loss'
     | '/calculators/take-profit'
+    | '/compare/$slugs'
     | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
@@ -362,6 +373,7 @@ export interface FileRouteTypes {
     | '/calculators/risk-reward'
     | '/calculators/stop-loss'
     | '/calculators/take-profit'
+    | '/compare/$slugs'
     | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
@@ -394,6 +406,7 @@ export interface RootRouteChildren {
   CalculatorsRiskRewardRoute: typeof CalculatorsRiskRewardRoute
   CalculatorsStopLossRoute: typeof CalculatorsStopLossRoute
   CalculatorsTakeProfitRoute: typeof CalculatorsTakeProfitRoute
+  CompareSlugsRoute: typeof CompareSlugsRoute
   EconomicCalendarSlugRoute: typeof EconomicCalendarSlugRoute
   ForecastsPairRoute: typeof ForecastsPairRoute
   LearnSlugRoute: typeof LearnSlugRoute
@@ -564,6 +577,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EconomicCalendarSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compare/$slugs': {
+      id: '/compare/$slugs'
+      path: '/compare/$slugs'
+      fullPath: '/compare/$slugs'
+      preLoaderRoute: typeof CompareSlugsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/calculators/take-profit': {
       id: '/calculators/take-profit'
       path: '/calculators/take-profit'
@@ -634,6 +654,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalculatorsRiskRewardRoute: CalculatorsRiskRewardRoute,
   CalculatorsStopLossRoute: CalculatorsStopLossRoute,
   CalculatorsTakeProfitRoute: CalculatorsTakeProfitRoute,
+  CompareSlugsRoute: CompareSlugsRoute,
   EconomicCalendarSlugRoute: EconomicCalendarSlugRoute,
   ForecastsPairRoute: ForecastsPairRoute,
   LearnSlugRoute: LearnSlugRoute,
