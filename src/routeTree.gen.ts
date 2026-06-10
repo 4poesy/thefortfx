@@ -16,18 +16,19 @@ import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
-import { Route as EconomicCalendarRouteImport } from './routes/economic-calendar'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as AiAssistantRouteImport } from './routes/ai-assistant'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SignalsIndexRouteImport } from './routes/signals.index'
 import { Route as LearnIndexRouteImport } from './routes/learn.index'
 import { Route as ForecastsIndexRouteImport } from './routes/forecasts.index'
+import { Route as EconomicCalendarIndexRouteImport } from './routes/economic-calendar.index'
 import { Route as CalculatorsIndexRouteImport } from './routes/calculators.index'
 import { Route as BrokersIndexRouteImport } from './routes/brokers.index'
 import { Route as SignalsPairRouteImport } from './routes/signals.$pair'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
+import { Route as EconomicCalendarSlugRouteImport } from './routes/economic-calendar.$slug'
 import { Route as CalculatorsTakeProfitRouteImport } from './routes/calculators.take-profit'
 import { Route as CalculatorsStopLossRouteImport } from './routes/calculators.stop-loss'
 import { Route as CalculatorsRiskRewardRouteImport } from './routes/calculators.risk-reward'
@@ -71,11 +72,6 @@ const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
   path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EconomicCalendarRoute = EconomicCalendarRouteImport.update({
-  id: '/economic-calendar',
-  path: '/economic-calendar',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -106,6 +102,11 @@ const ForecastsIndexRoute = ForecastsIndexRouteImport.update({
   path: '/forecasts/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EconomicCalendarIndexRoute = EconomicCalendarIndexRouteImport.update({
+  id: '/economic-calendar/',
+  path: '/economic-calendar/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CalculatorsIndexRoute = CalculatorsIndexRouteImport.update({
   id: '/calculators/',
   path: '/calculators/',
@@ -129,6 +130,11 @@ const LearnSlugRoute = LearnSlugRouteImport.update({
 const ForecastsPairRoute = ForecastsPairRouteImport.update({
   id: '/forecasts/$pair',
   path: '/forecasts/$pair',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EconomicCalendarSlugRoute = EconomicCalendarSlugRouteImport.update({
+  id: '/economic-calendar/$slug',
+  path: '/economic-calendar/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CalculatorsTakeProfitRoute = CalculatorsTakeProfitRouteImport.update({
@@ -172,7 +178,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ai-assistant': typeof AiAssistantRoute
   '/dashboard': typeof DashboardRoute
-  '/economic-calendar': typeof EconomicCalendarRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
   '/login': typeof LoginRoute
@@ -187,11 +192,13 @@ export interface FileRoutesByFullPath {
   '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
   '/calculators/stop-loss': typeof CalculatorsStopLossRoute
   '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
+  '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/brokers/': typeof BrokersIndexRoute
   '/calculators/': typeof CalculatorsIndexRoute
+  '/economic-calendar/': typeof EconomicCalendarIndexRoute
   '/forecasts/': typeof ForecastsIndexRoute
   '/learn/': typeof LearnIndexRoute
   '/signals/': typeof SignalsIndexRoute
@@ -200,7 +207,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ai-assistant': typeof AiAssistantRoute
   '/dashboard': typeof DashboardRoute
-  '/economic-calendar': typeof EconomicCalendarRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
   '/login': typeof LoginRoute
@@ -215,11 +221,13 @@ export interface FileRoutesByTo {
   '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
   '/calculators/stop-loss': typeof CalculatorsStopLossRoute
   '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
+  '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/brokers': typeof BrokersIndexRoute
   '/calculators': typeof CalculatorsIndexRoute
+  '/economic-calendar': typeof EconomicCalendarIndexRoute
   '/forecasts': typeof ForecastsIndexRoute
   '/learn': typeof LearnIndexRoute
   '/signals': typeof SignalsIndexRoute
@@ -229,7 +237,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/ai-assistant': typeof AiAssistantRoute
   '/dashboard': typeof DashboardRoute
-  '/economic-calendar': typeof EconomicCalendarRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
   '/login': typeof LoginRoute
@@ -244,11 +251,13 @@ export interface FileRoutesById {
   '/calculators/risk-reward': typeof CalculatorsRiskRewardRoute
   '/calculators/stop-loss': typeof CalculatorsStopLossRoute
   '/calculators/take-profit': typeof CalculatorsTakeProfitRoute
+  '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/brokers/': typeof BrokersIndexRoute
   '/calculators/': typeof CalculatorsIndexRoute
+  '/economic-calendar/': typeof EconomicCalendarIndexRoute
   '/forecasts/': typeof ForecastsIndexRoute
   '/learn/': typeof LearnIndexRoute
   '/signals/': typeof SignalsIndexRoute
@@ -259,7 +268,6 @@ export interface FileRouteTypes {
     | '/'
     | '/ai-assistant'
     | '/dashboard'
-    | '/economic-calendar'
     | '/forgot-password'
     | '/journal'
     | '/login'
@@ -274,11 +282,13 @@ export interface FileRouteTypes {
     | '/calculators/risk-reward'
     | '/calculators/stop-loss'
     | '/calculators/take-profit'
+    | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
     | '/signals/$pair'
     | '/brokers/'
     | '/calculators/'
+    | '/economic-calendar/'
     | '/forecasts/'
     | '/learn/'
     | '/signals/'
@@ -287,7 +297,6 @@ export interface FileRouteTypes {
     | '/'
     | '/ai-assistant'
     | '/dashboard'
-    | '/economic-calendar'
     | '/forgot-password'
     | '/journal'
     | '/login'
@@ -302,11 +311,13 @@ export interface FileRouteTypes {
     | '/calculators/risk-reward'
     | '/calculators/stop-loss'
     | '/calculators/take-profit'
+    | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
     | '/signals/$pair'
     | '/brokers'
     | '/calculators'
+    | '/economic-calendar'
     | '/forecasts'
     | '/learn'
     | '/signals'
@@ -315,7 +326,6 @@ export interface FileRouteTypes {
     | '/'
     | '/ai-assistant'
     | '/dashboard'
-    | '/economic-calendar'
     | '/forgot-password'
     | '/journal'
     | '/login'
@@ -330,11 +340,13 @@ export interface FileRouteTypes {
     | '/calculators/risk-reward'
     | '/calculators/stop-loss'
     | '/calculators/take-profit'
+    | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
     | '/signals/$pair'
     | '/brokers/'
     | '/calculators/'
+    | '/economic-calendar/'
     | '/forecasts/'
     | '/learn/'
     | '/signals/'
@@ -344,7 +356,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AiAssistantRoute: typeof AiAssistantRoute
   DashboardRoute: typeof DashboardRoute
-  EconomicCalendarRoute: typeof EconomicCalendarRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   JournalRoute: typeof JournalRoute
   LoginRoute: typeof LoginRoute
@@ -359,11 +370,13 @@ export interface RootRouteChildren {
   CalculatorsRiskRewardRoute: typeof CalculatorsRiskRewardRoute
   CalculatorsStopLossRoute: typeof CalculatorsStopLossRoute
   CalculatorsTakeProfitRoute: typeof CalculatorsTakeProfitRoute
+  EconomicCalendarSlugRoute: typeof EconomicCalendarSlugRoute
   ForecastsPairRoute: typeof ForecastsPairRoute
   LearnSlugRoute: typeof LearnSlugRoute
   SignalsPairRoute: typeof SignalsPairRoute
   BrokersIndexRoute: typeof BrokersIndexRoute
   CalculatorsIndexRoute: typeof CalculatorsIndexRoute
+  EconomicCalendarIndexRoute: typeof EconomicCalendarIndexRoute
   ForecastsIndexRoute: typeof ForecastsIndexRoute
   LearnIndexRoute: typeof LearnIndexRoute
   SignalsIndexRoute: typeof SignalsIndexRoute
@@ -420,13 +433,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/economic-calendar': {
-      id: '/economic-calendar'
-      path: '/economic-calendar'
-      fullPath: '/economic-calendar'
-      preLoaderRoute: typeof EconomicCalendarRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -469,6 +475,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForecastsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/economic-calendar/': {
+      id: '/economic-calendar/'
+      path: '/economic-calendar'
+      fullPath: '/economic-calendar/'
+      preLoaderRoute: typeof EconomicCalendarIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/calculators/': {
       id: '/calculators/'
       path: '/calculators'
@@ -502,6 +515,13 @@ declare module '@tanstack/react-router' {
       path: '/forecasts/$pair'
       fullPath: '/forecasts/$pair'
       preLoaderRoute: typeof ForecastsPairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/economic-calendar/$slug': {
+      id: '/economic-calendar/$slug'
+      path: '/economic-calendar/$slug'
+      fullPath: '/economic-calendar/$slug'
+      preLoaderRoute: typeof EconomicCalendarSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/calculators/take-profit': {
@@ -560,7 +580,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AiAssistantRoute: AiAssistantRoute,
   DashboardRoute: DashboardRoute,
-  EconomicCalendarRoute: EconomicCalendarRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   JournalRoute: JournalRoute,
   LoginRoute: LoginRoute,
@@ -575,11 +594,13 @@ const rootRouteChildren: RootRouteChildren = {
   CalculatorsRiskRewardRoute: CalculatorsRiskRewardRoute,
   CalculatorsStopLossRoute: CalculatorsStopLossRoute,
   CalculatorsTakeProfitRoute: CalculatorsTakeProfitRoute,
+  EconomicCalendarSlugRoute: EconomicCalendarSlugRoute,
   ForecastsPairRoute: ForecastsPairRoute,
   LearnSlugRoute: LearnSlugRoute,
   SignalsPairRoute: SignalsPairRoute,
   BrokersIndexRoute: BrokersIndexRoute,
   CalculatorsIndexRoute: CalculatorsIndexRoute,
+  EconomicCalendarIndexRoute: EconomicCalendarIndexRoute,
   ForecastsIndexRoute: ForecastsIndexRoute,
   LearnIndexRoute: LearnIndexRoute,
   SignalsIndexRoute: SignalsIndexRoute,
@@ -587,3 +608,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
