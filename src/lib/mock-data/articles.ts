@@ -818,3 +818,6 @@ The Fort Method is not the secret to predicting markets — no method is. It is 
 
 export const getArticleBySlug = (slug: string) =>
   articles.find((a) => a.slug === slug.toLowerCase());
+
+export const articlesForPair = (pairSlug: string) =>
+  articles.filter((a) => a.relatedPairs.includes(pairSlug.toLowerCase()));
