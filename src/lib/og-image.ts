@@ -33,7 +33,7 @@ export function buildOgSvg({ eyebrow, title, subtitle, subtitleColor, stats }: {
   <text x="60" y="250" font-family="Arial, sans-serif" font-size="88" font-weight="700" fill="#FFFFFF">${esc(title)}</text>
   <text x="60" y="340" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="${subtitleColor}">${esc(subtitle)}</text>
   ${statBoxes}
-  <text x="1140" y="600" text-anchor="end" font-family="Arial, sans-serif" font-size="20" fill="#374151">forexpilot.ai</text>
+  <text x="1140" y="600" text-anchor="end" font-family="Arial, sans-serif" font-size="20" fill="#374151">thefortfx.com</text>
 </svg>`;
 }
 
