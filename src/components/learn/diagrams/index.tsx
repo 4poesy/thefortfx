@@ -546,7 +546,7 @@ export function PendingOrdersDiagram() {
 }
 
 // Registry: slug → diagram component
-export const diagramRegistry: Record<string, () => JSX.Element> = {
+export const diagramRegistry: Record<string, () => ReactNode> = {
   "what-is-a-pip": LotSizeTableDiagram,
   "lot-size-and-pip-value": LotSizeTableDiagram,
   "stop-loss-and-take-profit": StopLossTakeProfitDiagram,
