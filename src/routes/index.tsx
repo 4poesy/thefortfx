@@ -36,10 +36,10 @@ function HomePage() {
               Live signals from 50+ aggregated sources
             </div>
             <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-6xl">
-              Trade Smarter With <span className="gradient-text">AI-Powered Forex Intelligence</span>
+              Your <span className="gradient-text">Trading Command Center</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-              Forecasts, signal consensus, market sentiment, and professional risk tools in one intelligent trading platform.
+              AI-powered forex signals, forecasts, market sentiment, and professional risk tools — unified in one intelligent platform built for serious traders.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link to="/opportunities"><Button size="lg" className="bg-primary hover:bg-primary/90">View Opportunities <ArrowRight className="ml-2 h-4 w-4" /></Button></Link>
