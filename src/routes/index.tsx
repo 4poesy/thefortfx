@@ -10,10 +10,10 @@ import { signals, marketSentiment, economicEvents, brokers } from "@/lib/mock-da
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "TheFortFX — Trade Smarter With AI-Powered Forex Intelligence" },
-      { name: "description", content: "Forecasts, signal consensus, market sentiment, and professional risk tools in one intelligent trading platform." },
-      { property: "og:title", content: "TheFortFX — Trade Smarter With AI" },
-      { property: "og:description", content: "Forecasts, signals, sentiment, and risk tools for serious forex traders." },
+      { title: "Your Trading Command Center | TheFortFX" },
+      { name: "description", content: "TheFortFX is your trading command center: AI-powered forex signals, forecasts, sentiment, an economic calendar, and pro risk tools — all in one place." },
+      { property: "og:title", content: "Your Trading Command Center | TheFortFX" },
+      { property: "og:description", content: "AI-powered forex signals, forecasts, sentiment, and risk tools — all in one command center." },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
