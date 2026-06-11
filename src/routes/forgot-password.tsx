@@ -5,7 +5,7 @@ import { AuthShell } from "@/components/auth-shell";
 
 export const Route = createFileRoute("/forgot-password")({
   head: () => ({
-    meta: [{ title: "Forgot Password — ForexPilot AI" }, { name: "robots", content: "noindex" }],
+    meta: [{ title: "Forgot Password — TheFortFX" }, { name: "robots", content: "noindex" }],
   }),
   component: () => (
     <AuthShell title="Reset your password" subtitle="We'll email you a secure reset link." footer={<>Remembered it? <Link to="/login" className="text-primary hover:underline">Sign in</Link></>}>

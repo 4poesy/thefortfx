@@ -11,7 +11,7 @@ export function AuthShell({ title, subtitle, footer, children }: { title: string
       <div className="relative w-full max-w-md">
         <Link to="/" className="mb-8 flex items-center justify-center gap-2 font-semibold">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-primary-foreground"><Sparkles className="h-4 w-4" /></div>
-          <span>ForexPilot</span><span className="rounded-md bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">AI</span>
+          <span>TheFortFX</span><span className="rounded-md bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">AI</span>
         </Link>
         <Card className="border-border bg-surface/80 p-8 backdrop-blur">
           <h1 className="text-2xl font-bold tracking-tight">{title}</h1>

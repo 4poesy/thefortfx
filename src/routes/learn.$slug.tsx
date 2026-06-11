@@ -29,7 +29,7 @@ export const Route = createFileRoute("/learn/$slug")({
           headline: loaderData.article.title,
           description: loaderData.article.excerpt,
           datePublished: loaderData.article.publishedAt,
-          author: { "@type": "Organization", name: "ForexPilot AI" },
+          author: { "@type": "Organization", name: "TheFortFX" },
         }),
       }],
     };

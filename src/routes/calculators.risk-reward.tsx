@@ -6,7 +6,7 @@ import { CalculatorLayout, Field, BigResult } from "@/components/calculator-layo
 export const Route = createFileRoute("/calculators/risk-reward")({
   head: () => ({
     meta: [
-      { title: "Risk/Reward Calculator — ForexPilot AI" },
+      { title: "Risk/Reward Calculator — TheFortFX" },
       { name: "description", content: "Calculate the risk/reward ratio for any trade setup." },
     ],
     links: [{ rel: "canonical", href: "/calculators/risk-reward" }],

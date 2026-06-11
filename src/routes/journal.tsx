@@ -22,7 +22,7 @@ const seed: JournalEntry[] = [
 export const Route = createFileRoute("/journal")({
   head: () => ({
     meta: [
-      { title: "Trading Journal — ForexPilot AI" },
+      { title: "Trading Journal — TheFortFX" },
       { name: "description", content: "Log trades, track win rate, profit factor, and performance statistics." },
     ],
     links: [{ rel: "canonical", href: "/journal" }],

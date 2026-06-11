@@ -13,7 +13,7 @@ export function Footer() {
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-primary-foreground">
                 <Sparkles className="h-4 w-4" />
               </div>
-              <span>ForexPilot</span>
+              <span>TheFortFX</span>
               <span className="rounded-md bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">AI</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
@@ -53,7 +53,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-border/60 pt-6 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} ForexPilot AI. All rights reserved. ForexPilot AI is not a broker and does not execute trades. Trading carries risk of loss.</p>
+          <p>© {new Date().getFullYear()} TheFortFX. All rights reserved. TheFortFX is not a broker and does not execute trades. Trading carries risk of loss.</p>
         </div>
       </div>
     </footer>

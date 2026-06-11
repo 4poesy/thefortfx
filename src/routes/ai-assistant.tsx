@@ -12,7 +12,7 @@ import { DirectionBadge } from "@/components/badges";
 export const Route = createFileRoute("/ai-assistant")({
   head: () => ({
     meta: [
-      { title: "AI Trade Assistant — Evaluate Any Forex Trade | ForexPilot AI" },
+      { title: "AI Trade Assistant — Evaluate Any Forex Trade | TheFortFX" },
       { name: "description", content: "AI-powered trade analysis: get a confidence score, risk rating, and actionable suggestions for any setup." },
     ],
     links: [{ rel: "canonical", href: "/ai-assistant" }],

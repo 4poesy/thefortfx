@@ -77,14 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ForexPilot AI — AI-Powered Forex Intelligence" },
+      { title: "TheFortFX — AI-Powered Forex Intelligence" },
       { name: "description", content: "Forecasts, signal consensus, market sentiment, and professional risk tools in one intelligent forex trading platform." },
-      { name: "author", content: "ForexPilot AI" },
+      { name: "author", content: "TheFortFX" },
       { name: "theme-color", content: "#0B0F19" },
-      { property: "og:title", content: "ForexPilot AI — Trade Smarter With AI" },
+      { property: "og:title", content: "TheFortFX — Trade Smarter With AI" },
       { property: "og:description", content: "Forecasts, signal consensus, market sentiment, and professional risk tools." },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "ForexPilot AI" },
+      { property: "og:site_name", content: "TheFortFX" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [

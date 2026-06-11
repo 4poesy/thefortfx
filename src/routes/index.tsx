@@ -10,9 +10,9 @@ import { signals, marketSentiment, economicEvents, brokers } from "@/lib/mock-da
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ForexPilot AI — Trade Smarter With AI-Powered Forex Intelligence" },
+      { title: "TheFortFX — Trade Smarter With AI-Powered Forex Intelligence" },
       { name: "description", content: "Forecasts, signal consensus, market sentiment, and professional risk tools in one intelligent trading platform." },
-      { property: "og:title", content: "ForexPilot AI — Trade Smarter With AI" },
+      { property: "og:title", content: "TheFortFX — Trade Smarter With AI" },
       { property: "og:description", content: "Forecasts, signals, sentiment, and risk tools for serious forex traders." },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -284,7 +284,7 @@ function HomePage() {
           <div className="grid gap-8 p-8 lg:grid-cols-2 lg:p-12">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs text-primary">
-                <Bot className="h-3 w-3" /> ForexPilot AI
+                <Bot className="h-3 w-3" /> TheFortFX
               </div>
               <h3 className="mt-4 text-2xl font-bold sm:text-3xl">Evaluate any trade in seconds</h3>
               <p className="mt-3 text-muted-foreground">Paste your entry, stop loss, and take profit. Get a confidence score, risk rating, sentiment alignment, and actionable improvements.</p>
@@ -316,7 +316,7 @@ function HomePage() {
       <section className="border-t border-border/60 bg-surface/30 py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Start trading with intelligence</h2>
-          <p className="mt-4 text-muted-foreground">Join thousands of traders using ForexPilot AI to make smarter, more disciplined decisions.</p>
+          <p className="mt-4 text-muted-foreground">Join thousands of traders using TheFortFX to make smarter, more disciplined decisions.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link to="/register"><Button size="lg" className="bg-primary hover:bg-primary/90">Get started free</Button></Link>
             <Link to="/learn"><Button size="lg" variant="outline"><BookOpen className="mr-2 h-4 w-4" /> Browse Learning Center</Button></Link>

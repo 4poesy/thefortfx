@@ -11,9 +11,9 @@ import { Breadcrumb } from "@/components/seo/Breadcrumb";
 export const Route = createFileRoute("/pairs/")({
   head: () => ({
     meta: [
-      { title: "Currency Pairs — Live Rates, Signals & Forecasts | ForexPilot AI" },
+      { title: "Currency Pairs — Live Rates, Signals & Forecasts | TheFortFX" },
       { name: "description", content: "20 tracked currency pairs, metals, and crypto with live rates, AI signals, forecasts, and full technical analysis hubs." },
-      { property: "og:title", content: "Currency Pairs — ForexPilot AI" },
+      { property: "og:title", content: "Currency Pairs — TheFortFX" },
       { property: "og:description", content: "Live rates, AI signals, and forecasts for 20 tracked instruments." },
       { property: "og:url", content: "/pairs" },
     ],

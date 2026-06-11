@@ -9,7 +9,7 @@ import { brokers } from "@/lib/mock-data";
 export const Route = createFileRoute("/brokers/")({
   head: () => ({
     meta: [
-      { title: "Best Forex Brokers 2026 — Reviews & Comparison | ForexPilot AI" },
+      { title: "Best Forex Brokers 2026 — Reviews & Comparison | TheFortFX" },
       { name: "description", content: "Independent forex broker reviews. Compare regulation, spreads, platforms, and leverage." },
     ],
     links: [{ rel: "canonical", href: "/brokers" }],

@@ -11,7 +11,7 @@ import { DirectionBadge } from "@/components/badges";
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
-      { title: "Dashboard — ForexPilot AI" },
+      { title: "Dashboard — TheFortFX" },
       { name: "description", content: "Your personalized forex dashboard: watchlist, saved signals, recent forecasts, and performance overview." },
     ],
     links: [{ rel: "canonical", href: "/dashboard" }],

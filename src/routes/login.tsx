@@ -6,13 +6,13 @@ import { AuthShell } from "@/components/auth-shell";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Login — ForexPilot AI" },
-      { name: "description", content: "Sign in to ForexPilot AI." },
+      { title: "Login — TheFortFX" },
+      { name: "description", content: "Sign in to TheFortFX." },
       { name: "robots", content: "noindex" },
     ],
   }),
   component: () => (
-    <AuthShell title="Welcome back" subtitle="Sign in to your ForexPilot AI account." footer={<>Don't have an account? <Link to="/register" className="text-primary hover:underline">Sign up</Link></>}>
+    <AuthShell title="Welcome back" subtitle="Sign in to your TheFortFX account." footer={<>Don't have an account? <Link to="/register" className="text-primary hover:underline">Sign up</Link></>}>
       <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
         <label className="block"><span className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-muted-foreground">Email</span><Input type="email" placeholder="you@trader.com" required /></label>
         <label className="block"><span className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-muted-foreground">Password</span><Input type="password" placeholder="••••••••" required /></label>

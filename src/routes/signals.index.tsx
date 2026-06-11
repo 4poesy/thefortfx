@@ -13,9 +13,9 @@ import { DirectionBadge, RiskBadge } from "@/components/badges";
 export const Route = createFileRoute("/signals/")({
   head: () => ({
     meta: [
-      { title: "Live Forex Signals — ForexPilot AI" },
+      { title: "Live Forex Signals — TheFortFX" },
       { name: "description", content: "Browse AI-aggregated forex signals with confidence scores, entries, and risk levels across 500+ pairs." },
-      { property: "og:title", content: "Live Forex Signals — ForexPilot AI" },
+      { property: "og:title", content: "Live Forex Signals — TheFortFX" },
       { property: "og:description", content: "Confidence-scored signals across majors, commodities, and crypto." },
     ],
     links: [{ rel: "canonical", href: "/signals" }],

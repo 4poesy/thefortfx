@@ -117,7 +117,7 @@ function ComparePage() {
               <Button className="flex-1">Open Account with {a.name}</Button>
               <Button variant="outline" className="flex-1">Open Account with {b.name}</Button>
             </div>
-            <p className="mt-3 text-[11px] text-muted-foreground">Disclosure: ForexPilot AI may earn a commission. This does not affect our independent ratings.</p>
+            <p className="mt-3 text-[11px] text-muted-foreground">Disclosure: TheFortFX may earn a commission. This does not affect our independent ratings.</p>
           </Card>
 
           {/* Related signals */}

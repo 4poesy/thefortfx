@@ -9,9 +9,9 @@ import { DirectionBadge } from "@/components/badges";
 export const Route = createFileRoute("/forecasts/")({
   head: () => ({
     meta: [
-      { title: "Forex Forecasts — Daily AI Market Outlook | ForexPilot AI" },
+      { title: "Forex Forecasts — Daily AI Market Outlook | TheFortFX" },
       { name: "description", content: "AI-powered forex forecasts across majors, commodities, and crypto with bullish/bearish scores and technical analysis." },
-      { property: "og:title", content: "Forex Forecasts — ForexPilot AI" },
+      { property: "og:title", content: "Forex Forecasts — TheFortFX" },
       { property: "og:description", content: "Daily AI forecasts for the world's most traded currency pairs." },
     ],
     links: [{ rel: "canonical", href: "/forecasts" }],
