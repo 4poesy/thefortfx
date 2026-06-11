@@ -71,7 +71,7 @@ function ArticlePage() {
     .filter((x: Pair | undefined): x is Pair => Boolean(x))
     .slice(0, 2);
   const tools = calculatorsByCategory[a.category] ?? [];
-  const blocks = a.content.split("\n").filter((l: string) => l.trim().length > 0);
+  const blocks = (a.body ?? "").split("\n").filter((l: string) => l.trim().length > 0);
   const faqs = [
     { q: `What is the key takeaway from "${a.title}"?`, a: a.excerpt },
     { q: `How long does it take to read this article?`, a: `About ${a.readTime}. It covers ${a.category.toLowerCase()} concepts in practical, beginner-accessible language with concrete examples.` },
