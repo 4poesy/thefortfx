@@ -159,7 +159,7 @@ export const articles: LearnArticle[] = fullArticles.map((a) => ({
   excerpt: a.excerpt,
   readTime: a.readTime,
   updated: a.publishedAt,
-  body: a.content.split("\n")[0],
+  body: (a.body ?? "").split("\n")[0],
 }));
 
 export const getArticle = (slug: string) => articles.find((a) => a.slug === slug.toLowerCase());
