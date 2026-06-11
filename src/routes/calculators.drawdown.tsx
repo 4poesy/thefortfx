@@ -6,7 +6,7 @@ import { CalculatorLayout, Field, BigResult } from "@/components/calculator-layo
 export const Route = createFileRoute("/calculators/drawdown")({
   head: () => ({
     meta: [
-      { title: "Drawdown Calculator — ForexPilot AI" },
+      { title: "Drawdown Calculator — TheFortFX" },
       { name: "description", content: "Visualize portfolio drawdown across a streak of losing trades." },
     ],
     links: [{ rel: "canonical", href: "/calculators/drawdown" }],

@@ -12,9 +12,9 @@ import { Breadcrumb } from "@/components/seo/Breadcrumb";
 export const Route = createFileRoute("/economic-calendar/")({
   head: () => ({
     meta: [
-      { title: "Economic Calendar — Forex Events & News | ForexPilot AI" },
+      { title: "Economic Calendar — Forex Events & News | TheFortFX" },
       { name: "description", content: "Real-time forex economic calendar covering central bank decisions, employment data, and high-impact news with forecast and previous readings." },
-      { property: "og:title", content: "Economic Calendar — ForexPilot AI" },
+      { property: "og:title", content: "Economic Calendar — TheFortFX" },
       { property: "og:description", content: "Central bank decisions, employment data, and high-impact forex news." },
       { property: "og:url", content: "/economic-calendar" },
     ],

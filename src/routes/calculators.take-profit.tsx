@@ -7,7 +7,7 @@ import { CalculatorLayout, Field, BigResult } from "@/components/calculator-layo
 export const Route = createFileRoute("/calculators/take-profit")({
   head: () => ({
     meta: [
-      { title: "Take Profit Calculator — ForexPilot AI" },
+      { title: "Take Profit Calculator — TheFortFX" },
       { name: "description", content: "Plan precise take-profit targets using R-multiples or fixed pips." },
     ],
     links: [{ rel: "canonical", href: "/calculators/take-profit" }],

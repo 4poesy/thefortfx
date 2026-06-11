@@ -5,7 +5,7 @@ import { AuthShell } from "@/components/auth-shell";
 
 export const Route = createFileRoute("/register")({
   head: () => ({
-    meta: [{ title: "Get Started — ForexPilot AI" }, { name: "description", content: "Create your ForexPilot AI account." }, { name: "robots", content: "noindex" }],
+    meta: [{ title: "Get Started — TheFortFX" }, { name: "description", content: "Create your TheFortFX account." }, { name: "robots", content: "noindex" }],
   }),
   component: () => (
     <AuthShell title="Create your account" subtitle="Start trading smarter in 30 seconds." footer={<>Already have an account? <Link to="/login" className="text-primary hover:underline">Sign in</Link></>}>

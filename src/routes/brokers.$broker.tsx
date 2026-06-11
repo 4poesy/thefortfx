@@ -129,7 +129,7 @@ function BrokerDetail() {
               <h3 className="mt-2 text-2xl font-bold">Get started with {b.name}</h3>
               <p className="mt-3 text-sm text-muted-foreground">Minimum deposit {b.minDeposit === 0 ? "$0" : `$${b.minDeposit}`}. Trade on {b.platforms.slice(0, 2).join(" & ")}.</p>
               <Button className="mt-6 w-full">Open Account with {b.name} <ArrowRight className="ml-2 h-4 w-4" /></Button>
-              <p className="mt-3 text-[11px] text-muted-foreground">Disclosure: ForexPilot AI may earn a commission. This does not affect our independent ratings.</p>
+              <p className="mt-3 text-[11px] text-muted-foreground">Disclosure: TheFortFX may earn a commission. This does not affect our independent ratings.</p>
             </Card>
 
             <Card className="border-border bg-surface p-6">

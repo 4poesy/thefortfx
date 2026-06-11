@@ -10,7 +10,7 @@ export const Route = createFileRoute("/api/og/broker")({
         const name = (searchParams.get("name") ?? "Broker").slice(0, 24);
         const rating = (searchParams.get("rating") ?? "4.5").slice(0, 4);
         return ogResponse(buildOgSvg({
-          eyebrow: `ForexPilot AI · Broker Review ${new Date().getFullYear()}`,
+          eyebrow: `TheFortFX · Broker Review ${new Date().getFullYear()}`,
           title: name,
           subtitle: `★ ${rating} / 5`,
           subtitleColor: "#F59E0B",

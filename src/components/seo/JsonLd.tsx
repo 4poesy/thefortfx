@@ -13,7 +13,7 @@ export function SignalSchema({ pair, direction, confidence, entry, sl, tp }: { p
       name: `${pair} Forex Signal`,
       description: `${direction} signal for ${pair} with ${confidence}% confidence`,
       feesAndCommissionsSpecification: `Entry: ${entry}, Stop Loss: ${sl}, Take Profit: ${tp}`,
-      provider: { "@type": "Organization", name: "ForexPilot AI" },
+      provider: { "@type": "Organization", name: "TheFortFX" },
     }} />
   );
 }
@@ -25,7 +25,7 @@ export function BrokerSchema({ broker }: { broker: Broker }) {
       "@type": "Review",
       itemReviewed: { "@type": "FinancialService", name: broker.name, description: broker.description },
       reviewRating: { "@type": "Rating", ratingValue: broker.rating, bestRating: 5 },
-      author: { "@type": "Organization", name: "ForexPilot AI" },
+      author: { "@type": "Organization", name: "TheFortFX" },
     }} />
   );
 }

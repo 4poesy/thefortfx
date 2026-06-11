@@ -1,6 +1,6 @@
 // Programmatic SEO meta templates. Canonicals/og:urls are relative paths —
 // browsers and crawlers resolve them against the live host.
-const SITE_NAME = "ForexPilot AI";
+const SITE_NAME = "TheFortFX";
 const YEAR = new Date().getFullYear();
 
 export interface MetaResult {
@@ -19,7 +19,7 @@ export const seoMeta = {
     description: `Live ${pair} forex signal: ${direction} with ${confidence}% confidence score. Real-time entry zone, stop loss, take profit, and risk analysis.`,
     canonical: `/signals/${slug}`,
     ogTitle: `${pair} ${direction} Signal – ${confidence}% Confidence`,
-    ogDescription: `ForexPilot AI is showing a ${direction} signal on ${pair} with ${confidence}% confidence.`,
+    ogDescription: `TheFortFX is showing a ${direction} signal on ${pair} with ${confidence}% confidence.`,
     ogImage: `/api/og/signal?pair=${encodeURIComponent(pair)}&direction=${direction}&confidence=${confidence}`,
     ogType: "article",
   }),

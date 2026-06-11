@@ -7,7 +7,7 @@ import { Check, Sparkles } from "lucide-react";
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing — ForexPilot AI" },
+      { title: "Pricing — TheFortFX" },
       { name: "description", content: "Simple, transparent pricing for AI-powered forex intelligence." },
     ],
     links: [{ rel: "canonical", href: "/pricing" }],

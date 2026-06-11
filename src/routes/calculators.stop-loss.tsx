@@ -7,7 +7,7 @@ import { CalculatorLayout, Field, BigResult } from "@/components/calculator-layo
 export const Route = createFileRoute("/calculators/stop-loss")({
   head: () => ({
     meta: [
-      { title: "Stop Loss Calculator — ForexPilot AI" },
+      { title: "Stop Loss Calculator — TheFortFX" },
       { name: "description", content: "Compute the stop-loss price for any pair based on entry and risk in pips." },
     ],
     links: [{ rel: "canonical", href: "/calculators/stop-loss" }],

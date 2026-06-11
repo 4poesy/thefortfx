@@ -6,7 +6,7 @@ import { Calculator, BarChart3, ShieldCheck, TrendingDown, Activity, TrendingUp,
 export const Route = createFileRoute("/calculators/")({
   head: () => ({
     meta: [
-      { title: "Forex Trading Calculators — Free Tools | ForexPilot AI" },
+      { title: "Forex Trading Calculators — Free Tools | TheFortFX" },
       { name: "description", content: "Professional forex calculators: pip value, position size, risk/reward, stop loss, take profit, and drawdown." },
     ],
     links: [{ rel: "canonical", href: "/calculators" }],

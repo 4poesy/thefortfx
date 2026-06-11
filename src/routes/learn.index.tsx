@@ -10,7 +10,7 @@ import { articles } from "@/lib/mock-data";
 export const Route = createFileRoute("/learn/")({
   head: () => ({
     meta: [
-      { title: "Forex Learning Center — Trade Like a Pro | ForexPilot AI" },
+      { title: "Forex Learning Center — Trade Like a Pro | TheFortFX" },
       { name: "description", content: "Free, in-depth forex education: technical analysis, risk management, psychology, and strategy." },
     ],
     links: [{ rel: "canonical", href: "/learn" }],

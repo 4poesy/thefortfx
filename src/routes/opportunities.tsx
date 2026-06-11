@@ -9,9 +9,9 @@ import { opportunities } from "@/lib/mock-data";
 export const Route = createFileRoute("/opportunities")({
   head: () => ({
     meta: [
-      { title: "Top Trading Opportunities Today — ForexPilot AI" },
+      { title: "Top Trading Opportunities Today — TheFortFX" },
       { name: "description", content: "Daily AI-ranked top forex trading opportunities scored on trend strength, sentiment, and news risk." },
-      { property: "og:title", content: "Top Trading Opportunities — ForexPilot AI" },
+      { property: "og:title", content: "Top Trading Opportunities — TheFortFX" },
     ],
     links: [{ rel: "canonical", href: "/opportunities" }],
   }),

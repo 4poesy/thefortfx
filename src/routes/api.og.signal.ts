@@ -12,7 +12,7 @@ export const Route = createFileRoute("/api/og/signal")({
         const confidence = (searchParams.get("confidence") ?? "85").slice(0, 3);
         const color = directionColor(direction);
         return ogResponse(buildOgSvg({
-          eyebrow: "ForexPilot AI · Live Signal",
+          eyebrow: "TheFortFX · Live Signal",
           title: pair,
           subtitle: direction,
           subtitleColor: color,

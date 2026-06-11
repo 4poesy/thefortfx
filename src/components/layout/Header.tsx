@@ -36,7 +36,7 @@ export function Header() {
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-primary-foreground">
             <Sparkles className="h-4 w-4" />
           </div>
-          <span className="text-foreground">ForexPilot</span>
+          <span className="text-foreground">TheFortFX</span>
           <span className="rounded-md bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">AI</span>
         </Link>
 

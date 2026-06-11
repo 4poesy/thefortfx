@@ -12,7 +12,7 @@ export const Route = createFileRoute("/api/og/forecast")({
         const trend = (searchParams.get("trend") ?? "Neutral").slice(0, 16);
         const color = bullish >= 55 ? "#22C55E" : bullish <= 45 ? "#EF4444" : "#6B7280";
         return ogResponse(buildOgSvg({
-          eyebrow: "ForexPilot AI · Daily Forecast",
+          eyebrow: "TheFortFX · Daily Forecast",
           title: pair,
           subtitle: trend,
           subtitleColor: color,
