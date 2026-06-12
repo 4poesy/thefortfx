@@ -30,6 +30,7 @@ import { Route as CalculatorsIndexRouteImport } from './routes/calculators.index
 import { Route as BrokersIndexRouteImport } from './routes/brokers.index'
 import { Route as SignalsPairRouteImport } from './routes/signals.$pair'
 import { Route as PairsPairRouteImport } from './routes/pairs.$pair'
+import { Route as LegalTermsRouteImport } from './routes/legal.terms'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
 import { Route as EconomicCalendarSlugRouteImport } from './routes/economic-calendar.$slug'
@@ -151,6 +152,11 @@ const PairsPairRoute = PairsPairRouteImport.update({
   path: '/pairs/$pair',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegalTermsRoute = LegalTermsRouteImport.update({
+  id: '/legal/terms',
+  path: '/legal/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LearnSlugRoute = LearnSlugRouteImport.update({
   id: '/learn/$slug',
   path: '/learn/$slug',
@@ -252,6 +258,7 @@ export interface FileRoutesByFullPath {
   '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/pairs/$pair': typeof PairsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/brokers/': typeof BrokersIndexRoute
@@ -290,6 +297,7 @@ export interface FileRoutesByTo {
   '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/pairs/$pair': typeof PairsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/brokers': typeof BrokersIndexRoute
@@ -329,6 +337,7 @@ export interface FileRoutesById {
   '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/pairs/$pair': typeof PairsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/brokers/': typeof BrokersIndexRoute
@@ -369,6 +378,7 @@ export interface FileRouteTypes {
     | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
+    | '/legal/terms'
     | '/pairs/$pair'
     | '/signals/$pair'
     | '/brokers/'
@@ -407,6 +417,7 @@ export interface FileRouteTypes {
     | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
+    | '/legal/terms'
     | '/pairs/$pair'
     | '/signals/$pair'
     | '/brokers'
@@ -445,6 +456,7 @@ export interface FileRouteTypes {
     | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
+    | '/legal/terms'
     | '/pairs/$pair'
     | '/signals/$pair'
     | '/brokers/'
@@ -484,6 +496,7 @@ export interface RootRouteChildren {
   EconomicCalendarSlugRoute: typeof EconomicCalendarSlugRoute
   ForecastsPairRoute: typeof ForecastsPairRoute
   LearnSlugRoute: typeof LearnSlugRoute
+  LegalTermsRoute: typeof LegalTermsRoute
   PairsPairRoute: typeof PairsPairRoute
   SignalsPairRoute: typeof SignalsPairRoute
   BrokersIndexRoute: typeof BrokersIndexRoute
@@ -648,6 +661,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PairsPairRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legal/terms': {
+      id: '/legal/terms'
+      path: '/legal/terms'
+      fullPath: '/legal/terms'
+      preLoaderRoute: typeof LegalTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/learn/$slug': {
       id: '/learn/$slug'
       path: '/learn/$slug'
@@ -780,6 +800,7 @@ const rootRouteChildren: RootRouteChildren = {
   EconomicCalendarSlugRoute: EconomicCalendarSlugRoute,
   ForecastsPairRoute: ForecastsPairRoute,
   LearnSlugRoute: LearnSlugRoute,
+  LegalTermsRoute: LegalTermsRoute,
   PairsPairRoute: PairsPairRoute,
   SignalsPairRoute: SignalsPairRoute,
   BrokersIndexRoute: BrokersIndexRoute,
@@ -797,3 +818,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
