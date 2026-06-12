@@ -67,10 +67,11 @@ function Column({ title, links }: { title: string; links: [string, string][] }) 
       <ul className="mt-4 space-y-2">
         {links.map(([href, label]) => (
           <li key={href}>
-            <a href={href} className="text-sm text-muted-foreground hover:text-foreground">{label}</a>
+            <Link to={href} className="text-sm text-muted-foreground hover:text-foreground">{label}</Link>
           </li>
         ))}
       </ul>
     </div>
   );
 }
+
