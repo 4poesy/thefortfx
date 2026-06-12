@@ -17,7 +17,9 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AiAssistantRouteImport } from './routes/ai-assistant'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SignalsIndexRouteImport } from './routes/signals.index'
 import { Route as PairsIndexRouteImport } from './routes/pairs.index'
@@ -28,6 +30,9 @@ import { Route as CalculatorsIndexRouteImport } from './routes/calculators.index
 import { Route as BrokersIndexRouteImport } from './routes/brokers.index'
 import { Route as SignalsPairRouteImport } from './routes/signals.$pair'
 import { Route as PairsPairRouteImport } from './routes/pairs.$pair'
+import { Route as LegalTermsRouteImport } from './routes/legal.terms'
+import { Route as LegalRiskRouteImport } from './routes/legal.risk'
+import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
 import { Route as EconomicCalendarSlugRouteImport } from './routes/economic-calendar.$slug'
@@ -84,9 +89,19 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AiAssistantRoute = AiAssistantRouteImport.update({
   id: '/ai-assistant',
   path: '/ai-assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -137,6 +152,21 @@ const SignalsPairRoute = SignalsPairRouteImport.update({
 const PairsPairRoute = PairsPairRouteImport.update({
   id: '/pairs/$pair',
   path: '/pairs/$pair',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalTermsRoute = LegalTermsRouteImport.update({
+  id: '/legal/terms',
+  path: '/legal/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRiskRoute = LegalRiskRouteImport.update({
+  id: '/legal/risk',
+  path: '/legal/risk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
+  id: '/legal/privacy',
+  path: '/legal/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnSlugRoute = LearnSlugRouteImport.update({
@@ -218,7 +248,9 @@ const ApiOgBrokerRoute = ApiOgBrokerRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-assistant': typeof AiAssistantRoute
+  '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
@@ -238,6 +270,9 @@ export interface FileRoutesByFullPath {
   '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/risk': typeof LegalRiskRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/pairs/$pair': typeof PairsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/brokers/': typeof BrokersIndexRoute
@@ -254,7 +289,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-assistant': typeof AiAssistantRoute
+  '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
@@ -274,6 +311,9 @@ export interface FileRoutesByTo {
   '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/risk': typeof LegalRiskRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/pairs/$pair': typeof PairsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/brokers': typeof BrokersIndexRoute
@@ -291,7 +331,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-assistant': typeof AiAssistantRoute
+  '/contact': typeof ContactRoute
   '/dashboard': typeof DashboardRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/journal': typeof JournalRoute
@@ -311,6 +353,9 @@ export interface FileRoutesById {
   '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/risk': typeof LegalRiskRoute
+  '/legal/terms': typeof LegalTermsRoute
   '/pairs/$pair': typeof PairsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
   '/brokers/': typeof BrokersIndexRoute
@@ -329,7 +374,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/ai-assistant'
+    | '/contact'
     | '/dashboard'
     | '/forgot-password'
     | '/journal'
@@ -349,6 +396,9 @@ export interface FileRouteTypes {
     | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
+    | '/legal/privacy'
+    | '/legal/risk'
+    | '/legal/terms'
     | '/pairs/$pair'
     | '/signals/$pair'
     | '/brokers/'
@@ -365,7 +415,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/ai-assistant'
+    | '/contact'
     | '/dashboard'
     | '/forgot-password'
     | '/journal'
@@ -385,6 +437,9 @@ export interface FileRouteTypes {
     | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
+    | '/legal/privacy'
+    | '/legal/risk'
+    | '/legal/terms'
     | '/pairs/$pair'
     | '/signals/$pair'
     | '/brokers'
@@ -401,7 +456,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/ai-assistant'
+    | '/contact'
     | '/dashboard'
     | '/forgot-password'
     | '/journal'
@@ -421,6 +478,9 @@ export interface FileRouteTypes {
     | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
+    | '/legal/privacy'
+    | '/legal/risk'
+    | '/legal/terms'
     | '/pairs/$pair'
     | '/signals/$pair'
     | '/brokers/'
@@ -438,7 +498,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AiAssistantRoute: typeof AiAssistantRoute
+  ContactRoute: typeof ContactRoute
   DashboardRoute: typeof DashboardRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   JournalRoute: typeof JournalRoute
@@ -458,6 +520,9 @@ export interface RootRouteChildren {
   EconomicCalendarSlugRoute: typeof EconomicCalendarSlugRoute
   ForecastsPairRoute: typeof ForecastsPairRoute
   LearnSlugRoute: typeof LearnSlugRoute
+  LegalPrivacyRoute: typeof LegalPrivacyRoute
+  LegalRiskRoute: typeof LegalRiskRoute
+  LegalTermsRoute: typeof LegalTermsRoute
   PairsPairRoute: typeof PairsPairRoute
   SignalsPairRoute: typeof SignalsPairRoute
   BrokersIndexRoute: typeof BrokersIndexRoute
@@ -531,11 +596,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ai-assistant': {
       id: '/ai-assistant'
       path: '/ai-assistant'
       fullPath: '/ai-assistant'
       preLoaderRoute: typeof AiAssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -606,6 +685,27 @@ declare module '@tanstack/react-router' {
       path: '/pairs/$pair'
       fullPath: '/pairs/$pair'
       preLoaderRoute: typeof PairsPairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/terms': {
+      id: '/legal/terms'
+      path: '/legal/terms'
+      fullPath: '/legal/terms'
+      preLoaderRoute: typeof LegalTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/risk': {
+      id: '/legal/risk'
+      path: '/legal/risk'
+      fullPath: '/legal/risk'
+      preLoaderRoute: typeof LegalRiskRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacy': {
+      id: '/legal/privacy'
+      path: '/legal/privacy'
+      fullPath: '/legal/privacy'
+      preLoaderRoute: typeof LegalPrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn/$slug': {
@@ -718,7 +818,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AiAssistantRoute: AiAssistantRoute,
+  ContactRoute: ContactRoute,
   DashboardRoute: DashboardRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   JournalRoute: JournalRoute,
@@ -738,6 +840,9 @@ const rootRouteChildren: RootRouteChildren = {
   EconomicCalendarSlugRoute: EconomicCalendarSlugRoute,
   ForecastsPairRoute: ForecastsPairRoute,
   LearnSlugRoute: LearnSlugRoute,
+  LegalPrivacyRoute: LegalPrivacyRoute,
+  LegalRiskRoute: LegalRiskRoute,
+  LegalTermsRoute: LegalTermsRoute,
   PairsPairRoute: PairsPairRoute,
   SignalsPairRoute: SignalsPairRoute,
   BrokersIndexRoute: BrokersIndexRoute,

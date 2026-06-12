@@ -94,6 +94,39 @@
   --foreground: oklch(1 0 0);
 }
 
+.light {
+  --background: oklch(0.99 0.005 260);
+  --foreground: oklch(0.18 0.02 260);
+  --surface: oklch(0.97 0.008 260);
+  --surface-elevated: oklch(1 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 260);
+  --primary: oklch(0.55 0.20 256);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.01 260);
+  --secondary-foreground: oklch(0.22 0.02 260);
+  --muted: oklch(0.95 0.01 260);
+  --muted-foreground: oklch(0.45 0.02 260);
+  --accent: oklch(0.62 0.18 145);
+  --accent-foreground: oklch(1 0 0);
+  --success: oklch(0.62 0.18 145);
+  --success-foreground: oklch(1 0 0);
+  --warning: oklch(0.72 0.16 75);
+  --warning-foreground: oklch(0.18 0.02 260);
+  --info: oklch(0.55 0.20 256);
+  --info-foreground: oklch(1 0 0);
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.90 0.01 260);
+  --input: oklch(0.94 0.01 260);
+  --ring: oklch(0.55 0.20 256);
+  --bullish: oklch(0.55 0.18 145);
+  --bearish: oklch(0.58 0.22 25);
+  --neutral: oklch(0.50 0.02 260);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -101,6 +134,10 @@
   html {
     color-scheme: dark;
   }
+  html.light {
+    color-scheme: light;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
