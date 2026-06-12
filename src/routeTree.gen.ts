@@ -31,6 +31,7 @@ import { Route as BrokersIndexRouteImport } from './routes/brokers.index'
 import { Route as SignalsPairRouteImport } from './routes/signals.$pair'
 import { Route as PairsPairRouteImport } from './routes/pairs.$pair'
 import { Route as LegalTermsRouteImport } from './routes/legal.terms'
+import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 import { Route as ForecastsPairRouteImport } from './routes/forecasts.$pair'
 import { Route as EconomicCalendarSlugRouteImport } from './routes/economic-calendar.$slug'
@@ -157,6 +158,11 @@ const LegalTermsRoute = LegalTermsRouteImport.update({
   path: '/legal/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
+  id: '/legal/privacy',
+  path: '/legal/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LearnSlugRoute = LearnSlugRouteImport.update({
   id: '/learn/$slug',
   path: '/learn/$slug',
@@ -258,6 +264,7 @@ export interface FileRoutesByFullPath {
   '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/terms': typeof LegalTermsRoute
   '/pairs/$pair': typeof PairsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
@@ -297,6 +304,7 @@ export interface FileRoutesByTo {
   '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/terms': typeof LegalTermsRoute
   '/pairs/$pair': typeof PairsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
@@ -337,6 +345,7 @@ export interface FileRoutesById {
   '/economic-calendar/$slug': typeof EconomicCalendarSlugRoute
   '/forecasts/$pair': typeof ForecastsPairRoute
   '/learn/$slug': typeof LearnSlugRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
   '/legal/terms': typeof LegalTermsRoute
   '/pairs/$pair': typeof PairsPairRoute
   '/signals/$pair': typeof SignalsPairRoute
@@ -378,6 +387,7 @@ export interface FileRouteTypes {
     | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
+    | '/legal/privacy'
     | '/legal/terms'
     | '/pairs/$pair'
     | '/signals/$pair'
@@ -417,6 +427,7 @@ export interface FileRouteTypes {
     | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
+    | '/legal/privacy'
     | '/legal/terms'
     | '/pairs/$pair'
     | '/signals/$pair'
@@ -456,6 +467,7 @@ export interface FileRouteTypes {
     | '/economic-calendar/$slug'
     | '/forecasts/$pair'
     | '/learn/$slug'
+    | '/legal/privacy'
     | '/legal/terms'
     | '/pairs/$pair'
     | '/signals/$pair'
@@ -496,6 +508,7 @@ export interface RootRouteChildren {
   EconomicCalendarSlugRoute: typeof EconomicCalendarSlugRoute
   ForecastsPairRoute: typeof ForecastsPairRoute
   LearnSlugRoute: typeof LearnSlugRoute
+  LegalPrivacyRoute: typeof LegalPrivacyRoute
   LegalTermsRoute: typeof LegalTermsRoute
   PairsPairRoute: typeof PairsPairRoute
   SignalsPairRoute: typeof SignalsPairRoute
@@ -668,6 +681,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegalTermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legal/privacy': {
+      id: '/legal/privacy'
+      path: '/legal/privacy'
+      fullPath: '/legal/privacy'
+      preLoaderRoute: typeof LegalPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/learn/$slug': {
       id: '/learn/$slug'
       path: '/learn/$slug'
@@ -800,6 +820,7 @@ const rootRouteChildren: RootRouteChildren = {
   EconomicCalendarSlugRoute: EconomicCalendarSlugRoute,
   ForecastsPairRoute: ForecastsPairRoute,
   LearnSlugRoute: LearnSlugRoute,
+  LegalPrivacyRoute: LegalPrivacyRoute,
   LegalTermsRoute: LegalTermsRoute,
   PairsPairRoute: PairsPairRoute,
   SignalsPairRoute: SignalsPairRoute,
