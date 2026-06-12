@@ -89,14 +89,17 @@ function ContactPage() {
         </div>
       </section>
 
-      <FaqSection
-        items={[
-          { q: "How quickly will I get a response?", a: "Most emails are answered within one business day. Live chat is typically under five minutes during office hours." },
-          { q: "Do you offer phone support?", a: "Phone support is available to Institutional plan clients. All other plans use email and chat." },
-          { q: "I have a press inquiry. Who do I contact?", a: "Use the form with topic 'Press' or email press@thefortfx.com — our communications lead will follow up directly." },
-          { q: "Are you hiring?", a: "Yes — we hire engineers, quants and product designers. Check the Careers section on our About page for open roles." },
-        ]}
-      />
+      <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+        <FaqSection
+          faqs={[
+            { q: "How quickly will I get a response?", a: "Most emails are answered within one business day. Live chat is typically under five minutes during office hours." },
+            { q: "Do you offer phone support?", a: "Phone support is available to Institutional plan clients. All other plans use email and chat." },
+            { q: "I have a press inquiry. Who do I contact?", a: "Use the form with topic 'Press' or email press@thefortfx.com — our communications lead will follow up directly." },
+            { q: "Are you hiring?", a: "Yes — we hire engineers, quants and product designers. Check the Careers section on our About page for open roles." },
+          ]}
+        />
+      </div>
+
     </Shell>
   );
 }
