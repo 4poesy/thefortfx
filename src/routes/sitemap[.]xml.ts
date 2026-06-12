@@ -17,6 +17,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           "/calculators", "/calculators/pip-calculator", "/calculators/position-size",
           "/calculators/risk-reward", "/calculators/drawdown", "/calculators/stop-loss",
           "/calculators/take-profit", "/brokers", "/learn", "/ai-assistant", "/pricing",
+          "/about", "/contact", "/legal/terms", "/legal/privacy", "/legal/risk",
         ];
         const dyn = [
           ...pairs.map((p) => `/pairs/${p.slug}`),
