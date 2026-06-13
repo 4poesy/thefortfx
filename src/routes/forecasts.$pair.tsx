@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -29,7 +30,7 @@ function ForecastDetail() {
   const learn = articlesForPair(f.symbol)[0] ?? articles[0];
   return (
     <Shell>
-      <PageHeader eyebrow="Forecast" title={`${f.pair} — Market Forecast`} description={f.summary}>
+      <PageHeader eyebrow="Forecast" title={`${f.pair} — Market Forecast`} description={f.summary} image={heroImages.forecasts}>
         <div className="space-y-3">
           <Breadcrumb items={[{ name: "Forecasts", href: "/forecasts" }, { name: f.pair }]} />
           <Link to="/forecasts" className="inline-flex items-center gap-1 text-sm text-primary hover:underline"><ArrowLeft className="h-3 w-3" /> All forecasts</Link>

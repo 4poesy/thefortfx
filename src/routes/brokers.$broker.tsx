@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -39,7 +40,7 @@ function BrokerDetail() {
     <Shell>
       <BrokerSchema broker={b} />
       <AggregateRatingSchema broker={b} />
-      <PageHeader eyebrow={`Broker Review ${new Date().getFullYear()}`} title={b.name} description={b.description}>
+      <PageHeader eyebrow={`Broker Review ${new Date().getFullYear()}`} title={b.name} description={b.description} image={heroImages.brokers}>
         <Breadcrumb items={[{ name: "Brokers", href: "/brokers" }, { name: b.name }]} />
       </PageHeader>
       <section className="py-10">
