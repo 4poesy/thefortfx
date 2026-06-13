@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { useMemo, useState } from "react";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
@@ -76,7 +77,7 @@ function LearnPage() {
         eyebrow="Learning Center"
         title="Master the art and science of forex"
         description="24 in-depth guides written by traders, for traders. Every article includes diagrams, worked examples, and proprietary frameworks from the TheFortFX desk."
-      />
+      image={heroImages.learn} />
 
       <section className="py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -87,7 +88,7 @@ function LearnPage() {
               params={{ slug: featured.slug }}
               className="group mb-10 block"
             >
-              <Card className="relative overflow-hidden border-primary/40 bg-gradient-to-br from-surface via-surface to-primary/10 p-8 transition-all hover:border-primary/60 sm:p-10">
+              <Card className="relative overflow-hidden border-primary/40 bg-surface p-8 transition-all hover:border-primary/60 sm:p-10">
                 <div className="absolute right-0 top-0 h-40 w-40 -translate-y-1/3 translate-x-1/3 rounded-full bg-primary/20 blur-3xl" />
                 <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                   <div className="max-w-2xl">

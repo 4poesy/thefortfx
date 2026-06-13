@@ -42,7 +42,7 @@ function PairHub() {
     <Shell>
       <SignalSchema pair={p.name} direction={p.signal} confidence={p.confidence} entry={p.entry} sl={p.stopLoss} tp={p.takeProfit} />
       {/* Hero */}
-      <section className="border-b border-border/60 bg-gradient-to-b from-surface/60 to-background">
+      <section className="border-b border-border/60 bg-surface/40">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
           <Breadcrumb items={[{ name: "Pairs", href: "/pairs" }, { name: p.name }]} />
           <div className="mt-4 flex flex-wrap items-end justify-between gap-4">

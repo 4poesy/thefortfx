@@ -31,7 +31,7 @@ export function CalculatorLayout({ title, description, inputs, output, formula }
               <h2 className="text-base font-semibold">Inputs</h2>
               <div className="mt-4 space-y-4">{inputs}</div>
             </Card>
-            <Card className="border-border bg-gradient-to-br from-surface to-surface-elevated p-6">
+            <Card className="border-border bg-surface-elevated p-6">
               <h2 className="text-base font-semibold">Result</h2>
               <div className="mt-4">{output}</div>
               {formula && <p className="mt-6 border-t border-border pt-4 text-xs text-muted-foreground"><span className="font-medium text-foreground">Formula:</span> {formula}</p>}

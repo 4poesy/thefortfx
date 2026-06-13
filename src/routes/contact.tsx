@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { Mail, MessageSquare, MapPin, Clock } from "lucide-react";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
@@ -33,7 +34,7 @@ const channels = [
 function ContactPage() {
   return (
     <Shell>
-      <PageHeader eyebrow="Contact" title="We're here when you need us" description="Reach the TheFortFX team for support, sales questions, partnerships or press.">
+      <PageHeader eyebrow="Contact" title="We're here when you need us" description="Reach the TheFortFX team for support, sales questions, partnerships or press." image={heroImages.ai}>
         <Breadcrumb items={[{ name: "Contact" }]} />
       </PageHeader>
 

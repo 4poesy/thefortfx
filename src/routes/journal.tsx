@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -52,7 +53,7 @@ function JournalPage() {
 
   return (
     <Shell>
-      <PageHeader eyebrow="Trade Journal" title="Track every trade. Learn from every outcome." description="Log your trades, analyze your edge, and build the discipline of a professional." />
+      <PageHeader eyebrow="Trade Journal" title="Track every trade. Learn from every outcome." description="Log your trades, analyze your edge, and build the discipline of a professional." image={heroImages.trading} />
       <section className="py-10">
         <div className="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">

@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -35,7 +36,7 @@ function SignalDetail() {
         eyebrow={`Signal · ${s.updated}`}
         title={`${s.pair} — ${s.direction}`}
         description={`Confidence ${s.confidence}% · ${s.sources} aggregated sources · Risk ${s.risk}`}
-      >
+       image={heroImages.signals}>
         <div className="space-y-3">
           <Breadcrumb items={[{ name: "Signals", href: "/signals" }, { name: s.pair }]} />
           <Link to="/signals" className="inline-flex items-center gap-1 text-sm text-primary hover:underline"><ArrowLeft className="h-3 w-3" /> Back to signals</Link>

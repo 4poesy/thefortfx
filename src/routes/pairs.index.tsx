@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { useState } from "react";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
@@ -29,7 +30,7 @@ function PairsIndex() {
   const list = pairs.filter((p) => cat === "All" || p.category === cat);
   return (
     <Shell>
-      <PageHeader eyebrow="Markets" title="Currency pair hubs" description="Live rates, AI signal, forecast, key levels, upcoming events, and recommended brokers — everything about each instrument in one place.">
+      <PageHeader eyebrow="Markets" title="Currency pair hubs" description="Live rates, AI signal, forecast, key levels, upcoming events, and recommended brokers — everything about each instrument in one place." image={heroImages.pairs}>
         <Breadcrumb items={[{ name: "Pairs" }]} />
       </PageHeader>
       <section className="py-10">

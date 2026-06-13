@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -45,7 +46,7 @@ function ComparePage() {
     <Shell>
       <BrokerSchema broker={a} />
       <BrokerSchema broker={b} />
-      <PageHeader eyebrow="Broker Comparison" title={`${a.name} vs ${b.name}`} description={`Side-by-side comparison of spreads, regulation, minimum deposit, platforms, and trader ratings — which broker wins in ${new Date().getFullYear()}?`}>
+      <PageHeader eyebrow="Broker Comparison" title={`${a.name} vs ${b.name}`} description={`Side-by-side comparison of spreads, regulation, minimum deposit, platforms, and trader ratings — which broker wins in ${new Date().getFullYear()}?`} image={heroImages.brokers}>
         <Breadcrumb items={[{ name: "Brokers", href: "/brokers" }, { name: `${a.name} vs ${b.name}` }]} />
       </PageHeader>
       <section className="py-10">

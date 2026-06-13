@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -39,7 +40,7 @@ function BrokerDetail() {
     <Shell>
       <BrokerSchema broker={b} />
       <AggregateRatingSchema broker={b} />
-      <PageHeader eyebrow={`Broker Review ${new Date().getFullYear()}`} title={b.name} description={b.description}>
+      <PageHeader eyebrow={`Broker Review ${new Date().getFullYear()}`} title={b.name} description={b.description} image={heroImages.brokers}>
         <Breadcrumb items={[{ name: "Brokers", href: "/brokers" }, { name: b.name }]} />
       </PageHeader>
       <section className="py-10">
@@ -124,7 +125,7 @@ function BrokerDetail() {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            <Card className="h-fit border-border bg-gradient-to-br from-primary/10 to-accent/10 p-6">
+            <Card className="h-fit border-border bg-primary/10 p-6">
               <p className="text-xs uppercase tracking-wider text-primary">Open an account</p>
               <h3 className="mt-2 text-2xl font-bold">Get started with {b.name}</h3>
               <p className="mt-3 text-sm text-muted-foreground">Minimum deposit {b.minDeposit === 0 ? "$0" : `$${b.minDeposit}`}. Trade on {b.platforms.slice(0, 2).join(" & ")}.</p>

@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/brokers/")({
 function BrokersPage() {
   return (
     <Shell>
-      <PageHeader eyebrow="Brokers" title="Top-rated forex brokers" description="Independently reviewed brokers ranked on regulation, execution, spreads, and platform quality." />
+      <PageHeader eyebrow="Brokers" title="Top-rated forex brokers" description="Independently reviewed brokers ranked on regulation, execution, spreads, and platform quality." image={heroImages.brokers} />
       <section className="py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
