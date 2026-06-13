@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -25,7 +26,7 @@ function DashboardPage() {
 
   return (
     <Shell>
-      <PageHeader eyebrow="Dashboard" title="Welcome back, Trader" description="Your personalized trading command center." />
+      <PageHeader eyebrow="Dashboard" title="Welcome back, Trader" description="Your personalized trading command center." / image={heroImages.trading}>
       <section className="py-10">
         <div className="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
 

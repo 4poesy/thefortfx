@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { useState } from "react";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
@@ -35,7 +36,7 @@ function CalendarPage() {
   });
   return (
     <Shell>
-      <PageHeader eyebrow="Economic Calendar" title="Upcoming market-moving events" description="Stay ahead of central bank decisions, employment data, and high-impact news releases. Click any event for full impact analysis.">
+      <PageHeader eyebrow="Economic Calendar" title="Upcoming market-moving events" description="Stay ahead of central bank decisions, employment data, and high-impact news releases. Click any event for full impact analysis." image={heroImages.calendar}>
         <Breadcrumb items={[{ name: "Economic Calendar" }]} />
       </PageHeader>
       <section className="py-10">

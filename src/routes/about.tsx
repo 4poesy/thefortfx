@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { Sparkles, Target, ShieldCheck, Users, Globe2, TrendingUp, Brain, Building2 } from "lucide-react";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
@@ -48,7 +49,7 @@ function AboutPage() {
         eyebrow="About us"
         title="The trader's command center"
         description="TheFortFX is an AI-powered forex intelligence platform. We're not a broker — we're the layer of analysis, signal generation, and risk control that sits between you and the market."
-      >
+       image={heroImages.trading}>
         <Breadcrumb items={[{ name: "About" }]} />
       </PageHeader>
 

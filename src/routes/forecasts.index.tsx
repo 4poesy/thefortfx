@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { heroImages } from "@/lib/hero-images";
 import { Shell, PageHeader } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -22,7 +23,7 @@ export const Route = createFileRoute("/forecasts/")({
 function ForecastsPage() {
   return (
     <Shell>
-      <PageHeader eyebrow="Forecasts" title="Daily Market Forecasts" description="Bullish and bearish scores, technical analysis, and macro context for every major pair." />
+      <PageHeader eyebrow="Forecasts" title="Daily Market Forecasts" description="Bullish and bearish scores, technical analysis, and macro context for every major pair." / image={heroImages.forecasts}>
       <section className="py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
