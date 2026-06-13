@@ -163,12 +163,7 @@
               0 20px 60px -20px color-mix(in oklab, var(--primary) 40%, transparent);
 }
 
-@utility gradient-text {
-  background: linear-gradient(135deg, oklch(1 0 0), color-mix(in oklab, var(--primary) 80%, white));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+/* gradient-text removed — solid colors only */
 
 @utility ticker-scroll {
   animation: ticker 40s linear infinite;
