@@ -81,11 +81,6 @@ function HomePage() {
           {/* Hero dashboard preview cards */}
           <div className="grid gap-4 lg:grid-cols-3">
             <Card className="border-border bg-surface p-5">
-
-
-          {/* Hero dashboard preview */}
-          <div className="mt-12 grid gap-4 lg:grid-cols-3">
-            <Card className="border-border bg-surface/60 p-5 backdrop-blur">
               <div className="flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">Top Opportunity</span>
                 <Badge className="bg-accent/15 text-accent hover:bg-accent/20">Score 92</Badge>
@@ -97,7 +92,7 @@ function HomePage() {
                 <span className="text-muted-foreground">Confidence 91%</span>
               </div>
             </Card>
-            <Card className="border-border bg-surface/60 p-5 backdrop-blur">
+            <Card className="border-border bg-surface p-5">
               <div className="flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">Market Sentiment</span>
                 <Activity className="h-4 w-4 text-primary" />
@@ -106,7 +101,7 @@ function HomePage() {
               <Progress value={68} className="mt-3" />
               <p className="mt-2 text-xs text-muted-foreground">Aggregated across 12 majors</p>
             </Card>
-            <Card className="border-border bg-surface/60 p-5 backdrop-blur">
+            <Card className="border-border bg-surface p-5">
               <div className="flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">AI Trade Score</span>
                 <Bot className="h-4 w-4 text-primary" />
