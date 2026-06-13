@@ -22,7 +22,7 @@ export const Route = createFileRoute("/opportunities")({
 function OpportunitiesPage() {
   return (
     <Shell>
-      <PageHeader eyebrow="Opportunity Scanner" title="Today's top trading opportunities" description="AI-ranked leaderboard of the highest-probability setups across global FX, commodities, and crypto." / image={heroImages.signals}>
+      <PageHeader eyebrow="Opportunity Scanner" title="Today's top trading opportunities" description="AI-ranked leaderboard of the highest-probability setups across global FX, commodities, and crypto." image={heroImages.signals} />
       <section className="py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-3">

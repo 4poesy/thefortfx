@@ -77,7 +77,7 @@ function LearnPage() {
         eyebrow="Learning Center"
         title="Master the art and science of forex"
         description="24 in-depth guides written by traders, for traders. Every article includes diagrams, worked examples, and proprietary frameworks from the TheFortFX desk."
-      / image={heroImages.learn}>
+      image={heroImages.learn} />
 
       <section className="py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

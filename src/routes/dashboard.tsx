@@ -26,7 +26,7 @@ function DashboardPage() {
 
   return (
     <Shell>
-      <PageHeader eyebrow="Dashboard" title="Welcome back, Trader" description="Your personalized trading command center." / image={heroImages.trading}>
+      <PageHeader eyebrow="Dashboard" title="Welcome back, Trader" description="Your personalized trading command center." image={heroImages.trading} />
       <section className="py-10">
         <div className="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
 

@@ -42,7 +42,7 @@ function SignalsPage() {
 
   return (
     <Shell>
-      <PageHeader eyebrow="Signals" title="Live Trading Signals" description="AI-aggregated signal consensus across major forex pairs, commodities, and crypto." / image={heroImages.signals}>
+      <PageHeader eyebrow="Signals" title="Live Trading Signals" description="AI-aggregated signal consensus across major forex pairs, commodities, and crypto." image={heroImages.signals} />
       <section className="py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Card className="mb-6 border-border bg-surface p-4">

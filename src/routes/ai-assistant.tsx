@@ -52,7 +52,7 @@ function AIPage() {
 
   return (
     <Shell>
-      <PageHeader eyebrow="AI Assistant" title="Your AI trade analyst" description="Score, evaluate, and improve any forex trade in seconds." / image={heroImages.ai}>
+      <PageHeader eyebrow="AI Assistant" title="Your AI trade analyst" description="Score, evaluate, and improve any forex trade in seconds." image={heroImages.ai} />
       <section className="py-10">
         <div className="mx-auto grid max-w-6xl gap-6 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <Card className="border-border bg-surface p-6">

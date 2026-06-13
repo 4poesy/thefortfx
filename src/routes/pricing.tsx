@@ -25,7 +25,7 @@ const plans = [
 function Pricing() {
   return (
     <Shell>
-      <PageHeader eyebrow="Pricing" title="Built for traders at every stage" description="Start free. Upgrade when you're ready. Cancel anytime." / image={heroImages.trading}>
+      <PageHeader eyebrow="Pricing" title="Built for traders at every stage" description="Start free. Upgrade when you're ready. Cancel anytime." image={heroImages.trading} />
       <section className="py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-3">

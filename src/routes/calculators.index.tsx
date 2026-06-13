@@ -27,7 +27,7 @@ const tools = [
 function CalcHub() {
   return (
     <Shell>
-      <PageHeader eyebrow="Tools" title="Professional Trading Calculators" description="The same risk math used by institutional desks — free, fast, and beautifully designed." / image={heroImages.trading}>
+      <PageHeader eyebrow="Tools" title="Professional Trading Calculators" description="The same risk math used by institutional desks — free, fast, and beautifully designed." image={heroImages.trading} />
       <section className="py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
