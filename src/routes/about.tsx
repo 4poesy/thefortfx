@@ -93,7 +93,7 @@ function AboutPage() {
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {team.map((m) => (
             <Card key={m.name} className="border-border bg-surface/60 p-5">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-primary-foreground font-bold">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold">
                 {m.name.split(" ").map((n) => n[0]).join("")}
               </div>
               <h3 className="mt-3 text-sm font-semibold text-foreground">{m.name}</h3>
@@ -121,7 +121,7 @@ function AboutPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <Card className="border-border bg-gradient-to-br from-primary/10 to-accent/5 p-8 sm:p-12">
+        <Card className="border-border bg-primary/10 p-8 sm:p-12">
           <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">

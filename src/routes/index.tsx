@@ -36,7 +36,7 @@ function HomePage() {
               Live signals from 50+ aggregated sources
             </div>
             <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-6xl">
-              Your <span className="gradient-text">Trading Command Center</span>
+              Your <span className="text-primary">Trading Command Center</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
               AI-powered forex signals, forecasts, market sentiment, and professional risk tools — unified in one intelligent platform built for serious traders.
@@ -280,7 +280,7 @@ function HomePage() {
 
       {/* AI ASSISTANT PREVIEW */}
       <Section eyebrow="AI Trade Assistant" title="Your AI co-pilot for every trade">
-        <Card className="overflow-hidden border-border bg-gradient-to-br from-surface to-surface-elevated">
+        <Card className="overflow-hidden border-border bg-surface-elevated">
           <div className="grid gap-8 p-8 lg:grid-cols-2 lg:p-12">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs text-primary">

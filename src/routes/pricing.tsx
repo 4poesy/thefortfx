@@ -29,7 +29,7 @@ function Pricing() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-3">
             {plans.map((p) => (
-              <Card key={p.name} className={`relative border-border p-8 ${p.highlight ? "border-primary/50 bg-gradient-to-b from-primary/10 to-surface glow-primary" : "bg-surface"}`}>
+              <Card key={p.name} className={`relative border-border p-8 ${p.highlight ? "border-primary/50 bg-primary/10 glow-primary" : "bg-surface"}`}>
                 {p.highlight && <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-primary-foreground"><Sparkles className="-mt-0.5 mr-1 inline h-3 w-3" />Most popular</span>}
                 <h3 className="text-lg font-semibold">{p.name}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{p.desc}</p>

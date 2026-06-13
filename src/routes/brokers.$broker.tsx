@@ -124,7 +124,7 @@ function BrokerDetail() {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            <Card className="h-fit border-border bg-gradient-to-br from-primary/10 to-accent/10 p-6">
+            <Card className="h-fit border-border bg-primary/10 p-6">
               <p className="text-xs uppercase tracking-wider text-primary">Open an account</p>
               <h3 className="mt-2 text-2xl font-bold">Get started with {b.name}</h3>
               <p className="mt-3 text-sm text-muted-foreground">Minimum deposit {b.minDeposit === 0 ? "$0" : `$${b.minDeposit}`}. Trade on {b.platforms.slice(0, 2).join(" & ")}.</p>

@@ -87,7 +87,7 @@ function AIPage() {
             </form>
           </Card>
 
-          <Card className="border-border bg-gradient-to-br from-surface to-surface-elevated p-6">
+          <Card className="border-border bg-surface-elevated p-6">
             <h2 className="text-base font-semibold">AI Analysis</h2>
             {!out ? (
               <div className="mt-8 flex flex-col items-center justify-center rounded-xl border border-dashed border-border bg-background/40 py-16 text-center">
