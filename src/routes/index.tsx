@@ -27,51 +27,40 @@ function HomePage() {
   return (
     <Shell>
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-border/60 bg-surface/30">
-        <div className="grid-bg absolute inset-0 opacity-50" />
-        <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6 sm:pt-16 lg:px-8 lg:pb-20 lg:pt-20">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs text-muted-foreground">
-                <span className="relative flex h-2 w-2"><span className="absolute inset-0 rounded-full bg-accent pulse-live" /><span className="relative inline-flex h-2 w-2 rounded-full bg-accent" /></span>
-                Live signals from 50+ aggregated sources
-              </div>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                Your <span className="text-primary">Trading Command Center</span>
-              </h1>
-              <p className="mt-5 max-w-xl text-lg text-muted-foreground">
-                AI-powered forex signals, forecasts, market sentiment, and professional risk tools — unified in one intelligent platform built for serious traders.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Link to="/opportunities"><Button size="lg" className="bg-primary hover:bg-primary/90">View Opportunities <ArrowRight className="ml-2 h-4 w-4" /></Button></Link>
-                <Link to="/calculators"><Button size="lg" variant="outline">Explore Tools</Button></Link>
-              </div>
-              <Link to="/forecasts" className="mt-6 inline-flex items-center gap-1 text-sm text-primary hover:underline">
-                See today's market forecast <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </div>
-            <div className="relative">
-              <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl">
-                <img
-                  src={heroTrading}
-                  alt="TheFortFX trading command center dashboard with live forex candlestick charts"
-                  width={1280}
-                  height={832}
-                  className="aspect-[16/10] h-full w-full object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-4 -left-4 hidden rounded-xl border border-border bg-background p-3 shadow-xl sm:block">
-                <div className="flex items-center gap-2 text-xs">
-                  <Badge className="bg-bullish/15 text-bullish">BUY</Badge>
-                  <span className="font-mono text-foreground">EUR/USD</span>
-                  <span className="font-mono text-bullish">+0.42%</span>
-                </div>
-              </div>
-            </div>
+      <section className="relative overflow-hidden border-b border-border/60 bg-surface">
+        <img
+          src={heroTrading}
+          alt=""
+          aria-hidden="true"
+          width={1280}
+          height={832}
+          className="absolute inset-0 h-full w-full object-cover opacity-25"
+        />
+        <div className="absolute inset-0 bg-background/70" />
+        <div className="grid-bg absolute inset-0 opacity-30" />
+        <div className="relative mx-auto max-w-4xl px-4 pb-16 pt-16 text-center sm:px-6 sm:pt-20 lg:px-8 lg:pb-20 lg:pt-24">
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+            <span className="relative flex h-2 w-2"><span className="absolute inset-0 rounded-full bg-accent pulse-live" /><span className="relative inline-flex h-2 w-2 rounded-full bg-accent" /></span>
+            Live signals from 50+ aggregated sources
           </div>
+          <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+            Your <span className="text-primary">Trading Command Center</span>
+          </h1>
+          <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
+            AI-powered forex signals, forecasts, market sentiment, and professional risk tools — unified in one intelligent platform built for serious traders.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Link to="/opportunities"><Button size="lg" className="bg-primary hover:bg-primary/90">View Opportunities <ArrowRight className="ml-2 h-4 w-4" /></Button></Link>
+            <Link to="/calculators"><Button size="lg" variant="outline">Explore Tools</Button></Link>
+          </div>
+          <Link to="/forecasts" className="mt-6 inline-flex items-center gap-1 text-sm text-primary hover:underline">
+            See today's market forecast <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
 
-          {/* Live ticker */}
-          <div className="mt-12 overflow-hidden rounded-2xl border border-border bg-surface">
+        {/* Live ticker */}
+        <div className="relative mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+          <div className="overflow-hidden rounded-2xl border border-border bg-surface/80 backdrop-blur">
             <div className="flex gap-8 py-3 ticker-scroll whitespace-nowrap">
               {[...tickerPairs, ...tickerPairs].map((s, i) => (
                 <div key={i} className="flex items-center gap-2 text-sm">
@@ -84,6 +73,15 @@ function HomePage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border/60 py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Hero dashboard preview cards */}
+          <div className="grid gap-4 lg:grid-cols-3">
+            <Card className="border-border bg-surface p-5">
+
 
           {/* Hero dashboard preview */}
           <div className="mt-12 grid gap-4 lg:grid-cols-3">
