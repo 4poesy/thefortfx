@@ -37,16 +37,17 @@ export function PageHeader({
             aria-hidden="true"
             width={1280}
             height={832}
-            className="absolute inset-0 h-full w-full object-cover opacity-25"
+            className="absolute inset-0 h-full w-full object-cover opacity-40 dark:opacity-25"
           />
-          <div className="absolute inset-0 bg-background/70" />
+          <div className="absolute inset-0 bg-foreground/40 dark:bg-background/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-foreground/10 to-foreground/40 dark:hidden" />
         </>
       )}
       <div className="grid-bg absolute inset-0 opacity-30" />
       <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        {eyebrow && <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">{eyebrow}</p>}
-        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">{title}</h1>
-        {description && <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">{description}</p>}
+        {eyebrow && <p className={`mb-3 text-xs font-semibold uppercase tracking-wider ${image ? "text-white/90 dark:text-primary" : "text-primary"}`}>{eyebrow}</p>}
+        <h1 className={`text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl ${image ? "text-white drop-shadow-sm dark:text-foreground dark:drop-shadow-none" : "text-foreground"}`}>{title}</h1>
+        {description && <p className={`mx-auto mt-4 max-w-2xl text-base sm:text-lg ${image ? "text-white/80 drop-shadow-sm dark:text-muted-foreground dark:drop-shadow-none" : "text-muted-foreground"}`}>{description}</p>}
         {children && <div className="mt-6 flex justify-center">{children}</div>}
       </div>
     </section>
