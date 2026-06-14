@@ -34,19 +34,20 @@ function HomePage() {
           aria-hidden="true"
           width={1280}
           height={832}
-          className="absolute inset-0 h-full w-full object-cover opacity-25"
+          className="absolute inset-0 h-full w-full object-cover opacity-40 dark:opacity-25"
         />
-        <div className="absolute inset-0 bg-background/70" />
+        <div className="absolute inset-0 bg-foreground/40 dark:bg-background/70" />
+        <div className="absolute inset-0 bg-foreground/20 dark:hidden" />
         <div className="grid-bg absolute inset-0 opacity-30" />
         <div className="relative mx-auto max-w-4xl px-4 pb-16 pt-16 text-center sm:px-6 sm:pt-20 lg:px-8 lg:pb-20 lg:pt-24">
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-3 py-1 text-xs text-white/90 drop-shadow-sm backdrop-blur dark:text-muted-foreground dark:drop-shadow-none">
             <span className="relative flex h-2 w-2"><span className="absolute inset-0 rounded-full bg-accent pulse-live" /><span className="relative inline-flex h-2 w-2 rounded-full bg-accent" /></span>
             Live signals from 50+ aggregated sources
           </div>
-          <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 text-4xl font-bold tracking-tight text-white drop-shadow-sm sm:text-5xl lg:text-6xl dark:text-foreground dark:drop-shadow-none">
             Your <span className="text-primary">Trading Command Center</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
+          <p className="mx-auto mt-5 max-w-2xl text-lg text-white/80 drop-shadow-sm dark:text-muted-foreground dark:drop-shadow-none">
             AI-powered forex signals, forecasts, market sentiment, and professional risk tools — unified in one intelligent platform built for serious traders.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
