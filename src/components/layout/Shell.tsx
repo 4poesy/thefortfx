@@ -40,7 +40,7 @@ export function PageHeader({
             className="absolute inset-0 h-full w-full object-cover opacity-40 dark:opacity-25"
           />
           <div className="absolute inset-0 bg-foreground/40 dark:bg-background/70" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-foreground/10 to-foreground/40 dark:hidden" />
+          <div className="absolute inset-0 bg-foreground/20 dark:hidden" />
         </>
       )}
       <div className="grid-bg absolute inset-0 opacity-30" />
