@@ -37,10 +37,10 @@ export function PageHeader({
             aria-hidden="true"
             width={1280}
             height={832}
-            className="absolute inset-0 h-full w-full object-cover opacity-40 dark:opacity-25"
+            className="absolute inset-0 h-full w-full object-cover opacity-60 dark:opacity-25"
           />
-          <div className="absolute inset-0 bg-foreground/40 dark:bg-background/70" />
-          <div className="absolute inset-0 bg-foreground/20 dark:hidden" />
+          <div className="absolute inset-0 bg-foreground/20 dark:bg-background/70" />
+          <div className="absolute inset-0 bg-foreground/10 dark:hidden" />
         </>
       )}
       <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24">
