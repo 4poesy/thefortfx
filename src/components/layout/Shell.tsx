@@ -43,7 +43,6 @@ export function PageHeader({
           <div className="absolute inset-0 bg-foreground/20 dark:hidden" />
         </>
       )}
-      <div className="grid-bg absolute inset-0 opacity-30" />
       <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         {eyebrow && <p className={`mb-3 text-xs font-semibold uppercase tracking-wider ${image ? "text-white/90 dark:text-primary" : "text-primary"}`}>{eyebrow}</p>}
         <h1 className={`text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl ${image ? "text-white drop-shadow-sm dark:text-foreground dark:drop-shadow-none" : "text-foreground"}`}>{title}</h1>
