@@ -38,7 +38,6 @@ function HomePage() {
         />
         <div className="absolute inset-0 bg-foreground/40 dark:bg-background/70" />
         <div className="absolute inset-0 bg-foreground/20 dark:hidden" />
-        <div className="grid-bg absolute inset-0 opacity-30" />
         <div className="relative mx-auto max-w-4xl px-4 pb-16 pt-16 text-center sm:px-6 sm:pt-20 lg:px-8 lg:pb-20 lg:pt-24">
           <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-3 py-1 text-xs text-white/90 drop-shadow-sm backdrop-blur dark:text-muted-foreground dark:drop-shadow-none">
             <span className="relative flex h-2 w-2"><span className="absolute inset-0 rounded-full bg-accent pulse-live" /><span className="relative inline-flex h-2 w-2 rounded-full bg-accent" /></span>
