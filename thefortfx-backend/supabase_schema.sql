@@ -621,7 +621,6 @@ SELECT
   p.slug,
   p.display_name,
   p.category,
-  s.direction,
   s.confidence,
   s.entry,
   s.stop,
