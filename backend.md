@@ -123,15 +123,20 @@ Execute unit and API endpoint tests using `pytest` inside the virtual environmen
 .venv\Scripts\pytest
 ```
 
-### Applying Migrations
-Apply alembic schema updates:
+### Database Schema Setup (Supabase SQL Editor)
+To initialize the database, execute the unified schema DDL file directly in your Supabase project's SQL Editor:
+- **SQL Script**: [supabase_schema.sql](file:///c:/Users/Akinola%20Olujobi/Documents/thefortfx/thefortfx-backend/supabase_schema.sql) (includes extensions, tables, seed data, triggers, views, and RLS policies).
+
+### Applying Migrations (Optional)
+If database migrations are managed via Alembic:
 ```bash
 alembic upgrade head
 ```
 
 ### Seeding Data
-Run seed files to populate major pairs and brokers:
+Run seed files to populate major pairs and brokers (if not already seeded via SQL):
 ```bash
 python scripts/seed_pairs.py
 python scripts/seed_brokers.py
 ```
+
