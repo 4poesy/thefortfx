@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, TrendingUp, TrendingDown, AlertCircle, CheckCircle2, ArrowRight, Calculator, LineChart, Landmark } from "lucide-react";
-import { getSignal, signals, forecastData } from "@/lib/mock-data";
+import { getSignal, signals, forecastData, type Signal } from "@/lib/mock-data";
 import { brokers } from "@/lib/mock-data/brokers";
 import { DirectionBadge, RiskBadge } from "@/components/badges";
 import { Breadcrumb } from "@/components/seo/Breadcrumb";
@@ -61,6 +61,8 @@ function SignalDetail() {
                 <Progress value={s.confidence} />
               </div>
             </Card>
+
+            <SignalSetupCard signal={s} />
 
             <Card className="border-border bg-surface p-6">
               <h2 className="text-lg font-semibold">Market Sentiment</h2>
@@ -155,4 +157,45 @@ function Stat({ label, value }: { label: string; value: React.ReactNode }) {
 }
 function Row({ label, value }: { label: string; value: React.ReactNode }) {
   return <div className="flex items-center justify-between text-sm"><span className="text-muted-foreground">{label}</span>{value}</div>;
+}
+
+function SignalSetupCard({ signal }: { signal: Signal }) {
+  const getExpirationText = () => {
+    if (signal.status === "cancelled") return "Cancelled";
+
+    const diffMs = new Date(signal.expiresAt).getTime() - Date.now();
+    if (diffMs <= 0) {
+      const hoursAgo = Math.round(Math.abs(diffMs) / (1000 * 60 * 60));
+      return `Expired ${hoursAgo === 0 ? "recently" : `${hoursAgo}h ago`}`;
+    } else {
+      const hoursLeft = Math.round(diffMs / (1000 * 60 * 60));
+      return `Expires in ${hoursLeft === 0 ? "1h" : `${hoursLeft}h`}`;
+    }
+  };
+
+  const statusColors = {
+    active: "text-bullish bg-bullish/10 border-bullish/20",
+    expired: "text-bearish bg-bearish/10 border-bearish/20",
+    cancelled: "text-muted-foreground bg-secondary border-border",
+  };
+
+  return (
+    <Card className="border border-border bg-surface p-5">
+      <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+        <span>📊</span>
+        <span>Signal Setup</span>
+      </div>
+      <p className="mt-3 text-base text-foreground font-medium">
+        {signal.setup}
+      </p>
+      <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground">
+        <span>Status:</span>
+        <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold uppercase border ${statusColors[signal.status]}`}>
+          {signal.status}
+        </span>
+        <span>·</span>
+        <span>{getExpirationText()}</span>
+      </div>
+    </Card>
+  );
 }

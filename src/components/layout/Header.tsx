@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, X, Sparkles, ChevronDown, Wrench } from "lucide-react";
+import { Menu, X, Sparkles, ChevronDown, Wrench, Bell, Volume2, VolumeX, Flame, CalendarRange, CheckCircle2, Check } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 const navLinks = [
   { to: "/forecasts", label: "Forecasts" },
@@ -70,6 +71,7 @@ export function Header() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+          <NotificationCenter />
           <ThemeToggle />
           <div className="hidden items-center gap-2 xl:flex">
             <Link to="/login">
@@ -127,5 +129,144 @@ export function Header() {
         </div>
       )}
     </header>
+  );
+}
+
+interface Notification {
+  id: string;
+  title: string;
+  body: string;
+  time: string;
+  read: boolean;
+  type: "signal" | "news" | "system";
+}
+
+const initialNotifications: Notification[] = [
+  { id: "1", title: "EUR/USD Buy Signal", body: "New high-confidence Buy setup detected (89% Confidence). Entry: 1.0820.", time: "2m ago", read: false, type: "signal" },
+  { id: "2", title: "High Impact News Alert", body: "US Core CPI (YoY) coming up in 30 minutes. High volatility expected.", time: "15m ago", read: false, type: "news" },
+  { id: "3", title: "Take Profit Reached", body: "USD/JPY long position hit target at 157.40 (+108 pips).", time: "1h ago", read: true, type: "signal" },
+  { id: "4", title: "Welcome to TheFortFX", body: "Verify your email to unlock live advanced chart analysis tools.", time: "1d ago", read: true, type: "system" },
+];
+
+function NotificationCenter() {
+  const [notifications, setNotifications] = useState<Notification[]>(initialNotifications);
+  const [soundEnabled, setSoundEnabled] = useState(true);
+
+  const unreadCount = notifications.filter((n) => !n.read).length;
+
+  const markAllRead = () => {
+    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+  };
+
+  const toggleRead = (id: string) => {
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, read: !n.read } : n))
+    );
+  };
+
+  const deleteNotification = (id: string) => {
+    setNotifications((prev) => prev.filter((n) => n.id !== id));
+  };
+
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <button
+          aria-label="View notifications"
+          className="relative rounded-md p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+        >
+          <Bell className="h-4.5 w-4.5" />
+          {unreadCount > 0 && (
+            <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-bearish text-[9px] font-bold text-white">
+              {unreadCount}
+            </span>
+          )}
+        </button>
+      </PopoverTrigger>
+      <PopoverContent align="end" className="w-80 p-0 sm:w-96 border border-border bg-surface shadow-xl">
+        <div className="flex items-center justify-between border-b border-border bg-surface-elevated/40 px-4 py-3">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-sm">Notifications</span>
+            {unreadCount > 0 && (
+              <span className="rounded bg-primary/15 px-1.5 py-0.5 text-[10px] font-bold text-primary">
+                {unreadCount} new
+              </span>
+            )}
+          </div>
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => setSoundEnabled(!soundEnabled)}
+              title={soundEnabled ? "Mute sound" : "Unmute sound"}
+              className="rounded p-1 text-muted-foreground hover:bg-secondary hover:text-foreground"
+            >
+              {soundEnabled ? <Volume2 className="h-3.5 w-3.5" /> : <VolumeX className="h-3.5 w-3.5 text-bearish" />}
+            </button>
+            {unreadCount > 0 && (
+              <button
+                onClick={markAllRead}
+                className="text-xs text-primary hover:underline"
+              >
+                Mark all read
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="max-h-72 overflow-y-auto divide-y divide-border">
+          {notifications.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-8 text-center text-xs text-muted-foreground">
+              <Bell className="h-8 w-8 text-muted-foreground/40 mb-2" />
+              <span>No notifications yet.</span>
+            </div>
+          ) : (
+            notifications.map((n) => (
+              <div
+                key={n.id}
+                className={`flex gap-3 px-4 py-3 text-left transition-colors ${n.read ? "bg-transparent" : "bg-primary/5 hover:bg-primary/10"}`}
+              >
+                <div className="mt-0.5 shrink-0">
+                  {n.type === "signal" ? (
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-bullish/10 text-bullish">
+                      <Flame className="h-3.5 w-3.5" />
+                    </div>
+                  ) : n.type === "news" ? (
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-warning/10 text-warning">
+                      <CalendarRange className="h-3.5 w-3.5" />
+                    </div>
+                  ) : (
+                    <div className="flex h-7 w-7 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      <CheckCircle2 className="h-3.5 w-3.5" />
+                    </div>
+                  )}
+                </div>
+                <div className="flex-1 space-y-1 font-sans">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-xs font-semibold text-foreground leading-none">{n.title}</p>
+                    <span className="font-mono text-[9px] text-muted-foreground">{n.time}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-normal">{n.body}</p>
+                  <div className="flex items-center justify-end gap-2 pt-1">
+                    <button
+                      onClick={() => toggleRead(n.id)}
+                      className="text-[10px] text-muted-foreground hover:text-foreground flex items-center gap-0.5"
+                    >
+                      <Check className="h-3 w-3" />
+                      {n.read ? "Mark unread" : "Mark read"}
+                    </button>
+                    <span className="text-[10px] text-muted-foreground/30">|</span>
+                    <button
+                      onClick={() => deleteNotification(n.id)}
+                      className="text-[10px] text-bearish hover:underline"
+                    >
+                      Dismiss
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </PopoverContent>
+    </Popover>
   );
 }

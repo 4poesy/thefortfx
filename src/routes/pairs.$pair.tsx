@@ -1,4 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
+import { useTheme } from "@/components/theme-provider";
 import { Shell } from "@/components/layout/Shell";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -24,6 +26,55 @@ export const Route = createFileRoute("/pairs/$pair")({
     loaderData ? toHead(seoMeta.pairHub(loaderData.pair.name, loaderData.pair.currentPrice, loaderData.pair.signal, loaderData.pair.slug)) : {},
   component: PairHub,
 });
+
+function TradingViewChart({ symbol }: { symbol: string }) {
+  const container = useRef<HTMLDivElement>(null);
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    if (!container.current) return;
+
+    // Clean up previous script
+    container.current.innerHTML = "";
+
+    const script = document.createElement("script");
+    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+    script.type = "text/javascript";
+    script.async = true;
+
+    let tvSymbol = symbol.toUpperCase().replace("/", "");
+    if (tvSymbol === "BTCUSD") {
+      tvSymbol = "BINANCE:BTCUSDT";
+    } else if (tvSymbol === "ETHUSD") {
+      tvSymbol = "BINANCE:ETHUSDT";
+    } else if (tvSymbol === "XAUUSD" || tvSymbol === "XAGUSD") {
+      tvSymbol = `OANDA:${tvSymbol}`;
+    } else {
+      tvSymbol = `FX_IDC:${tvSymbol}`;
+    }
+
+    script.innerHTML = JSON.stringify({
+      autosize: true,
+      symbol: tvSymbol,
+      interval: "D",
+      timezone: "Etc/UTC",
+      theme: theme,
+      style: "1",
+      locale: "en",
+      enable_publishing: false,
+      hide_side_toolbar: false,
+      allow_symbol_change: true,
+      calendar: true,
+      support_host: "https://www.tradingview.com"
+    });
+
+    container.current.appendChild(script);
+  }, [symbol, theme]);
+
+  return (
+    <div className="tradingview-widget-container h-[450px] w-full" ref={container} />
+  );
+}
 
 function PairHub() {
   const { pair: p } = Route.useLoaderData() as { pair: Pair };
@@ -76,6 +127,16 @@ function PairHub() {
       <section className="py-10">
         <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
           <div className="space-y-6 lg:col-span-2">
+            {/* Interactive TradingView Chart */}
+            <Card className="overflow-hidden border border-border bg-surface p-0">
+              <div className="border-b border-border bg-surface-elevated/40 px-6 py-4">
+                <h2 className="text-base font-semibold">Interactive Live Chart</h2>
+              </div>
+              <div className="h-[450px] bg-background">
+                <TradingViewChart symbol={p.name} />
+              </div>
+            </Card>
+
             {/* Signal + forecast compact cards */}
             <div className="grid gap-6 sm:grid-cols-2">
               <Card className="border-border bg-surface p-6">

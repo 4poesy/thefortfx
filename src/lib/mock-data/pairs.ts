@@ -27,6 +27,7 @@ export interface Pair {
   description: string;
   supportLevels: number[];
   resistanceLevels: number[];
+  decimals: number;
 }
 
 type Row = [
@@ -67,6 +68,7 @@ export const pairs: Pair[] = rows.map((r, i) => {
   return {
     slug, name, category,
     currentPrice: price,
+    decimals: dec,
     change24h: rnd((price * changePct) / 100, Math.min(dec + 1, 5)),
     changePct, signal, confidence, riskLevel, bullishPct,
     bearishPct: 100 - bullishPct,

@@ -9,40 +9,101 @@ export type Direction = "BUY" | "SELL" | "NEUTRAL";
 export type RiskLevel = "Low" | "Medium" | "High";
 
 export interface Signal {
+  slug: string;
+  symbol: string; // compatibility
   pair: string;
-  symbol: string;
   direction: Direction;
   confidence: number;
-  risk: RiskLevel;
   entry: number;
-  stopLoss: number;
-  takeProfit: number;
-  rr: number;
+  stop: number;
+  stopLoss: number; // compatibility
+  target: number;
+  takeProfit: number; // compatibility
+  riskPips: number;
+  rewardPips: number;
+  rMultiple: number;
+  rr: number; // compatibility
+  setup: string;
+  status: "active" | "expired" | "cancelled";
+  opportunityScore: number;
+  riskLevel: RiskLevel;
+  risk: RiskLevel; // compatibility
+  lastUpdated: string;
+  updated: string; // compatibility
+  expiresAt: string;
   sources: number;
   sentiment: { bullish: number; bearish: number };
-  updated: string;
   price: number;
   change: number;
   changePct: number;
 }
 
-export const signals: Signal[] = pairs.map((p, i) => ({
-  pair: p.name,
-  symbol: p.slug,
-  direction: p.signal,
-  confidence: p.confidence,
-  risk: p.riskLevel,
-  entry: p.entry,
-  stopLoss: p.stopLoss,
-  takeProfit: p.takeProfit,
-  rr: parseFloat(p.riskReward.split(":")[1] ?? "2"),
-  sources: 8 + (i % 6),
-  sentiment: { bullish: p.bullishPct, bearish: p.bearishPct },
-  updated: p.lastUpdated,
-  price: p.currentPrice,
-  change: p.change24h,
-  changePct: p.changePct,
-}));
+export const signals: Signal[] = pairs.map((p, i) => {
+  const dec = p.decimals ?? 4;
+  const riskPips = Math.round(Math.abs(p.entry - p.stopLoss) * Math.pow(10, dec));
+  const rewardPips = Math.round(Math.abs(p.takeProfit - p.entry) * Math.pow(10, dec));
+  const rMultiple = riskPips > 0 ? parseFloat((rewardPips / riskPips).toFixed(1)) : 2.0;
+
+  // Custom mock setup reasonings
+  let setup = "";
+  if (p.slug === "eurusd") {
+    setup = "MA confluence + RSI above 50";
+  } else if (p.slug === "gbpusd") {
+    setup = "H4 Bearish Engulfing + Overbought RSI rejection";
+  } else if (p.slug === "usdjpy") {
+    setup = "Daily trendline bounce + MACD crossover";
+  } else if (p.slug === "xauusd") {
+    setup = "Gold breakout above $2,340 support-resistance flip";
+  } else {
+    setup = p.signal === "BUY"
+      ? "Moving average crossover trend-continuation"
+      : p.signal === "SELL"
+        ? "Double top rejection + bearish RSI divergence"
+        : "Range-bound consolidation near key pivot point";
+  }
+
+  // Custom mock statuses and expiresAt
+  const status: "active" | "expired" | "cancelled" = i === 3 ? "expired" : i === 7 ? "cancelled" : "active";
+
+  let expiresAt = "";
+  if (status === "active") {
+    expiresAt = new Date(Date.now() + 1000 * 60 * 60 * 6).toISOString(); // 6 hours from now
+  } else if (status === "expired") {
+    expiresAt = new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(); // 2 hours ago
+  } else {
+    expiresAt = new Date(Date.now() + 1000 * 60 * 60 * 12).toISOString(); // 12 hours from now
+  }
+
+  return {
+    slug: p.slug,
+    symbol: p.slug,
+    pair: p.name,
+    direction: p.signal,
+    confidence: p.confidence,
+    entry: p.entry,
+    stop: p.stopLoss,
+    stopLoss: p.stopLoss,
+    target: p.takeProfit,
+    takeProfit: p.takeProfit,
+    riskPips,
+    rewardPips,
+    rMultiple,
+    rr: rMultiple,
+    setup,
+    status,
+    opportunityScore: p.opportunityScore,
+    riskLevel: p.riskLevel,
+    risk: p.riskLevel,
+    lastUpdated: p.lastUpdated,
+    updated: p.lastUpdated,
+    expiresAt,
+    sources: 8 + (i % 6),
+    sentiment: { bullish: p.bullishPct, bearish: p.bearishPct },
+    price: p.currentPrice,
+    change: p.change24h,
+    changePct: p.changePct,
+  };
+});
 
 export const getSignal = (symbol: string) => signals.find((s) => s.symbol === symbol.toLowerCase());
 
