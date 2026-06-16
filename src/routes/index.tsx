@@ -7,6 +7,10 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { signals, marketSentiment, economicEvents, brokers } from "@/lib/mock-data";
 import heroTrading from "@/assets/hero-trading.jpg";
+import heroForexChart from "@/assets/hero-forex-chart.png";
+import heroCryptoChart from "@/assets/hero-crypto-chart.png";
+import { heroImages } from "@/lib/hero-images";
+import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,43 +27,65 @@ export const Route = createFileRoute("/")({
 
 const tickerPairs = signals.slice(0, 10);
 
+const sliderImages = [
+  { src: heroForexChart, alt: "Forex Market Intelligence" },
+  { src: heroCryptoChart, alt: "Crypto Asset Analysis" },
+  { src: heroTrading, alt: "Professional Trading Command Center" },
+  { src: heroImages.signals, alt: "Forex Signal Indicators" },
+];
+
 function HomePage() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <Shell>
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-border/60 bg-surface">
-        <img
-          src={heroTrading}
-          alt=""
-          aria-hidden="true"
-          width={1280}
-          height={832}
-          className="absolute inset-0 h-full w-full object-cover opacity-60 dark:opacity-25"
-        />
-        <div className="absolute inset-0 bg-foreground/20 dark:bg-background/70" />
-        <div className="absolute inset-0 bg-foreground/10 dark:hidden" />
-        <div className="relative mx-auto max-w-4xl px-4 pb-16 pt-16 text-center sm:px-6 sm:pt-20 lg:px-8 lg:pb-20 lg:pt-24">
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-3 py-1 text-xs text-white/90 drop-shadow-sm backdrop-blur dark:text-muted-foreground dark:drop-shadow-none">
+      <section className="relative overflow-hidden border-b border-border/60 bg-background flex flex-col justify-between pt-16 pb-8 min-h-[660px]">
+        {/* Background Slider */}
+        {sliderImages.map((slide, index) => (
+          <img
+            key={index}
+            src={slide.src}
+            alt={slide.alt}
+            aria-hidden="true"
+            width={1280}
+            height={832}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+        
+        {/* Sharp content container with semi-transparent background to protect text legibility on sharp images */}
+        <div className="relative mx-auto max-w-4xl px-6 py-12 text-center sm:px-12 bg-background/70 backdrop-blur-md rounded-2xl border border-border/40 max-w-[90%] my-8 z-10">
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-border bg-surface/90 px-3 py-1 text-xs text-white drop-shadow-sm font-medium">
             <span className="relative flex h-2 w-2"><span className="absolute inset-0 rounded-full bg-accent pulse-live" /><span className="relative inline-flex h-2 w-2 rounded-full bg-accent" /></span>
             Live signals from 50+ aggregated sources
           </div>
-          <h1 className="mt-6 text-4xl font-bold tracking-tight text-white drop-shadow-sm sm:text-5xl lg:text-6xl dark:text-foreground dark:drop-shadow-none">
+          <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             Your <span className="text-primary">Trading Command Center</span>
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-white/80 drop-shadow-sm dark:text-muted-foreground dark:drop-shadow-none">
+          <p className="mx-auto mt-5 max-w-2xl text-lg text-foreground font-medium">
             AI-powered forex signals, forecasts, market sentiment, and professional risk tools — unified in one intelligent platform built for serious traders.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link to="/opportunities"><Button size="lg" className="bg-primary hover:bg-primary/90">View Opportunities <ArrowRight className="ml-2 h-4 w-4" /></Button></Link>
-            <Link to="/calculators"><Button size="lg" variant="outline">Explore Tools</Button></Link>
+            <Link to="/opportunities"><Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold">View Opportunities <ArrowRight className="ml-2 h-4 w-4" /></Button></Link>
+            <Link to="/calculators"><Button size="lg" variant="outline" className="border-border hover:bg-secondary font-bold">Explore Tools</Button></Link>
           </div>
-          <Link to="/forecasts" className="mt-6 inline-flex items-center gap-1 text-sm text-primary hover:underline">
+          <Link to="/forecasts" className="mt-6 inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 font-semibold">
             See today's market forecast <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
 
         {/* Live ticker */}
-        <div className="relative mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 z-10">
           <div className="overflow-hidden rounded-2xl border border-border bg-surface/80 backdrop-blur">
             <div className="flex gap-8 py-3 ticker-scroll whitespace-nowrap">
               {[...tickerPairs, ...tickerPairs].map((s, i) => (

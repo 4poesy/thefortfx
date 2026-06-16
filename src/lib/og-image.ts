@@ -19,7 +19,7 @@ export function buildOgSvg({ eyebrow, title, subtitle, subtitleColor, stats }: {
       const x = 60 + i * 280;
       return `
     <g>
-      <rect x="${x}" y="440" width="252" height="120" rx="12" fill="#111827" stroke="#1F2937"/>
+      <rect x="${x}" y="440" width="252" height="120" rx="12" fill="#121212" stroke="#242424"/>
       <text x="${x + 24}" y="482" font-family="Arial, sans-serif" font-size="18" fill="#6B7280">${esc(s.label)}</text>
       <text x="${x + 24}" y="528" font-family="Arial, sans-serif" font-size="34" font-weight="600" fill="${s.color ?? "#FFFFFF"}">${esc(s.value)}</text>
     </g>`;
@@ -27,7 +27,7 @@ export function buildOgSvg({ eyebrow, title, subtitle, subtitleColor, stats }: {
     .join("");
 
   return `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="630" fill="#0B0F19"/>
+  <rect width="1200" height="630" fill="#080808"/>
   <rect x="0" y="0" width="1200" height="6" fill="${subtitleColor}"/>
   <text x="60" y="140" font-family="Arial, sans-serif" font-size="26" fill="#6B7280">${esc(eyebrow)}</text>
   <text x="60" y="250" font-family="Arial, sans-serif" font-size="88" font-weight="700" fill="#FFFFFF">${esc(title)}</text>

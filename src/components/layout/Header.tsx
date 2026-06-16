@@ -1,16 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, X, Sparkles, ChevronDown, Wrench, Bell, Volume2, VolumeX, Flame, CalendarRange, CheckCircle2, Check } from "lucide-react";
+import { Menu, X, ChevronDown, Wrench, Bell, Volume2, VolumeX, Flame, CalendarRange, CheckCircle2, Check, LayoutGrid, TrendingUp, LineChart, Activity } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-
-const navLinks = [
-  { to: "/forecasts", label: "Forecasts" },
-  { to: "/signals", label: "Signals" },
-  { to: "/pairs", label: "Pairs" },
-] as const;
+import { Logo } from "./Logo";
 
 const navLinksAfter = [
   { to: "/economic-calendar", label: "Calendar" },
@@ -37,20 +32,47 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex min-w-0 items-center gap-2 font-semibold tracking-tight">
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <Sparkles className="h-4 w-4" />
+            <Logo className="h-4.5 w-4.5" />
           </div>
           <span className="truncate text-foreground">TheFortFX</span>
           <span className="hidden rounded-md bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary sm:inline">AI</span>
         </Link>
 
         <nav className="hidden items-center gap-1 xl:flex">
-          {navLinks.map((l) => (
-            <Link key={l.to} to={l.to} className={linkCls} activeProps={{ className: "rounded-md px-3 py-2 text-sm text-foreground bg-secondary" }}>
-              {l.label}
-            </Link>
-          ))}
+          <Link to="/" className={linkCls} activeProps={{ className: "rounded-md px-3 py-2 text-sm text-foreground bg-secondary" }} activeOptions={{ exact: true }}>
+            Home
+          </Link>
+
           <DropdownMenu>
-            <DropdownMenuTrigger className={`${linkCls} flex items-center gap-1`}>
+            <DropdownMenuTrigger className={`${linkCls} flex items-center gap-1 cursor-pointer`}>
+              Services <ChevronDown className="h-3.5 w-3.5" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-56">
+              <DropdownMenuItem asChild>
+                <Link to="/services" className="flex w-full cursor-pointer items-center gap-2">
+                  <LayoutGrid className="h-3.5 w-3.5 text-muted-foreground" />Services Overview
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/signals" className="flex w-full cursor-pointer items-center gap-2">
+                  <TrendingUp className="h-3.5 w-3.5 text-muted-foreground" />Signals
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/forecasts" className="flex w-full cursor-pointer items-center gap-2">
+                  <LineChart className="h-3.5 w-3.5 text-muted-foreground" />Forecasts
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/pairs" className="flex w-full cursor-pointer items-center gap-2">
+                  <Activity className="h-3.5 w-3.5 text-muted-foreground" />Pairs
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger className={`${linkCls} flex items-center gap-1 cursor-pointer`}>
               Tools <ChevronDown className="h-3.5 w-3.5" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-56">
@@ -94,16 +116,46 @@ export function Header() {
       {open && (
         <div className="border-t border-border/60 xl:hidden">
           <div className="space-y-1 px-4 py-3">
-            {[...navLinks, ...navLinksAfter].map((l) => (
+            <Link
+              to="/"
+              onClick={() => setOpen(false)}
+              className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
+              activeProps={{ className: "bg-secondary text-foreground font-medium" }}
+              activeOptions={{ exact: true }}
+            >
+              Home
+            </Link>
+            <div className="pt-2">
+              <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Services</p>
               <Link
-                key={l.to}
-                to={l.to}
+                to="/services"
                 onClick={() => setOpen(false)}
                 className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
               >
-                {l.label}
+                Services Overview
               </Link>
-            ))}
+              <Link
+                to="/signals"
+                onClick={() => setOpen(false)}
+                className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
+              >
+                Signals
+              </Link>
+              <Link
+                to="/forecasts"
+                onClick={() => setOpen(false)}
+                className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
+              >
+                Forecasts
+              </Link>
+              <Link
+                to="/pairs"
+                onClick={() => setOpen(false)}
+                className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
+              >
+                Pairs
+              </Link>
+            </div>
             <div className="pt-2">
               <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Tools</p>
               {toolItems.map((t) => (
@@ -117,13 +169,17 @@ export function Header() {
                 </Link>
               ))}
             </div>
-            <div className="flex gap-2 pt-3">
-              <Link to="/login" className="flex-1" onClick={() => setOpen(false)}>
-                <Button variant="outline" size="sm" className="w-full">Login</Button>
-              </Link>
-              <Link to="/register" className="flex-1" onClick={() => setOpen(false)}>
-                <Button size="sm" className="w-full">Get Started</Button>
-              </Link>
+            <div className="pt-2 border-t border-border/40">
+              {navLinksAfter.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
+                >
+                  {l.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

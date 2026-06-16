@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Sparkles, Twitter, Linkedin, Youtube } from "lucide-react";
+import { Twitter, Linkedin, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Logo } from "./Logo";
 
 export function Footer() {
   return (
@@ -11,7 +12,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 font-semibold">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Sparkles className="h-4 w-4" />
+                <Logo className="h-4.5 w-4.5" />
               </div>
               <span>TheFortFX</span>
               <span className="rounded-md bg-primary/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-primary">AI</span>

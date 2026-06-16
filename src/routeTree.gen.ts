@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
@@ -52,6 +53,11 @@ import { Route as ApiOgBrokerRouteImport } from './routes/api.og.broker'
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterRoute = RegisterRouteImport.update({
@@ -258,6 +264,7 @@ export interface FileRoutesByFullPath {
   '/opportunities': typeof OpportunitiesRoute
   '/pricing': typeof PricingRoute
   '/register': typeof RegisterRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
@@ -299,6 +306,7 @@ export interface FileRoutesByTo {
   '/opportunities': typeof OpportunitiesRoute
   '/pricing': typeof PricingRoute
   '/register': typeof RegisterRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
@@ -341,6 +349,7 @@ export interface FileRoutesById {
   '/opportunities': typeof OpportunitiesRoute
   '/pricing': typeof PricingRoute
   '/register': typeof RegisterRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/brokers/$broker': typeof BrokersBrokerRoute
   '/calculators/drawdown': typeof CalculatorsDrawdownRoute
@@ -384,6 +393,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/pricing'
     | '/register'
+    | '/services'
     | '/sitemap.xml'
     | '/brokers/$broker'
     | '/calculators/drawdown'
@@ -425,6 +435,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/pricing'
     | '/register'
+    | '/services'
     | '/sitemap.xml'
     | '/brokers/$broker'
     | '/calculators/drawdown'
@@ -466,6 +477,7 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/pricing'
     | '/register'
+    | '/services'
     | '/sitemap.xml'
     | '/brokers/$broker'
     | '/calculators/drawdown'
@@ -508,6 +520,7 @@ export interface RootRouteChildren {
   OpportunitiesRoute: typeof OpportunitiesRoute
   PricingRoute: typeof PricingRoute
   RegisterRoute: typeof RegisterRoute
+  ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BrokersBrokerRoute: typeof BrokersBrokerRoute
   CalculatorsDrawdownRoute: typeof CalculatorsDrawdownRoute
@@ -545,6 +558,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -828,6 +848,7 @@ const rootRouteChildren: RootRouteChildren = {
   OpportunitiesRoute: OpportunitiesRoute,
   PricingRoute: PricingRoute,
   RegisterRoute: RegisterRoute,
+  ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   BrokersBrokerRoute: BrokersBrokerRoute,
   CalculatorsDrawdownRoute: CalculatorsDrawdownRoute,

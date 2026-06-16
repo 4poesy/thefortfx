@@ -1,15 +1,15 @@
 // 15 SVG diagrams for the TheFortFX Learning Center.
-// Tokens: bg #0B0F19 / surface #111827 / border #1F2937 / text #FFFFFF / mute #D1D5DB
+// Tokens: bg #080808 / surface #121212 / border #242424 / text #FFFFFF / mute #D1D5DB
 // Accents: green #22C55E / red #EF4444 / blue #3B82F6 / amber #F59E0B / yellow #FACC15
 // Each diagram is fully self-contained, responsive (viewBox + width=100%), and dark-theme ready.
 
 import type { ReactNode } from "react";
 
 const T = {
-  bg: "#0B0F19",
-  surface: "#111827",
-  border: "#1F2937",
-  grid: "#1F2937",
+  bg: "#080808",
+  surface: "#121212",
+  border: "#242424",
+  grid: "#242424",
   text: "#FFFFFF",
   mute: "#D1D5DB",
   green: "#22C55E",
@@ -22,7 +22,7 @@ const T = {
 
 function Frame({ w, h, children, label }: { w: number; h: number; children: ReactNode; label: string }) {
   return (
-    <figure className="overflow-hidden rounded-xl border border-border bg-[#0B0F19]">
+    <figure className="overflow-hidden rounded-xl border border-border bg-background">
       <svg viewBox={`0 0 ${w} ${h}`} width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label={label} className="block">
         <rect width={w} height={h} fill={T.bg} />
         {children}
