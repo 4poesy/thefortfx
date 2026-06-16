@@ -16,8 +16,8 @@ router = APIRouter()
 async def get_calendar(
     currency: Optional[str] = Query(None),
     impact: Optional[str] = Query(None),
-    start_date: Optional[date] = Query(None),
-    end_date: Optional[date] = Query(None),
+    date_from: Optional[date] = Query(None),
+    date_to: Optional[date] = Query(None),
     params: PaginationParams = Depends(),
     db: AsyncSession = Depends(get_db)
 ):
@@ -28,10 +28,10 @@ async def get_calendar(
         query = query.where(EconomicEvent.currency == currency.upper())
     if impact:
         query = query.where(EconomicEvent.impact == impact)
-    if start_date:
-        query = query.where(EconomicEvent.event_datetime >= datetime.combine(start_date, time.min))
-    if end_date:
-        query = query.where(EconomicEvent.event_datetime <= datetime.combine(end_date, time.max))
+    if date_from:
+        query = query.where(EconomicEvent.event_datetime >= datetime.combine(date_from, time.min))
+    if date_to:
+        query = query.where(EconomicEvent.event_datetime <= datetime.combine(date_to, time.max))
         
     count_query = select(func.count()).select_from(query.subquery())
     count_res = await db.execute(count_query)

@@ -8,7 +8,7 @@ from sqlalchemy.orm import selectinload
 from app.dependencies import get_db, get_current_user, PaginationParams
 from app.core.security import require_role
 from app.models.user import Profile
-from app.models.signal import Signal
+from app.models.signal import Signal, SignalHistory
 from app.models.pair import Pair
 from app.schemas.signal import SignalResponse, SignalCreate, SignalUpdate, SignalHistoryResponse
 from app.schemas.common import BaseResponse, PaginatedResponse
@@ -104,20 +104,45 @@ async def get_signal_history_list(
         has_prev=params.page > 1
     )
 
-@router.get("/{id}", response_model=BaseResponse[SignalResponse])
-async def get_signal(id: uuid.UUID, db: AsyncSession = Depends(get_db)):
-    query = select(Signal).where(Signal.id == id).options(selectinload(Signal.pair))
+@router.get("/{slug_or_id}", response_model=BaseResponse[SignalResponse])
+async def get_signal(slug_or_id: str, db: AsyncSession = Depends(get_db)):
+    try:
+        uuid_val = uuid.UUID(slug_or_id)
+        query = select(Signal).where(Signal.id == uuid_val)
+    except ValueError:
+        query = (
+            select(Signal)
+            .join(Pair)
+            .where(Pair.slug == slug_or_id.lower())
+            .where(Signal.status == "active")
+            .order_by(Signal.created_at.desc())
+            .limit(1)
+        )
+        
+    query = query.options(selectinload(Signal.pair))
     res = await db.execute(query)
     signal = res.scalar_one_or_none()
     if not signal:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Signal not found")
     return BaseResponse(data=signal)
 
-@router.get("/{id}/history", response_model=BaseResponse[List[SignalHistoryResponse]])
-async def get_signal_changelogs(id: uuid.UUID, db: AsyncSession = Depends(get_db)):
-    sig_service = SignalService(db)
-    history = await sig_service.get_signal_history(id)
-    return BaseResponse(data=history)
+@router.get("/{slug_or_id}/history", response_model=BaseResponse[List[SignalHistoryResponse]])
+async def get_signal_changelogs(slug_or_id: str, db: AsyncSession = Depends(get_db)):
+    try:
+        uuid_val = uuid.UUID(slug_or_id)
+        sig_service = SignalService(db)
+        history = await sig_service.get_signal_history(uuid_val)
+        return BaseResponse(data=history)
+    except ValueError:
+        query = (
+            select(SignalHistory)
+            .join(Pair, SignalHistory.pair_id == Pair.id)
+            .where(Pair.slug == slug_or_id.lower())
+            .order_by(SignalHistory.changed_at.desc())
+        )
+        res = await db.execute(query)
+        history = list(res.scalars().all())
+        return BaseResponse(data=history)
 
 @router.post("", response_model=BaseResponse[SignalResponse], status_code=status.HTTP_201_CREATED)
 async def create_signal(
@@ -129,12 +154,10 @@ async def create_signal(
     signal = await sig_service.create_signal(schema, creator_id=admin.id)
     await db.commit()
     
-    # Load relationships for response
     query = select(Signal).where(Signal.id == signal.id).options(selectinload(Signal.pair))
     res = await db.execute(query)
     signal_with_relation = res.scalar_one()
     
-    # Trigger active alerts check
     from app.services.alert_service import AlertService
     alert_service = AlertService(db)
     await alert_service.check_and_trigger_signals(signal_with_relation)
@@ -154,7 +177,6 @@ async def update_signal(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Signal not found")
     await db.commit()
     
-    # Load relationships for response
     query = select(Signal).where(Signal.id == updated.id).options(selectinload(Signal.pair))
     res = await db.execute(query)
     signal_with_relation = res.scalar_one()

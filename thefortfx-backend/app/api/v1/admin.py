@@ -24,16 +24,26 @@ class BroadcastRequest(BaseModel):
     message: str
     channels: List[str] = ["email"]
 
-@router.get("/stats", response_model=BaseResponse[dict])
-async def get_admin_stats(
+class RoleUpdateRequest(BaseModel):
+    role: str
+
+@router.get("/analytics", response_model=BaseResponse[dict])
+async def get_admin_analytics(
     admin: Profile = Depends(require_role("admin")),
     db: AsyncSession = Depends(get_db)
 ):
     analytics = AnalyticsService(db)
     platform = await analytics.get_platform_analytics()
+    return BaseResponse(data=platform)
+
+@router.get("/analytics/revenue", response_model=BaseResponse[dict])
+async def get_admin_revenue_analytics(
+    admin: Profile = Depends(require_role("admin")),
+    db: AsyncSession = Depends(get_db)
+):
+    analytics = AnalyticsService(db)
     revenue = await analytics.get_revenue_metrics()
-    
-    return BaseResponse(data={**platform, **revenue})
+    return BaseResponse(data=revenue)
 
 @router.get("/users", response_model=PaginatedResponse[ProfileResponse])
 async def get_users_list(
@@ -56,6 +66,88 @@ async def get_users_list(
         has_next=params.page < total_pages,
         has_prev=params.page > 1
     )
+
+@router.patch("/users/{id}/role", response_model=BaseResponse[ProfileResponse])
+async def change_user_role(
+    id: uuid.UUID,
+    schema: RoleUpdateRequest,
+    admin: Profile = Depends(require_role("admin")),
+    db: AsyncSession = Depends(get_db)
+):
+    if schema.role not in ["free", "premium", "agency", "admin"]:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid role specified")
+    user_repo = UserRepository(db)
+    user = await user_repo.get(id)
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User profile not found")
+    user.role = schema.role
+    await db.commit()
+    await db.refresh(user)
+    return BaseResponse(data=user, message="User role updated successfully")
+
+@router.delete("/users/{id}", response_model=BaseResponse[dict])
+async def deactivate_user(
+    id: uuid.UUID,
+    admin: Profile = Depends(require_role("admin")),
+    db: AsyncSession = Depends(get_db)
+):
+    user_repo = UserRepository(db)
+    user = await user_repo.get(id)
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User profile not found")
+    user.is_active = False
+    await db.commit()
+    return BaseResponse(data={}, message="User deactivated successfully")
+
+@router.get("/signals", response_model=PaginatedResponse[SignalResponse])
+async def get_all_signals_admin(
+    params: PaginationParams = Depends(),
+    admin: Profile = Depends(require_role("admin")),
+    db: AsyncSession = Depends(get_db)
+):
+    skip = (params.page - 1) * params.limit
+    query = select(Signal).options(selectinload(Signal.pair))
+    
+    count_query = select(func.count()).select_from(query.subquery())
+    count_res = await db.execute(count_query)
+    total = count_res.scalar_one()
+    
+    query = query.order_by(Signal.created_at.desc()).offset(skip).limit(params.limit)
+    res = await db.execute(query)
+    items = list(res.scalars().all())
+    
+    total_pages = (total + params.limit - 1) // params.limit
+    return PaginatedResponse(
+        data=items,
+        total=total,
+        page=params.page,
+        limit=params.limit,
+        total_pages=total_pages,
+        has_next=params.page < total_pages,
+        has_prev=params.page > 1
+    )
+
+@router.post("/signals/bulk", response_model=BaseResponse[List[SignalResponse]])
+async def bulk_create_signals(
+    signals_list: List[SignalCreate],
+    admin: Profile = Depends(require_role("admin")),
+    db: AsyncSession = Depends(get_db)
+):
+    sig_service = SignalService(db)
+    created_signals = []
+    
+    for schema in signals_list:
+        signal = await sig_service.create_signal(schema, creator_id=admin.id)
+        created_signals.append(signal)
+        
+    await db.commit()
+    
+    ids = [s.id for s in created_signals]
+    query = select(Signal).where(Signal.id.in_(ids)).options(selectinload(Signal.pair))
+    res = await db.execute(query)
+    items = list(res.scalars().all())
+    
+    return BaseResponse(data=items, message=f"Successfully bulk created {len(items)} signals.")
 
 @router.get("/audit-logs", response_model=PaginatedResponse[dict])
 async def get_audit_logs(
@@ -84,7 +176,7 @@ async def get_audit_logs(
             "resource_id": item.resource_id,
             "ip_address": item.ip_address,
             "user_agent": item.user_agent,
-            "metadata": item.metadata,
+            "metadata": item.meta,
             "created_at": item.created_at.isoformat()
         })
         
@@ -134,25 +226,3 @@ async def broadcast_announcement(
                 pass
                 
     return BaseResponse(data={"delivered_count": sent_count}, message="Broadcast completed")
-
-@router.post("/bulk-signals", response_model=BaseResponse[List[SignalResponse]])
-async def bulk_create_signals(
-    signals_list: List[SignalCreate],
-    admin: Profile = Depends(require_role("admin")),
-    db: AsyncSession = Depends(get_db)
-):
-    sig_service = SignalService(db)
-    created_signals = []
-    
-    for schema in signals_list:
-        signal = await sig_service.create_signal(schema, creator_id=admin.id)
-        created_signals.append(signal)
-        
-    await db.commit()
-    
-    ids = [s.id for s in created_signals]
-    query = select(Signal).where(Signal.id.in_(ids)).options(selectinload(Signal.pair))
-    res = await db.execute(query)
-    items = list(res.scalars().all())
-    
-    return BaseResponse(data=items, message=f"Successfully bulk created {len(items)} signals.")

@@ -7,7 +7,13 @@ from app.dependencies import get_db
 from app.models.pair import Pair
 from app.models.signal import Signal
 from app.models.forecast import Forecast
+from app.models.sentiment import Sentiment
+from app.models.opportunity import Opportunity
 from app.schemas.pair import PairResponse, PairDetailResponse
+from app.schemas.signal import SignalResponse
+from app.schemas.forecast import ForecastResponse
+from app.schemas.sentiment import SentimentResponse
+from app.schemas.opportunity import OpportunityResponse
 from app.schemas.common import BaseResponse
 from app.repositories.pair import PairRepository
 
@@ -62,3 +68,75 @@ async def get_pair_detail(
         latest_forecast=latest_forecast
     )
     return BaseResponse(data=data)
+
+@router.get("/{slug}/signal", response_model=BaseResponse[Optional[SignalResponse]])
+async def get_pair_latest_signal(
+    slug: str,
+    db: AsyncSession = Depends(get_db)
+):
+    pair_repo = PairRepository(db)
+    pair = await pair_repo.get_by_slug(slug)
+    if not pair:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pair with slug '{slug}' not found."
+        )
+
+    sig_query = select(Signal).where(Signal.pair_id == pair.id, Signal.status == "active").order_by(Signal.created_at.desc()).limit(1)
+    sig_res = await db.execute(sig_query)
+    latest_signal = sig_res.scalar_one_or_none()
+    return BaseResponse(data=latest_signal)
+
+@router.get("/{slug}/forecast", response_model=BaseResponse[Optional[ForecastResponse]])
+async def get_pair_latest_forecast(
+    slug: str,
+    db: AsyncSession = Depends(get_db)
+):
+    pair_repo = PairRepository(db)
+    pair = await pair_repo.get_by_slug(slug)
+    if not pair:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pair with slug '{slug}' not found."
+        )
+
+    fore_query = select(Forecast).where(Forecast.pair_id == pair.id).order_by(Forecast.created_at.desc()).limit(1)
+    fore_res = await db.execute(fore_query)
+    latest_forecast = fore_res.scalar_one_or_none()
+    return BaseResponse(data=latest_forecast)
+
+@router.get("/{slug}/sentiment", response_model=BaseResponse[Optional[SentimentResponse]])
+async def get_pair_latest_sentiment(
+    slug: str,
+    db: AsyncSession = Depends(get_db)
+):
+    pair_repo = PairRepository(db)
+    pair = await pair_repo.get_by_slug(slug)
+    if not pair:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pair with slug '{slug}' not found."
+        )
+
+    sent_query = select(Sentiment).where(Sentiment.pair_id == pair.id).order_by(Sentiment.recorded_at.desc()).limit(1)
+    sent_res = await db.execute(sent_query)
+    latest_sentiment = sent_res.scalar_one_or_none()
+    return BaseResponse(data=latest_sentiment)
+
+@router.get("/{slug}/opportunities", response_model=BaseResponse[Optional[OpportunityResponse]])
+async def get_pair_latest_opportunity(
+    slug: str,
+    db: AsyncSession = Depends(get_db)
+):
+    pair_repo = PairRepository(db)
+    pair = await pair_repo.get_by_slug(slug)
+    if not pair:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Pair with slug '{slug}' not found."
+        )
+
+    opp_query = select(Opportunity).where(Opportunity.pair_id == pair.id).order_by(Opportunity.calculated_at.desc()).limit(1)
+    opp_res = await db.execute(opp_query)
+    latest_opp = opp_res.scalar_one_or_none()
+    return BaseResponse(data=latest_opp)

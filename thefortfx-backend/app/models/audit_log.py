@@ -24,7 +24,8 @@ class AuditLog(Base, UUIDMixin):
     
     ip_address: Mapped[Optional[str]] = mapped_column(String, nullable=True)
     user_agent: Mapped[Optional[str]] = mapped_column(String, nullable=True)
-    metadata: Mapped[dict[str, Any]] = mapped_column(
+    meta: Mapped[dict[str, Any]] = mapped_column(
+        "metadata",
         JSONB,
         default=dict,
         server_default=text("'{}'::jsonb"),

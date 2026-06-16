@@ -13,20 +13,23 @@ router = APIRouter()
 
 @router.get("", response_model=PaginatedResponse[NewsResponse])
 async def get_news(
-    pair_slug: Optional[str] = Query(None),
+    pair: Optional[str] = Query(None),
     tag: Optional[str] = Query(None),
+    impact: Optional[str] = Query(None),
     params: PaginationParams = Depends(),
     db: AsyncSession = Depends(get_db)
 ):
     skip = (params.page - 1) * params.limit
     query = select(News)
     
-    if pair_slug:
-        # Check if pair_slug is contained in affected_pairs array column
-        query = query.where(News.affected_pairs.any(pair_slug.upper()))
+    if pair:
+        query = query.where(News.affected_pairs.any(pair.upper()))
         
     if tag:
         query = query.where(News.tags.any(tag))
+        
+    if impact:
+        query = query.where(News.impact == impact)
         
     count_query = select(func.count()).select_from(query.subquery())
     count_res = await db.execute(count_query)
