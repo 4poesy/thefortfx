@@ -6,50 +6,66 @@ This document is designed for AI coding assistants (like Gemini, Cursor, or Clau
 
 ## 🏛️ Architecture Conventions
 
-TheFortFX is a full-stack React framework built on **TanStack Start**, which combines:
-1. **TanStack Router:** File-based type-safe routing.
-2. **Vite:** Asset compiling and plugin orchestration.
-3. **Nitro:** The server handler and deployment package.
-4. **Tailwind CSS v4:** A CSS-first utility library loaded directly inside `src/styles.css`.
+TheFortFX is a full-stack application structured as follows:
+
+1. **Frontend (React)**: Built on **TanStack Start**, which combines:
+   - **TanStack Router:** File-based type-safe routing.
+   - **Vite:** Asset compiling and plugin orchestration.
+   - **Nitro:** The server handler and deployment package.
+   - **Tailwind CSS v4:** A CSS-first utility library loaded directly inside `src/styles.css`.
+2. **Backend (Python)**: Production-grade **FastAPI** application:
+   - **SQLAlchemy 2.0:** Async database mapping.
+   - **Redis:** Caching and sliding-window rate limiting.
+   - **Celery:** Asynchronous cron scrapers and ranking generators.
+   - **Stripe & Supabase:** Payment and auth systems.
 
 ---
 
 ## 📂 Key Files & Where to Edit
 
+### Frontend
+
 | Target Area | File to Modify | Notes |
 | :--- | :--- | :--- |
 | **Styling & Themes** | `src/styles.css` | Edit OKLCH variables, classes, utility definitions, or animations. |
 | **Global Shell** | `src/routes/__root.tsx` | Contains base HTML `<head>` assets, provider wrappers, and PWA registration hooks. |
-| **Site Navigation** | `src/components/layout/Header.tsx` | Contains responsive header navbar, search links, and the `<NotificationCenter />` dropdown. |
-| **Watchlist & Settings** | `src/routes/dashboard.tsx` | Handles account profile updates, settings toggle states, and the interactive watchlist dialog checklist. |
-| **Signal Feeds** | `src/lib/mock-data.ts` | Mapping file. Derived views are generated here from canonical tables in `src/lib/mock-data/*`. |
-| **Advanced Charting** | `src/routes/pairs.$pair.tsx` | Houses the `<TradingViewChart />` widget, loading responsive technical charts based on client-theme state. |
+| **Site Navigation** | `src/components/layout/Header.tsx` | Contains responsive header navbar, search links, and the dropdown menu. |
+| **Watchlist & Settings** | `src/routes/dashboard.tsx` | Handles account profile updates, settings toggle states, and watchlist checklists. |
 
----
+### Backend
 
-## 🧠 Mock Data Guidelines
-* **TheFortFX runs entirely on client-side mock data.** No external network fetches or real database integrations are configured yet.
-* Canonical data is located in `src/lib/mock-data/` (`pairs.ts`, `brokers.ts`, `economic-events.ts`, `articles.ts`).
-* **Do not use placeholder text:** Ensure all listings have logical mock values (e.g. valid prices, realistic signal setups, correct decimal values).
-* **Signal Object Schema:** When modifying signal objects, preserve backward-compatible properties so that old widgets don't break:
-  * *New Naming:* `slug`, `stop`, `target`, `rMultiple`, `riskLevel`, `lastUpdated`.
-  * *Compatibility Aliases:* `symbol`, `stopLoss`, `takeProfit`, `rr`, `risk`, `updated`.
+| Target Area | Directory/File | Notes |
+| :--- | :--- | :--- |
+| **API Endpoints** | `thefortfx-backend/app/api/v1/` | REST route handlers (health, auth, user, signals, forecasts, etc.). |
+| **Business Logic** | `thefortfx-backend/app/services/` | Business rules, weighted Opportunity Scorer, Stripe flows, AI routing. |
+| **DB ORM Models** | `thefortfx-backend/app/models/` | SQLAlchemy models mapping 1:1 to Supabase tables. |
+| **Celery Tasks** | `thefortfx-backend/app/jobs/` | Cron scrapers, calculations, and alert sweeps. |
 
 ---
 
 ## 🚀 Verification Workflow
 
-Before concluding any code changes, verify your additions using the following steps:
+### 1. Frontend Verification
+- **Compilation Check:** Verify type-safety, code imports, and route trees:
+  ```bash
+  bun run build
+  ```
+- **Development Server:** Run local dev server:
+  ```bash
+  bun run dev
+  ```
 
-1. **Compilation Check:**
-   Run the production compiler to verify type-safety, code imports, and route trees:
-   ```bash
-   bun run build
-   ```
-2. **Development Server Startup:**
-   Start the local dev server to ensure hydration and runtime assets mount correctly:
-   ```bash
-   bun run dev
-   ```
-3. **PWA & CSS Verification:**
-   Ensure the manifest (`/site.webmanifest`) and service worker (`/sw.js`) are linked in the document head and register cleanly in the browser console.
+### 2. Backend Verification
+- **Run Tests:** Execute pytest to verify calculator algorithms, endpoints, and validation schemas:
+  ```bash
+  pytest
+  ```
+- **Database Migrations:** Apply any database schema adjustments:
+  ```bash
+  alembic upgrade head
+  ```
+- **Development Server:** Run uvicorn server:
+  ```bash
+  uvicorn app.main:app --reload --port 8000
+  ```
+

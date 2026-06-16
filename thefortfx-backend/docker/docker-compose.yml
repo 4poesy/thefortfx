@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: thefortfx_db
+    restart: always
+    environment:
+      POSTGRES_DB: thefortfx
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: thefortfx_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: thefortfx_web
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=development
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgrespassword@db:5432/thefortfx
+      - REDIS_URL=redis://redis:6379/0
+      - SUPABASE_URL=http://mock_supabase_url
+      - SUPABASE_KEY=mock_supabase_key
+      - SUPABASE_JWT_SECRET=super-secret-supabase-jwt-token-signing-key-minimum-32-chars
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ../:/app
+
+  worker:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.worker
+    container_name: thefortfx_worker
+    restart: always
+    environment:
+      - APP_ENV=development
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgrespassword@db:5432/thefortfx
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - redis
+      - db
+    volumes:
+      - ../:/app
+
+  beat:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.worker
+    container_name: thefortfx_beat
+    restart: always
+    command: celery -A app.jobs.celery_app beat --loglevel=info
+    environment:
+      - APP_ENV=development
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgrespassword@db:5432/thefortfx
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - redis
+      - db
+    volumes:
+      - ../:/app
+
+volumes:
+  postgres_data:
+  redis_data:
