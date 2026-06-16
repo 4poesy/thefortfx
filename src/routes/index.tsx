@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { signals, marketSentiment, economicEvents, brokers } from "@/lib/mock-data";
-import heroTrading from "@/assets/hero-trading.jpg";
+import heroTrading from "@/assets/hero-trading.png";
 import heroForexChart from "@/assets/hero-forex-chart.png";
 import heroCryptoChart from "@/assets/hero-crypto-chart.png";
 import { heroImages } from "@/lib/hero-images";
@@ -62,6 +62,7 @@ function HomePage() {
             }`}
           />
         ))}
+        <div className="absolute inset-0 bg-transparent dark:bg-black/35 pointer-events-none z-0" />
         
         {/* Sharp content container with semi-transparent background to protect text legibility on sharp images */}
         <div className="relative mx-auto max-w-4xl px-6 py-12 text-center sm:px-12 bg-background/70 backdrop-blur-md rounded-2xl border border-border/40 max-w-[90%] my-8 z-10">

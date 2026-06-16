@@ -30,14 +30,17 @@ export function PageHeader({
   return (
     <section className="relative overflow-hidden border-b border-border/60 bg-surface">
       {image && (
-        <img
-          src={image}
-          alt={imageAlt ?? ""}
-          aria-hidden="true"
-          width={1280}
-          height={832}
-          className="absolute inset-0 h-full w-full object-cover opacity-100"
-        />
+        <>
+          <img
+            src={image}
+            alt={imageAlt ?? ""}
+            aria-hidden="true"
+            width={1280}
+            height={832}
+            className="absolute inset-0 h-full w-full object-cover opacity-100"
+          />
+          <div className="absolute inset-0 bg-transparent dark:bg-black/35 pointer-events-none" />
+        </>
       )}
       <div className="relative mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-20 lg:px-8 lg:py-24 bg-background/50 backdrop-blur-[2px] rounded-2xl my-8">
         {eyebrow && <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary">{eyebrow}</p>}
